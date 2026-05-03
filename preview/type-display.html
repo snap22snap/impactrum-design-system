@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .stack > * + * { margin-top: 14px; }
+  .row { display: flex; align-items: baseline; gap: 18px; }
+  .label { width: 110px; font-size: 11px; color: var(--fg-3); font-weight: 500; }
+  .meta { font-size: 11px; color: var(--fg-3); margin-left: auto; font-variant-numeric: tabular-nums; }
+  .specimen { color: var(--fg-1); }
+  .d-xl { font-size: 64px; font-weight: 700; line-height: 1.1; letter-spacing: -1.5px; }
+  .d-lg { font-size: 48px; font-weight: 700; line-height: 1.15; letter-spacing: -1px; }
+  .d-md { font-size: 36px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; }
+  .d-sm { font-size: 28px; font-weight: 600; line-height: 1.25; letter-spacing: -0.3px; }
+</style>
+</head><body>
+<div class="stack">
+  <div class="row"><span class="label">display-xl</span><span class="specimen d-xl">Premium LED.</span><span class="meta">64 / 700 / -1.5</span></div>
+  <div class="row"><span class="label">display-lg</span><span class="specimen d-lg">Engineered light.</span><span class="meta">48 / 700 / -1</span></div>
+  <div class="row"><span class="label">display-md</span><span class="specimen d-md">Indoor &amp; Outdoor</span><span class="meta">36 / 700 / -0.5</span></div>
+  <div class="row"><span class="label">display-sm</span><span class="specimen d-sm">Talk to us about your project.</span><span class="meta">28 / 600 / -0.3</span></div>
+</div>
+</body></html>

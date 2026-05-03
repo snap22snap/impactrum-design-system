@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; gap: 14px; max-width: 400px; }
+  label {
+    display: flex; align-items: baseline; gap: 8px;
+    font-size: 13px; font-weight: 500; color: var(--fg-1); margin-bottom: 6px;
+  }
+  label .state {
+    font-size: 11px; font-weight: 500; color: var(--fg-3);
+    letter-spacing: 0.02em;
+  }
+  .input {
+    width: 100%; box-sizing: border-box; height: 40px; padding: 10px 14px;
+    background: #ffffff; border: 1px solid #d4d4d4; border-radius: 8px;
+    font-family: var(--font-sans); font-size: 14px; color: #111;
+    outline: none; box-shadow: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  /* Focused state — darker border + soft inner glow. No black, no outer shadow. */
+  .input.focused {
+    border: 1px solid #6b7280;
+    box-shadow: inset 0 0 0 3px rgba(17, 17, 17, 0.05);
+  }
+  .row { display: flex; gap: 16px; }
+  .row > div { flex: 1; }
+</style>
+</head><body>
+<div class="stack">
+  <div class="row">
+    <div>
+      <label>Company <span class="state">· default</span></label>
+      <input class="input" placeholder="Impactrum Co., Ltd.">
+    </div>
+    <div>
+      <label>Email <span class="state">· focused</span></label>
+      <input class="input focused" value="hello@impactrum.kr">
+    </div>
+  </div>
+  <div>
+    <label>Project type <span class="state">· filled</span></label>
+    <input class="input" value="Indoor LED, ~50㎡, Q3 2026">
+  </div>
+</div>
+</body></html>

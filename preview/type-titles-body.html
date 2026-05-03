@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .stack > * + * { margin-top: 14px; }
+  .row { display: flex; align-items: baseline; gap: 18px; }
+  .label { width: 110px; font-size: 11px; color: var(--fg-3); font-weight: 500; }
+  .meta { font-size: 11px; color: var(--fg-3); margin-left: auto; font-variant-numeric: tabular-nums; }
+  .specimen { color: var(--fg-1); }
+  .t-lg { font-size: 22px; font-weight: 600; line-height: 1.35; }
+  .t-md { font-size: 18px; font-weight: 600; line-height: 1.45; }
+  .t-sm { font-size: 16px; font-weight: 600; line-height: 1.45; }
+  .b-md { font-size: 16px; font-weight: 400; line-height: 1.6; color: var(--fg-2); }
+  .b-sm { font-size: 14px; font-weight: 400; line-height: 1.6; color: var(--fg-2); }
+  .cap  { font-size: 14px; font-weight: 500; line-height: 1.45; color: var(--fg-3); }
+</style>
+</head><body>
+<div class="stack">
+  <div class="row"><span class="label">title-lg</span><span class="specimen t-lg">Indoor LED Display</span><span class="meta">22 / 700</span></div>
+  <div class="row"><span class="label">title-md</span><span class="specimen t-md">Why Impactrum</span><span class="meta">18 / 600</span></div>
+  <div class="row"><span class="label">title-sm</span><span class="specimen t-sm">Pixel pitch</span><span class="meta">16 / 600</span></div>
+  <div class="row"><span class="label">body-md</span><span class="specimen b-md">High-resolution LED, engineered for the spaces that demand it.</span><span class="meta">16 / 400</span></div>
+  <div class="row"><span class="label">body-sm</span><span class="specimen b-sm">© 2026 Impactrum. All rights reserved.</span><span class="meta">14 / 400</span></div>
+  <div class="row"><span class="label">caption</span><span class="specimen cap">Most requested</span><span class="meta">14 / 500</span></div>
+</div>
+</body></html>

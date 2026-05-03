@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .row { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .shape { background: #111; }
+  .r-md { width: 70px; height: 44px; border-radius: 8px; }
+  .r-lg { width: 70px; height: 44px; border-radius: 12px; }
+  .r-xl { width: 70px; height: 44px; border-radius: 16px; }
+  .r-pill { width: 90px; height: 28px; border-radius: 9999px; }
+  .r-full { width: 44px; height: 44px; border-radius: 9999px; }
+  .label { font-size: 11px; color: var(--fg-1); font-weight: 600; }
+  .meta { font-size: 11px; color: var(--fg-3); font-variant-numeric: tabular-nums; }
+</style>
+</head><body>
+<div class="row">
+  <div class="item"><div class="shape r-md"></div><span class="label">md · 8</span><span class="meta">buttons / inputs</span></div>
+  <div class="item"><div class="shape r-lg"></div><span class="label">lg · 12</span><span class="meta">content cards</span></div>
+  <div class="item"><div class="shape r-xl"></div><span class="label">xl · 16</span><span class="meta">hero image</span></div>
+  <div class="item"><div class="shape r-pill"></div><span class="label">pill</span><span class="meta">nav, badges</span></div>
+  <div class="item"><div class="shape r-full"></div><span class="label">full</span><span class="meta">avatars, icons</span></div>
+</div>
+</body></html>

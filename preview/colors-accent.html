@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  h6 {
+    margin: 0 0 14px 0; font-size: 11px; font-weight: 600;
+    color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+  }
+  .swatch {
+    border: 1px solid var(--hairline); border-radius: 12px;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .chip { height: 88px; }
+  .meta {
+    padding: 14px 14px 12px;
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+  .meta .name { font-size: 15px; font-weight: 700; color: #111; line-height: 1.25; }
+  .meta .hex { display: block; margin-top: 4px; font-size: 11px; font-weight: 500; color: var(--fg-3); font-variant-numeric: tabular-nums; }
+  .role { padding: 12px 14px 14px; font-size: 12px; line-height: 1.5; color: #4b5563; }
+  .role b { color: #111; font-weight: 600; }
+  .role .free { color: var(--fg-3); }
+
+  .note {
+    margin-top: 18px; padding: 14px 16px;
+    background: #fbfaf6; border: 1px solid var(--hairline-soft);
+    border-radius: 12px;
+    font-size: 12.5px; line-height: 1.55; color: #374151;
+  }
+  .note b { color: #111; font-weight: 600; }
+</style>
+</head><body>
+
+<h6>Accent colors · five-color palette</h6>
+<div class="grid">
+
+  <div class="swatch">
+    <div class="chip" style="background:#fb923c"></div>
+    <div class="meta">
+      <span class="name">Accent orange</span>
+      <span class="hex">#fb923c</span>
+    </div>
+    <div class="role"><b>Products</b> dot · <b>Indoor</b> pill <span class="free">+ free use</span></div>
+  </div>
+
+  <div class="swatch">
+    <div class="chip" style="background:#ec4899"></div>
+    <div class="meta">
+      <span class="name">Accent pink</span>
+      <span class="hex">#ec4899</span>
+    </div>
+    <div class="role"><b>Solutions</b> dot · <b>Outdoor</b> pill <span class="free">+ free use</span></div>
+  </div>
+
+  <div class="swatch">
+    <div class="chip" style="background:#8b5cf6"></div>
+    <div class="meta">
+      <span class="name">Accent violet</span>
+      <span class="hex">#8b5cf6</span>
+    </div>
+    <div class="role"><b>Company</b> dot · <b>Transparent</b> pill <span class="free">+ free use</span></div>
+  </div>
+
+  <div class="swatch">
+    <div class="chip" style="background:#34d399"></div>
+    <div class="meta">
+      <span class="name">Accent emerald</span>
+      <span class="hex">#34d399</span>
+    </div>
+    <div class="role"><b>Resources</b> dot · <b>Custom</b> pill <span class="free">+ free use</span></div>
+  </div>
+
+  <div class="swatch">
+    <div class="chip" style="background:#3b82f6"></div>
+    <div class="meta">
+      <span class="name">Accent blue</span>
+      <span class="hex">#3b82f6</span>
+    </div>
+    <div class="role"><span class="free">No fixed mapping · free use</span></div>
+  </div>
+
+</div>
+
+<div class="note">
+  <b>Fixed mappings</b> apply only to footer column dots and product-type pills (Indoor / Outdoor / Transparent / Custom). Outside those two patterns, all five accents — including blue — are designer choice. The action layer (buttons, ribbons, CTAs) stays monochrome — accents never appear on a button.
+</div>
+
+</body></html>

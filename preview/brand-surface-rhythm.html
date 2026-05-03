@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 0; font-family: var(--font-sans); }
+  .stack { display: flex; flex-direction: column; }
+  .band {
+    height: 56px; display: flex; align-items: center; padding: 0 24px;
+    font-size: 13px; color: var(--fg-3);
+  }
+  .band .name { color: var(--fg-1); font-weight: 600; margin-right: 12px; }
+  .canvas { background: #ffffff; }
+  .warm   { background: #fbfaf6; }
+  .cool   { background: #f6f8fa; }
+  .soft   { background: #f7f8fa; }
+  .footer-note { font-size: 11px; color: var(--fg-4); padding: 10px 24px 0; }
+</style>
+</head><body>
+<div class="stack">
+  <div class="band canvas"><span class="name">Canvas</span> hero · #ffffff</div>
+  <div class="band warm"><span class="name">Warm</span> feature cards · #fbfaf6</div>
+  <div class="band canvas"><span class="name">Canvas</span> product grid · #ffffff</div>
+  <div class="band cool"><span class="name">Cool</span> alt feature band · #f6f8fa</div>
+  <div class="band canvas"><span class="name">Canvas</span> case studies · #ffffff</div>
+  <div class="band warm"><span class="name">Warm</span> CTA band · #fbfaf6</div>
+  <div class="band soft"><span class="name">Soft</span> footer · #f7f8fa</div>
+</div>
+<div class="footer-note">Two consecutive bands never share the same surface.</div>
+</body></html>

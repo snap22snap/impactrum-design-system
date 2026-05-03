@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .row { display: flex; gap: 22px; flex-wrap: wrap; }
+  .item { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .surf { width: 150px; height: 80px; background: #fff; border-radius: 12px; }
+  .flat { border: 1px solid var(--hairline); }
+  .strong { border: 1px solid var(--hairline-strong); }
+  .tier { box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--hairline); }
+  .pill { box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+  .label { font-size: 12px; color: var(--fg-1); font-weight: 600; }
+  .meta { font-size: 11px; color: var(--fg-3); }
+</style>
+</head><body>
+<div class="row">
+  <div class="item"><div class="surf flat"></div><span class="label">Hairline</span><span class="meta">1px · default cards</span></div>
+  <div class="item"><div class="surf strong"></div><span class="label">Hairline strong</span><span class="meta">1px · secondary buttons</span></div>
+  <div class="item"><div class="surf tier"></div><span class="label">Soft tier shadow</span><span class="meta">0/1/2 + 0/4/12 · inquiry tier</span></div>
+  <div class="item"><div class="surf pill"></div><span class="label">Pill active</span><span class="meta">0/1/2 · pill-group active</span></div>
+</div>
+</body></html>

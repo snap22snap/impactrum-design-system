@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 24px; }
+  .row { display: flex; gap: 18px; align-items: stretch; flex-wrap: wrap; }
+  .demo {
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
+    font-family: var(--font-sans); font-size: 12px; color: var(--fg-3);
+  }
+  .demo .label { font-weight: 600; color: var(--fg-1); }
+  .hairline        { width: 200px; height: 1px; background: var(--hairline); }
+  .hairline-strong { width: 200px; height: 1px; background: var(--hairline-strong); }
+  .hairline-soft   { width: 200px; height: 1px; background: var(--hairline-soft); }
+  .ink             { width: 200px; height: 1px; background: var(--color-ink); }
+  .meta { font-variant-numeric: tabular-nums; }
+</style>
+</head><body>
+<div class="row">
+  <div class="demo">
+    <span class="label">Hairline</span>
+    <div class="hairline"></div>
+    <span class="meta">1px · #e5e7eb · default cards & inputs</span>
+  </div>
+  <div class="demo">
+    <span class="label">Hairline strong</span>
+    <div class="hairline-strong"></div>
+    <span class="meta">1px · #d4d4d4 · secondary buttons</span>
+  </div>
+  <div class="demo">
+    <span class="label">Hairline soft</span>
+    <div class="hairline-soft"></div>
+    <span class="meta">1px · #f0f0ec · spec rows on white</span>
+  </div>
+  <div class="demo">
+    <span class="label">Ink (featured)</span>
+    <div class="ink"></div>
+    <span class="meta">1px · #111111 · featured tier border</span>
+  </div>
+</div>
+</body></html>

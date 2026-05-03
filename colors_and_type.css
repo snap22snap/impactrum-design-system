@@ -1,0 +1,230 @@
+/* Impactrum Design System — Colors & Type
+ * Source of truth: DESIGN.md from snap22snap/impactrum-design-system
+ * Single typeface (Wanted Sans Variable), light surfaces only,
+ * black is reserved for typography / primary CTAs / wordmark.
+ */
+
+/* Self-hosted Wanted Sans (TTF) — replaces the jsDelivr CDN import.
+   Files live in /fonts/ at the project root. */
+@font-face {
+  font-family: "Wanted Sans Variable";
+  src: url("fonts/WantedSans-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Wanted Sans Variable";
+  src: url("fonts/WantedSans-Medium.ttf") format("truetype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Wanted Sans Variable";
+  src: url("fonts/WantedSans-SemiBold.ttf") format("truetype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Wanted Sans Variable";
+  src: url("fonts/WantedSans-Bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Wanted Sans Variable";
+  src: url("fonts/WantedSans-ExtraBold.ttf") format("truetype");
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Wanted Sans Variable";
+  src: url("fonts/WantedSans-Black.ttf") format("truetype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ----- BRAND / INK ----- */
+  --color-primary: #111111;
+  --color-primary-active: #242424;
+  --color-primary-disabled: #e5e7eb;
+  --color-ink: #111111;
+  --color-on-primary: #ffffff;
+
+  /* ----- TEXT (FG) ----- */
+  --fg-1: #111111;       /* ink — headlines, primary text */
+  --fg-2: #374151;       /* body — running text */
+  --fg-3: #6b7280;       /* muted — sub-headings, breadcrumbs */
+  --fg-4: #898989;       /* muted-soft — captions, fine-print */
+
+  /* ----- SURFACES (BG) ----- */
+  --bg-canvas: #ffffff;          /* default page floor */
+  --bg-soft: #f7f8fa;            /* footer, nav-pill background — cool */
+  --bg-warm: #fbfaf6;            /* feature cards, hero mat — warm off-white */
+  --bg-cool: #f6f8fa;            /* alt feature cards — cool gray */
+  --bg-card: #f5f5f5;            /* legacy neutral, badges, avatars */
+  --bg-strong: #e5e7eb;          /* disabled buttons */
+  --bg-dark: #0a0a0a;            /* RESERVED — not in standard components */
+  --bg-dark-elevated: #1a1a1a;   /* RESERVED — not in standard components */
+
+  /* ----- HAIRLINES ----- */
+  --hairline: #e5e7eb;           /* default 1px card/input border */
+  --hairline-strong: #d4d4d4;    /* secondary buttons, emphasized */
+  --hairline-soft: #f0f0ec;      /* warm divider on white sections */
+
+  /* ----- ACCENTS ----- */
+  --accent-blue: #3b82f6;        /* sparingly — inline links, "new" */
+  --badge-orange: #fb923c;
+  --badge-pink:   #ec4899;
+  --badge-violet: #8b5cf6;
+  --badge-emerald:#34d399;
+
+  /* ----- SEMANTIC ----- */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error:   #e8464d;
+
+  /* ----- RADIUS ----- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;     /* buttons, inputs, tabs */
+  --radius-lg: 12px;    /* cards */
+  --radius-xl: 16px;    /* hero product image */
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+
+  /* ----- SPACING ----- */
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-xxl: 48px;
+  --space-section: 120px; /* major bands — bumped from 96px baseline */
+
+  /* ----- ELEVATION ----- */
+  --shadow-pill-active: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-tier-soft:   0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+
+  /* ----- TYPOGRAPHY FAMILY ----- */
+  --font-sans: "Wanted Sans Variable", -apple-system, BlinkMacSystemFont,
+               "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+
+  /* Display / title sizes */
+  --fs-display-xl: 64px;
+  --fs-display-lg: 48px;
+  --fs-display-md: 36px;
+  --fs-display-sm: 28px;
+  --fs-title-lg:   22px;
+  --fs-title-md:   18px;
+  --fs-title-sm:   16px;
+  --fs-body-md:    16px;
+  --fs-body-sm:    14px;
+
+  /* Weights */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semibold:600;
+  --fw-bold:    700;
+  --fw-black:   800;
+}
+
+/* ============================================================
+ * Base + semantic type roles
+ * Hierarchy is carved by WEIGHT (400 → 800), not family.
+ * Negative letter-spacing only on Latin-dominant display ≥ 28px.
+ * ============================================================ */
+
+html, body {
+  font-family: var(--font-sans);
+  color: var(--fg-2);
+  background: var(--bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .h1 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-display-xl);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--fg-1);
+}
+h2, .h2 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-display-lg);
+  font-weight: var(--fw-bold);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--fg-1);
+}
+h3, .h3 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-display-md);
+  font-weight: var(--fw-bold);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--fg-1);
+}
+h4, .h4 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-display-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+  color: var(--fg-1);
+}
+h5, .h5 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-title-lg);
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+  color: var(--fg-1);
+}
+h6, .h6 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-title-md);
+  font-weight: var(--fw-semibold);
+  line-height: 1.45;
+  color: var(--fg-1);
+}
+
+/* Korean / mixed-language headlines: drop negative tracking */
+.lang-ko h1, .lang-ko h2, .lang-ko h3, .lang-ko h4 { letter-spacing: 0; }
+
+p, .body-md {
+  font-size: var(--fs-body-md);
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  color: var(--fg-2);
+}
+.body-sm {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  color: var(--fg-2);
+}
+.caption {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1.45;
+  color: var(--fg-3);
+}
+.spec {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  /* Wanted Sans variable axis ships tabular numerics by default */
+}
+.button-label {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-semibold);
+  line-height: 1;
+}
+.nav-link {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  line-height: 1.45;
+}
+
+a, .text-link {
+  color: var(--fg-1);
+  text-decoration: none;
+}
+a:hover, .text-link:hover { text-decoration: underline; }

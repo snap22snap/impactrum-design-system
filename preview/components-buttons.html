@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .row + .row { margin-top: 14px; }
+  .btn {
+    font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+    line-height: 1; cursor: pointer; border-radius: 8px;
+    padding: 12px 20px; height: 40px; box-sizing: border-box;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 0; white-space: nowrap;
+    transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+  }
+
+  /* Primary — ink. Solid color shifts only. No shadow, no transform. */
+  .primary { background: #111111; color: #fff; }
+  .primary:hover { background: #333333; }
+  .primary-active { background: #1a1a1a; color: #fff; }
+  .primary-disabled {
+    background: #d4d4d4; color: #a1a1a1;
+    cursor: not-allowed;
+  }
+  .primary-disabled:hover { background: #d4d4d4; }
+
+  /* Secondary — white + hairline. Solid color shifts only. */
+  .secondary {
+    background: #ffffff; color: var(--fg-1);
+    border: 1px solid #d4d4d4;
+  }
+  .secondary:hover { background: #F2F3F5; }
+  .secondary-active { background: #d4d4d4; color: var(--fg-1); border: 1px solid #d4d4d4; }
+  .secondary-disabled {
+    background: #f3f4f6; color: #c4c4c4;
+    border: 1px solid transparent;
+    cursor: not-allowed;
+  }
+  .secondary-disabled:hover { background: #f3f4f6; }
+
+  /* Icon-circular */
+  .icon-circle {
+    width: 36px; height: 36px; border-radius: 9999px;
+    background: #fff; border: 1px solid #d4d4d4;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #111111; cursor: pointer;
+    transition: background-color 120ms ease;
+  }
+  .icon-circle:hover { background: #F2F3F5; }
+  .icon-circle-active { background: #d4d4d4; }
+
+  /* Text-link */
+  .text-link {
+    background: transparent; color: #111111; padding: 0 4px;
+    text-decoration: none;
+  }
+  .text-link:hover { text-decoration: underline; }
+
+  h6 {
+    margin: 0; font-size: 11px; font-weight: 600; color: var(--fg-3);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .state-label {
+    font-size: 11px; color: var(--fg-3); margin-left: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+</head><body>
+<h6 style="margin-bottom:10px">Primary · ink</h6>
+<div class="row">
+  <button class="btn primary">Get a quote</button>
+  <button class="btn primary-active">Pressed</button>
+  <button class="btn primary-disabled">Disabled</button>
+  <span class="state-label">hover → #333333 / pressed → #1a1a1a / disabled → #d4d4d4 + #a1a1a1 text</span>
+</div>
+
+<h6 style="margin-top:22px;margin-bottom:10px">Secondary</h6>
+<div class="row">
+  <button class="btn secondary">View specifications</button>
+  <button class="btn secondary-active">Pressed</button>
+  <button class="btn secondary-disabled" disabled>Disabled</button>
+  <span class="state-label">hover → #F2F3F5 / pressed → #d4d4d4 / disabled → #f3f4f6, no border</span>
+</div>
+
+<h6 style="margin-top:22px;margin-bottom:10px">Icon-circular & text-link</h6>
+<div class="row">
+  <span class="icon-circle">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  </span>
+  <a href="#" class="btn text-link">Learn more →</a>
+  <span class="state-label">hover → #F2F3F5 (icon) / underline (link)</span>
+</div>
+</body></html>

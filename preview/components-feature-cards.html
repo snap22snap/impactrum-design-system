@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+  }
+  .card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.05);
+    border-color: var(--hairline-strong);
+  }
+  .img {
+    aspect-ratio: 16 / 9;
+    background: #fbfaf6;
+    border-bottom: 1px solid var(--hairline);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 12px 14px;
+    color: #898989;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .body { padding: 20px 22px 22px; }
+  .title  { margin: 0 0 6px 0; font-size: 18px; font-weight: 600; color: #111; line-height: 1.35; }
+  .desc   { margin: 0; font-size: 14px; line-height: 1.6; color: #374151; }
+  .spec   {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid var(--hairline-soft);
+    font-size: 12px; font-weight: 500; color: #6b7280;
+    font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
+  }
+</style>
+</head><body>
+<div class="row">
+  <div class="card">
+    <div class="img">Indoor installation · 16:9 photo</div>
+    <div class="body">
+      <h6 class="title">Indoor LED</h6>
+      <p class="desc">Fine-pitch displays for showrooms, retail, and corporate lobbies.</p>
+      <div class="spec">P1.2–P3.0 · 800–1,200 nits · 160° viewing</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="img">Outdoor installation · 16:9 photo</div>
+    <div class="body">
+      <h6 class="title">Outdoor LED</h6>
+      <p class="desc">Weather-rated panels engineered for sustained brightness in daylight.</p>
+      <div class="spec">P3.0–P10 · 5,000–7,500 nits · IP65</div>
+    </div>
+  </div>
+</div>
+</body></html>

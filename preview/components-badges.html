@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+
+  .grid { display: grid; grid-template-columns: 140px 1fr; row-gap: 18px; column-gap: 24px; align-items: center; }
+  .label {
+    font-size: 11px; font-weight: 600; color: var(--fg-3);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+  /* Pills */
+  .pill {
+    display: inline-flex; align-items: center;
+    padding: 4px 12px; border-radius: 9999px;
+    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+  }
+  .ribbon  { background: #111; color: #fff; padding: 6px 14px; }
+  .neutral { background: #eef0f3; color: #111; }
+  .orange  { background: #fff3e6; color: #b25416; }
+  .pink    { background: #fde7f0; color: #a01b59; }
+  .violet  { background: #efe7fe; color: #5e2db8; }
+  .emerald { background: #e2f7ee; color: #086a48; }
+  .blue    { background: #e4edfd; color: #1e4baf; }
+
+  /* Category dots */
+  .dot-row {
+    display: grid; grid-template-columns: repeat(2, max-content);
+    column-gap: 28px; row-gap: 10px;
+    font-size: 14px; font-weight: 500; color: #111;
+  }
+  .dot-item { display: inline-flex; align-items: center; gap: 8px; }
+  .dot {
+    width: 8px; height: 8px; border-radius: 9999px; flex: 0 0 auto;
+    display: inline-block;
+  }
+  .dot.orange  { background: #fb923c; }
+  .dot.pink    { background: #ec4899; }
+  .dot.violet  { background: #8b5cf6; }
+  .dot.emerald { background: #34d399; }
+  .dot.blue    { background: #3b82f6; }
+
+  /* Nav pill group */
+  .nav-pill {
+    background: #eef0f3; padding: 6px; border-radius: 9999px;
+    display: inline-flex; gap: 4px;
+  }
+  .seg {
+    padding: 8px 16px; border-radius: 9999px;
+    font-size: 14px; font-weight: 500;
+    color: #6b7280; cursor: pointer;
+    transition: color 120ms ease, background-color 120ms ease;
+  }
+  .seg:hover { color: #111; }
+  .seg.active {
+    background: #fff; color: #111;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  }
+  .seg.active:hover { color: #111; }
+</style>
+</head><body>
+
+<div class="grid">
+
+  <div class="label">Ribbon</div>
+  <div class="row">
+    <span class="pill ribbon">Most requested</span>
+  </div>
+
+  <div class="label">Neutral pill</div>
+  <div class="row">
+    <span class="pill neutral">P1.2 mm</span>
+    <span class="pill neutral">240+ installations</span>
+  </div>
+
+  <div class="label">Product-type pills</div>
+  <div class="row">
+    <span class="pill orange">Indoor</span>
+    <span class="pill pink">Outdoor</span>
+    <span class="pill violet">Transparent</span>
+    <span class="pill emerald">Custom</span>
+  </div>
+
+  <div class="label">Status / info pill</div>
+  <div class="row">
+    <span class="pill blue">In stock</span>
+    <span class="pill blue">New spec sheet</span>
+  </div>
+
+  <div class="label">Category dot</div>
+  <div class="dot-row">
+    <span class="dot-item"><span class="dot orange"></span>Products</span>
+    <span class="dot-item"><span class="dot pink"></span>Solutions</span>
+    <span class="dot-item"><span class="dot violet"></span>Company</span>
+    <span class="dot-item"><span class="dot emerald"></span>Resources</span>
+  </div>
+
+  <div class="label">Free-use dot</div>
+  <div class="row">
+    <span class="dot-item" style="font-size:14px;font-weight:500;color:#111;gap:8px;display:inline-flex;align-items:center;">
+      <span class="dot blue"></span>Showroom-grade testing
+    </span>
+  </div>
+
+  <div class="label">Nav-pill-group</div>
+  <div class="row">
+    <div class="nav-pill">
+      <span class="seg active">Indoor</span>
+      <span class="seg">Outdoor</span>
+      <span class="seg">Transparent</span>
+      <span class="seg">Custom</span>
+    </div>
+  </div>
+
+</div>
+
+</body></html>

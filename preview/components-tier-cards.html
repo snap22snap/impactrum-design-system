@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Card</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { padding: 28px 32px; font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tier {
+    background: #fff; border: 1px solid var(--hairline);
+    border-radius: 12px; padding: 26px;
+    position: relative;
+  }
+  .tier.featured {
+    background: #f6f8fa; border: 1px solid var(--hairline);
+  }
+  .ribbon {
+    position: absolute; top: -12px; left: 26px;
+    background: #111; color: #fff; font-size: 13px; font-weight: 500;
+    padding: 4px 12px; border-radius: 9999px;
+  }
+  h6 { margin: 0 0 4px 0; font-size: 22px; font-weight: 600; color: var(--fg-1); }
+  p  { margin: 0 0 16px 0; font-size: 14px; line-height: 1.6; color: var(--fg-2); }
+  .btn {
+    display: inline-block; padding: 10px 16px; height: 36px; box-sizing: border-box;
+    border-radius: 8px; font-size: 13px; font-weight: 600;
+  }
+  .btn-secondary {
+    background: #fff; color: var(--fg-1);
+    border: 1px solid var(--hairline-strong);
+  }
+  .btn-primary {
+    background: #111; color: #fff;
+  }
+</style>
+</head><body>
+<div class="grid">
+  <div class="tier">
+    <h6>Standard inquiry</h6>
+    <p>Spec-driven quote for catalog products, ~2 week turnaround.</p>
+    <span class="btn btn-secondary">Get a quote</span>
+  </div>
+  <div class="tier featured">
+    <span class="ribbon">Most requested</span>
+    <h6>Custom project</h6>
+    <p>Site survey, structural review, and bespoke pixel pitch.</p>
+    <span class="btn btn-primary">Request a survey</span>
+  </div>
+</div>
+</body></html>
