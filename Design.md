@@ -405,12 +405,19 @@ components:
     rounded: "{rounded.pill}"
     padding: 4px 12px
   badge-pill-pastel:
-    backgroundColor: "one of {colors.pill-bg-orange|pill-bg-pink|pill-bg-violet|pill-bg-emerald|pill-bg-blue}"
-    textColor: "matching {colors.pill-text-*} (e.g. pill-bg-orange → pill-text-orange)"
     typography: "{typography.caption}"
     rounded: "{rounded.pill}"
     padding: 4px 12px
-    note: "Background and text are paired tokens — pill-bg-orange always pairs with pill-text-orange, never with another color's text token. For product category tags (Indoor / Outdoor / Transparent / Custom) the bg/text color is fixed by mapping (see Components section). For other pastel-pill uses (sub-category, status, eyebrow) any of the five color pairs may be used. The blue pair (pill-bg-blue + pill-text-blue) is the default for status/utility pills like 'In stock' or 'New spec sheet' that don't belong to a product category."
+    variants:
+      tinted:
+        backgroundColor: "one of {colors.pill-bg-orange|pill-bg-pink|pill-bg-violet|pill-bg-emerald|pill-bg-blue}"
+        textColor: "matching {colors.pill-text-*} (e.g. pill-bg-orange → pill-text-orange)"
+        note: "Tinted variant — bg + text are paired tokens, never mixed across colors. Use when the pill itself must signal category at a glance (product cards, filter chips that double as legend, eyebrow markers in a category-themed section)."
+      mono:
+        backgroundColor: "one of {colors.pill-bg-orange|pill-bg-pink|pill-bg-violet|pill-bg-emerald|pill-bg-blue}"
+        textColor: "{colors.ink}"
+        note: "Mono variant — same five pastel backgrounds, but text is always {colors.ink} (#111111). Use when category signal is secondary and quiet uniformity matters more — inline tags inside body copy, dense filter rows, contexts where multiple pills appear close together and the colored text would feel noisy. Reads more reserved than tinted; the colored bg is decorative, not semantic."
+    note: "Two variants share the same five backgrounds and the same shape. Default to {variants.tinted} for product category tags on product cards (Indoor / Outdoor / Transparent / Custom) — colored text is part of how the catalog reads. Default to {variants.mono} for status pills, inline body tags, and any context where pills appear in volume. The two variants can coexist on the same page but should not be mixed within a single row of pills."
   category-dot:
     size: 6px
     rounded: "{rounded.full}"
@@ -759,7 +766,7 @@ The image leads (LED hardware imagery is the marketing voltage). The spec summar
 
 **`feature-icon-card`** — Simpler card for 4-up feature grids on lower-density bands. Background `{colors.canvas}` with hairline border, rounded `{rounded.lg}`, padding `{spacing.lg}` (24px). Use only when an actual feature claim doesn't warrant photography — most marketing surfaces should use `feature-card` instead. Same icon-color rule applies: line icon in the matched accent, never a filled icon block.
 
-**`product-image-card`** — Card showing LED product photography (panel renders, modules, fixtures). Background `{colors.canvas}`, hairline border, rounded `{rounded.lg}`, padding `0`. Product image fills the card edge to edge; product name and short tagline sit beneath the image in a separate text block. Category pastel pill (`{component.badge-pill-pastel}`) sits above the product name, color-mapped to the category (Indoor → orange, Outdoor → pink, Transparent → violet, Custom → emerald).
+**`product-image-card`** — Card showing LED product photography (panel renders, modules, fixtures). Background `{colors.canvas}`, hairline border, rounded `{rounded.lg}`, padding `0`. Product image fills the card edge to edge; product name and short tagline sit beneath the image in a separate text block. Category pastel pill (`{component.badge-pill-pastel}` in `tinted` variant) sits above the product name, color-mapped to the category (Indoor → orange, Outdoor → pink, Transparent → violet, Custom → emerald).
 
 **`product-spec-card`** — Specification-sheet card listing technical attributes (pixel pitch, brightness, refresh rate, IP rating, viewing angle, lifespan). Background `{colors.canvas}`, hairline border, rounded `{rounded.lg}`, padding `{spacing.lg}` (24px). Title at top in `{typography.title-md}`, then `{component.spec-row}` entries with `{colors.hairline}` dividers.
 
@@ -797,34 +804,40 @@ The focus signal is intentionally gentle. Black is not used as a focus color eve
 
 Pill backgrounds split into two categories. Both share the same shape (`{rounded.pill}`, padding 4px × 12px, `{typography.caption}`) — the difference is **fill family**.
 
-**Category 1 — Pastel color pills (`badge-pill-pastel`).** Five paired bg/text tokens, one per accent. Background and text always travel as a pair: `pill-bg-orange` + `pill-text-orange`, never mixed across colors.
+**Category 1 — Pastel color pills (`badge-pill-pastel`).** Five paired bg tokens, one per accent. The component has **two variants** that share the same five backgrounds but use different text colors. Pick the variant per context.
 
-| Pill | Background | Text |
-|---|---|---|
-| Orange | `{colors.pill-bg-orange}` (#fff3e5) | `{colors.pill-text-orange}` (#c2410c) |
-| Pink | `{colors.pill-bg-pink}` (#fde8f1) | `{colors.pill-text-pink}` (#9d174d) |
-| Violet | `{colors.pill-bg-violet}` (#efe7fe) | `{colors.pill-text-violet}` (#5b21b6) |
-| Emerald | `{colors.pill-bg-emerald}` (#e2f7ee) | `{colors.pill-text-emerald}` (#047857) |
-| Blue | `{colors.pill-bg-blue}` (#e4ecff) | `{colors.pill-text-blue}` (#1d4ed8) |
-
-For **product category tags** (Indoor / Outdoor / Transparent / Custom on product cards) the bg/text pair is fixed:
-
-| Tag | Pair |
+| Pill | Background |
 |---|---|
-| Indoor | orange (`pill-bg-orange` + `pill-text-orange`) |
-| Outdoor | pink (`pill-bg-pink` + `pill-text-pink`) |
-| Transparent | violet (`pill-bg-violet` + `pill-text-violet`) |
-| Custom | emerald (`pill-bg-emerald` + `pill-text-emerald`) |
+| Orange | `{colors.pill-bg-orange}` (#fff3e5) |
+| Pink | `{colors.pill-bg-pink}` (#fde8f1) |
+| Violet | `{colors.pill-bg-violet}` (#efe7fe) |
+| Emerald | `{colors.pill-bg-emerald}` (#e2f7ee) |
+| Blue | `{colors.pill-bg-blue}` (#e4ecff) |
 
-This product-type mapping is a system-level decision, not a per-page choice. Once set, every product card uses the same color for the same product type. This consistency is what makes the pill colors meaningful — a reader scanning the catalog can identify "Indoor" by color before reading the label.
+**Variant `tinted`** — text uses the matching `pill-text-*` token (orange bg → `pill-text-orange` #c2410c, pink bg → `pill-text-pink` #9d174d, violet bg → `pill-text-violet` #5b21b6, emerald bg → `pill-text-emerald` #047857, blue bg → `pill-text-blue` #1d4ed8). bg and text are paired — never crossed. Use when the pill itself must signal category at a glance.
 
-For **status pills** (e.g. "In stock", "New spec sheet", "Available now") the default pair is **blue** (`pill-bg-blue` + `pill-text-blue`). Blue isn't tied to any product category, so it reads as system/utility rather than category — perfect for transient state. Use a different color pair only when the status genuinely belongs to a product family (e.g. "Indoor — In stock" can carry the orange pair).
+**Variant `mono`** — text is always `{colors.ink}` (#111111), regardless of which of the five backgrounds the pill uses. The colored background is decorative; identification comes from the label, not the color. Use when pills appear in volume, when category signal is secondary, or when the page has too much chromatic activity already and the pills should read as a quiet system layer.
 
-For **other pastel-pill uses** (sub-category tags, eyebrow pills, special markers), all five color pairs are available — pick what fits the moment.
+The two variants share the five backgrounds and the shape. They can coexist on the same page but **should not be mixed within a single row of pills** — within one row, pick one variant. Mixing reads as inconsistency, not as deliberate hierarchy.
+
+For **product category tags** (Indoor / Outdoor / Transparent / Custom on product cards) the default is **`tinted`** with the bg fixed by mapping:
+
+| Tag | Background |
+|---|---|
+| Indoor | `pill-bg-orange` |
+| Outdoor | `pill-bg-pink` |
+| Transparent | `pill-bg-violet` |
+| Custom | `pill-bg-emerald` |
+
+This product-type mapping is a system-level decision, not a per-page choice. Once set, every product card uses the same bg for the same product type. The colored text in `tinted` reinforces the read — a buyer scanning the catalog identifies "Indoor" by color before reading the label. Switch to `mono` for product tags only on dense list views where every row has a pill and colored text would dominate the layout.
+
+For **status pills** (e.g. "In stock", "New spec sheet", "Available now") the default is **`mono` with `pill-bg-blue`** — the blue background marks status without tying it to a product family, and ink text keeps the row reserved. Use `tinted` blue (`pill-bg-blue` + `pill-text-blue`) only when the status pill needs to compete for attention against other elements (a featured-card ribbon nearby, a busy hero band).
+
+For **other pastel-pill uses** (sub-category tags, eyebrow pills, special markers), all five backgrounds are available in either variant — pick what fits the moment.
 
 **Category 2 — Neutral pill (`badge-pill-neutral`).** One pair only — background `{colors.surface-pill}` (#ebedf0), text `{colors.ink}`. Rounded `{rounded.pill}`, padding 4px × 12px, type `{typography.caption}`. Used for spec/identity tags that aren't categorical and aren't a status — things like "P1.2 mm", "16:9", "1500 nit", "Featured". Can also carry a leading colored dot when used as an eyebrow indicator (e.g. "● Seoul HQ · 240+ installations" with an emerald dot).
 
-The two categories don't compete: pastel pills carry meaning (category, status), neutral pills carry data (specs, identifiers). If you find yourself reaching for neutral on something that's actually a status, switch to blue pastel.
+The three pill flavors (pastel `tinted`, pastel `mono`, neutral) sit on a quietness axis: tinted is the loudest, neutral is the quietest, mono is in between. If you find yourself reaching for neutral on something that's actually a status, switch to mono blue. If you reach for tinted on a row of seven pills, switch to mono.
 
 **`category-dot`** — Small filled circle, 6px, rounded `{rounded.full}`. Used inline before category labels (e.g. footer column heads, hero eyebrow indicators, section eyebrows). Color uses the **saturated accent tokens** (`accent-orange/pink/violet/emerald/blue`), not the pill-text variants — dots sit on white canvas, not on a pastel fill, so they need full saturation to register at 6px. Mapping follows the same fixed assignment (Products → orange, Solutions → pink, Company → violet, Resources → emerald). The dot is the smallest unit of accent in the system — it appears wherever a section needs a quiet color signature without committing to a full pastel pill.
 
@@ -934,6 +947,6 @@ The four-color dot pattern is the footer's quiet identity move — it's a fixed,
 - LED product photography directional treatment (studio vs. environmental, day vs. dusk) is not in scope. The system assumes photography is provided; it doesn't dictate how the photography is shot.
 - Self-hosted Wanted Sans TTF files in `assets/fonts/` are bundled at weights 400, 500, 600, 700, 800. The 800 weight is loaded but unused in standard components — keep it bundled in case a future deliberate moment needs it (PPTX presentations, special headlines).
 - The `surface-card` (#f5f5f5) token from earlier drafts has been replaced by `surface-warm` and `surface-pill` for component use. The token still exists for legacy reference but should not be applied to new components.
-- Pastel pill backgrounds and text colors went from an abstract rule ("use the accent at ~15% opacity, text at full saturation") to ten concrete tokens (`pill-bg-*` and `pill-text-*` × five colors). The `accent-*` tokens (#fb923c etc.) remain authoritative for category dots, line icons, rating stars, and inline emphasis on white canvas — but they are no longer used as pill fills or as text-on-pastel. If older Impactrum collateral still uses `accent-orange` directly as a pill background, migrate to `pill-bg-orange` + `pill-text-orange` rather than computing opacity at render time.
+- Pastel pill backgrounds went from an abstract rule ("use the accent at ~15% opacity") to five concrete `pill-bg-*` tokens, each readable in two variants of `badge-pill-pastel`: `tinted` (text uses the matching `pill-text-*`) and `mono` (text is `{colors.ink}`). The `accent-*` tokens (#fb923c etc.) remain authoritative for category dots, line icons, rating stars, and inline emphasis on white canvas — but they are no longer used as pill fills. Older Impactrum collateral that uses `accent-orange` directly as a pill background should migrate to `pill-bg-orange` with the `tinted` or `mono` variant chosen per context (default `tinted` for product category tags on product cards; default `mono` for status pills and dense pill rows).
 - Multi-product spec table responsive collapse (horizontal columns → vertical cards on mobile) is described in principle but not detailed at the component level. Define when implementing the actual product comparison page.
 - The icon-led feature card variant (Manufacturing/Design/Proof line icons) currently picks accent color per claim type (Manufacturing → orange, Design → violet, Proof → emerald). This mapping is editorial — if the card content changes (new claim types, different framing), the assignment may need to be revisited.
