@@ -614,6 +614,24 @@ body {
     Page sequence · Extended patterns)
    ============================================================ */
 
+/* Wordmark — uses impactrum-logo-black-2026.svg via <symbol> */
+.wordmark {
+  display: inline-block;
+  height: 16px;
+  width: auto;
+  color: var(--ink);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.wordmark-sm     { height: 14px; }
+.wordmark-md     { height: 18px; }
+.wordmark-lg     { height: 28px; }
+.wordmark-hero   { display: block; height: 72px; }
+.wordmark-footer { height: 22px; }
+@media (max-width: 768px) {
+  .wordmark-hero { height: 44px; }
+}
+
 /* Icons */
 .icon { stroke-width: 1.5; }
 .icon-grid {
@@ -630,10 +648,11 @@ body {
   text-align: center;
 }
 .icon-cell .ic-name {
-  font-family: ui-monospace, monospace;
-  font-size: 11px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
   color: var(--ink-mute);
-  word-break: break-all;
+  word-break: keep-all;
 }
 .icon-accent-row {
   display: grid;
@@ -646,7 +665,7 @@ body {
 }
 @media (max-width: 600px) { .icon-accent-row { grid-template-columns: repeat(5, 1fr); padding: var(--s-3); } }
 .icon-accent-cell { display: flex; flex-direction: column; align-items: center; gap: var(--s-2); }
-.icon-accent-cell .ic-tk { font-family: ui-monospace, monospace; font-size: 10px; color: var(--ink-mute); }
+.icon-accent-cell .ic-tk { font-family: var(--font); font-size: 11px; font-weight: 500; color: var(--ink-mute); }
 .icon-line-only { color: var(--ink-body); }
 .ic-orange  { color: var(--accent-orange); }
 .ic-pink    { color: var(--accent-pink); }
@@ -1051,13 +1070,15 @@ body {
   background: var(--canvas);
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--s-3);
-  font-family: ui-monospace, monospace;
-  font-size: 11px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
   color: var(--ink-mute);
   flex-wrap: wrap;
 }
-.kit-header .kit-label { font-weight: 600; color: var(--ink); }
-.kit-header .kit-meta { font-size: 11px; color: var(--ink-mute); }
+.kit-header .kit-label { font-weight: 600; color: var(--ink); font-size: 12px; }
+.kit-header .kit-meta { font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+.kit-header .kit-meta code { font-family: ui-monospace, monospace; font-size: 11px; }
 
 /* Hero kit */
 .kit-hero {
@@ -1323,8 +1344,9 @@ body {
 .seq-band.b-cool   { background: var(--surface-cool); }
 .seq-band-label {
   position: absolute; top: var(--s-3); right: var(--s-4);
-  font-family: ui-monospace, monospace;
-  font-size: 10px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
   color: var(--ink-mute);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
@@ -1389,10 +1411,16 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="logo-impactrum" viewBox="0 0 142.2992 17.4331">
+    <path fill="currentColor" fill-rule="evenodd" d="M5.9491 11.55H11.6161V5.883H5.9491ZM.2835 17.2157H17.2817V.2174H.2835ZM25.9563 15.3814V2.0322H29.2079V15.3814ZM43.5472 15.3814 39.8387 6.1396 36.0927 15.3814H32.2512V2.0322H35.5037V10.057L38.5084 2.0322H41.1321L44.1173 10.0378V2.0322H47.3695V15.3814ZM50.3943 15.3814V2.0322H53.6457V6.8238H55.6614C56.7513 6.8238 57.6643 7.0209 58.3994 7.4137 59.135 7.8072 59.6801 8.3231 60.0352 8.964 60.3904 9.6035 60.5676 10.3107 60.5676 11.0837 60.5676 11.9205 60.3839 12.6618 60.016 13.3092 59.648 13.9552 59.097 14.4624 58.362 14.8306 57.6264 15.1974 56.7261 15.3814 55.6614 15.3814ZM56.802 9.8473C56.4985 9.5562 56.0353 9.4107 55.4136 9.4107H53.6457V12.757H55.4136C56.0353 12.757 56.4985 12.6113 56.802 12.3197 57.1062 12.0285 57.259 11.6161 57.259 11.0837 57.259 10.5517 57.1062 10.139 56.802 9.8473ZM64.9247 15.3814 60.0953 2.0322H63.4986L64.2977 4.39H69.2796L70.0787 2.0322H73.5208L68.69 15.3814ZM68.4437 6.8998H65.1532L66.7885 11.7873ZM73.9899 8.7259C73.9899 7.4072 74.2745 6.2348 74.8457 5.2081 75.416 4.1808 76.2111 3.3783 77.2316 2.8018 78.2512 2.2258 79.4095 1.9372 80.7024 1.9372 82.2866 1.9372 83.643 2.3522 84.7721 3.183 85.9003 4.0133 86.6543 5.1506 87.0344 6.5962H83.4602C83.1937 6.0384 82.8162 5.6132 82.328 5.3223 81.8405 5.0306 81.2854 4.8847 80.6649 4.8847 79.6629 4.8847 78.8511 5.2336 78.23 5.9304 77.6092 6.628 77.2982 7.5597 77.2982 8.7259 77.2982 9.8918 77.6098 10.8247 78.23 11.5211 78.8511 12.2182 79.6629 12.5671 80.6649 12.5671 81.2854 12.5671 81.8408 12.4209 82.328 12.13 82.8156 11.8386 83.1937 11.4131 83.4602 10.8561H87.0344C86.6543 12.3009 85.9003 13.4427 84.7721 14.2784 83.6436 15.1149 82.2866 15.5336 80.7024 15.5336 79.4095 15.5336 78.2512 15.245 77.2316 14.6687 76.2111 14.0922 75.416 13.2866 74.8457 12.2528 74.2745 11.2201 73.9899 10.0443 73.9899 8.7259ZM91.6441 12.7763V2.0322H94.8957V12.7763H98.4322V15.3814H88.107V12.7763ZM100.5523 15.3814V2.0322H103.8039V7.0713H104.5837L107.3594 2.0322H111.03L107.9498 7.3185C108.9258 7.6099 109.6639 8.1051 110.1643 8.8016 110.6654 9.4992 110.9163 10.2912 110.9163 11.1787 110.9163 11.965 110.7323 12.678 110.3644 13.3183 109.9973 13.9578 109.4423 14.4629 108.7007 14.8306 107.9597 15.1971 107.0617 15.3814 106.0095 15.3814ZM105.8193 9.3722H103.8039V12.6811H105.8193C106.4151 12.6811 106.8616 12.5345 107.1601 12.2434 107.4574 11.9523 107.6071 11.5529 107.6071 11.0458 107.6071 10.5137 107.4577 10.101 107.1601 9.8093 106.8622 9.5182 106.416 9.3722 105.8193 9.3722ZM120.3358 5.5497C119.9305 5.1194 119.3474 4.9037 118.5863 4.9037 117.8263 4.9037 117.2486 5.1194 116.8557 5.5497 116.4631 5.9814 116.2664 6.5971 116.2664 7.3942V15.3814H113.0148V7.4137C113.0148 6.2223 113.256 5.2112 113.737 4.3807 114.2181 3.551 114.8757 2.929 115.7051 2.5174 116.536 2.1056 117.4774 1.8992 118.529 1.8992 119.5812 1.8992 120.5357 2.1084 121.3914 2.5265 122.2464 2.9452 122.9287 3.5663 123.4361 4.39 123.9426 5.2146 124.196 6.2226 124.196 7.4137V15.3814H120.9444V7.3942C120.9444 6.5962 120.7414 5.9814 120.3358 5.5497ZM126.8977 15.3814V2.0322H130.1502V10.057L133.1549 2.0322H135.7787L138.7641 10.0378V2.0322H142.0157V15.3814H138.1938L134.4858 6.1396 130.739 15.3814Z"/>
+  </symbol>
+</svg>
+
 <nav class="guide-nav">
   <div class="guide-nav-inner">
     <a href="#" class="guide-brand">
-      <span class="guide-brand-mark">Impactrum</span>
+      <svg class="wordmark wordmark-md" viewBox="0 0 142.2992 17.4331" role="img" aria-label="Impactrum"><use href="#logo-impactrum"/></svg>
       <span class="guide-brand-tag">Design System</span>
     </a>
     <ul class="guide-nav-links">
@@ -1411,7 +1439,8 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
 
 <header class="container page-header">
   <p class="t-eyebrow">Living document · 2026.05</p>
-  <h1 class="t-display t-ko">Impactrum<br>Design System</h1>
+  <svg class="wordmark wordmark-hero" viewBox="0 0 142.2992 17.4331" role="img" aria-label="Impactrum"><use href="#logo-impactrum"/></svg>
+  <h1 class="t-h1 t-ko" style="margin-top: var(--s-5)">Design System</h1>
   <p>
     Korea-based premium LED display 매뉴팩처러를 위한 디자인 시스템.
     캔버스 한 장 위에 두 개의 옅은 off-white tone과 Wanted Sans Variable 한 가지 서체로
@@ -2586,7 +2615,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       <div class="kit-stack">
         <div class="nav-specimen">
           <div class="topnav">
-            <span class="nav-brand">Impactrum</span>
+            <svg class="wordmark wordmark-md" viewBox="0 0 142.2992 17.4331" role="img" aria-label="Impactrum"><use href="#logo-impactrum"/></svg>
             <ul class="nav-links">
               <li><a href="#" class="is-current">Products</a></li>
               <li><a href="#">Solutions</a></li>
@@ -2603,7 +2632,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         </div>
         <div class="nav-specimen">
           <div class="topnav">
-            <span class="nav-brand">Impactrum</span>
+            <svg class="wordmark wordmark-md" viewBox="0 0 142.2992 17.4331" role="img" aria-label="Impactrum"><use href="#logo-impactrum"/></svg>
             <ul class="nav-links">
               <li><a href="#">Stories</a></li>
               <li><a href="#" class="is-current">Showroom</a></li>
@@ -2781,7 +2810,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       <div class="footer-specimen">
         <div class="footer-grid">
           <div>
-            <div class="footer-brand-name">Impactrum</div>
+            <div class="footer-brand-name"><svg class="wordmark wordmark-footer" viewBox="0 0 142.2992 17.4331" role="img" aria-label="Impactrum"><use href="#logo-impactrum"/></svg></div>
             <p class="footer-brand-text">한국에서 설계·제작·시공하는 프리미엄 LED 디스플레이.</p>
           </div>
           <div>
