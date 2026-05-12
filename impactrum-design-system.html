@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Impactrum Design System · v0.beta-5</title>
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/complete/WantedSansVariable.min.css">
+
+<style>
+:root {
+  --font: "Wanted Sans Variable", "Wanted Sans", -apple-system, BlinkMacSystemFont,
+          "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+
+  --ink: #111111;
+  --ink-2: #2a2a2a;
+  --ink-pressed: #1a1a1a;
+  --ink-body: #374151;
+  --ink-mute: #6b7280;
+  --ink-soft: #898989;
+  --ink-disabled: #a1a1a1;
+  --ink-disabled-2: #c4c4c4;
+
+  --canvas: #ffffff;
+  --surface-warm: #fbfaf6;
+  --surface-cool: #f5f6f9;
+  --pill-bg: #ebedf0;
+  --disabled-bg: #f3f4f6;
+  --disabled-bg-strong: #d4d4d4;
+
+  --line: #e5e7eb;
+  --line-strong: #d4d4d4;
+  --line-soft: #f0f0ec;
+
+  --accent-orange:  #fb923c;
+  --accent-pink:    #ec4899;
+  --accent-violet:  #8b5cf6;
+  --accent-emerald: #34d399;
+  --accent-blue:    #3b82f6;
+
+  --pill-orange-bg:  #fff3e5; --pill-orange-ink:  #c2410c;
+  --pill-pink-bg:    #fde8f1; --pill-pink-ink:    #9d174d;
+  --pill-violet-bg:  #efe7fe; --pill-violet-ink:  #5b21b6;
+  --pill-emerald-bg: #e2f7ee; --pill-emerald-ink: #047857;
+  --pill-blue-bg:    #e4ecff; --pill-blue-ink:    #1d4ed8;
+
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px;
+  --s-section: 120px;
+  --s-section-mobile: 80px;
+
+  --r-xs: 4px; --r-sm: 6px; --r-md: 8px;
+  --r-lg: 12px; --r-xl: 16px;
+  --r-pill: 9999px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.t-display { font-size: 72px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; margin: 0; }
+.t-h1      { font-size: 48px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; margin: 0; }
+.t-h2      { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.18; margin: 0; }
+.t-h3      { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin: 0; }
+.t-body    { font-size: 16px; font-weight: 500; line-height: 1.5; margin: 0; }
+.t-body-em { font-size: 16px; font-weight: 600; line-height: 1.5; margin: 0; }
+.t-small   { font-size: 14px; font-weight: 500; line-height: 1.5; margin: 0; }
+.t-spec-label { font-size: 14px; font-weight: 600; line-height: 1.5; color: var(--ink); }
+.t-spec-value { font-size: 14px; font-weight: 500; line-height: 1.5; color: var(--ink-body); }
+.t-caption { font-size: 13px; font-weight: 500; line-height: 1.5; margin: 0; color: var(--ink-mute); }
+.t-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; line-height: 1.3;
+  text-transform: uppercase; margin: 0;
+}
+.t-ko { letter-spacing: 0 !important; }
+.t-mono { font-family: ui-monospace, "SF Mono", monospace; font-size: 12px; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--s-8); }
+.section { padding: var(--s-section) 0; }
+.bg-canvas { background: var(--canvas); }
+.bg-warm   { background: var(--surface-warm); }
+.bg-cool   { background: var(--surface-cool); }
+
+@media (max-width: 768px) {
+  .container { padding: 0 var(--s-4); }
+  .section { padding: var(--s-section-mobile) 0; }
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: var(--s-6);
+}
+.card-white { background: var(--canvas); }
+.bg-canvas .card-brown { background: #faf5ef; }
+.bg-warm   .card-brown { background: #f7eee2; }
+.bg-cool   .card-brown { background: #f4eee6; }
+.bg-canvas .card-gray  { background: #f2f4f7; }
+.bg-warm   .card-gray  { background: #e7ebf1; }
+.bg-cool   .card-gray  { background: #e8ecf3; }
+
+.guide-nav {
+  height: 64px;
+  background: var(--canvas);
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center;
+}
+.guide-nav-inner {
+  max-width: 1200px; width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--s-8);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-6);
+}
+.guide-brand {
+  display: flex; align-items: center; gap: var(--s-3);
+  text-decoration: none; color: var(--ink);
+}
+.guide-brand-mark { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.guide-brand-tag {
+  font-size: 12px; font-weight: 500;
+  color: var(--ink-mute);
+  border-left: 1px solid var(--line);
+  padding-left: var(--s-3);
+}
+.guide-nav-links {
+  display: flex; align-items: center; gap: var(--s-5);
+  list-style: none; padding: 0; margin: 0;
+}
+.guide-nav-links a {
+  font-size: 13px; font-weight: 500;
+  color: var(--ink-body);
+  text-decoration: none;
+}
+.guide-nav-links a:hover { color: var(--ink); }
+.guide-version {
+  font-size: 12px;
+  color: var(--ink-mute);
+  font-family: ui-monospace, monospace;
+}
+@media (max-width: 900px) { .guide-nav-links { display: none; } }
+@media (max-width: 768px) { .guide-nav-inner { padding: 0 var(--s-4); } }
+
+.page-header { padding: var(--s-section) 0 var(--s-16); }
+.page-header .t-eyebrow { color: var(--accent-blue); margin-bottom: var(--s-5); }
+.page-header h1 { margin-bottom: var(--s-6); }
+.page-header p {
+  color: var(--ink-body);
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+.section-header { margin-bottom: var(--s-12); max-width: 720px; }
+.section-header .t-eyebrow { color: var(--accent-blue); margin-bottom: var(--s-4); }
+.section-header h2 { margin-bottom: var(--s-4); }
+.section-header p { color: var(--ink-body); font-size: 16px; line-height: 1.6; margin: 0; }
+
+.subsection { margin-bottom: var(--s-16); }
+.subsection:last-child { margin-bottom: 0; }
+.subsection-title {
+  display: flex; align-items: baseline; gap: var(--s-3);
+  margin-bottom: var(--s-6);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.subsection-title h3 { margin: 0; }
+.subsection-title .token-name {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+.subsection-desc {
+  color: var(--ink-body);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 var(--s-6) 0;
+  max-width: 680px;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s-4);
+}
+.swatch {
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.swatch-color { height: 88px; border-bottom: 1px solid var(--line); }
+.swatch-meta {
+  padding: var(--s-3) var(--s-4) var(--s-4);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.swatch-name {
+  font-family: ui-monospace, monospace;
+  font-size: 12px; font-weight: 600;
+  color: var(--ink);
+}
+.swatch-hex {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+.swatch-use {
+  font-size: 12px;
+  color: var(--ink-body);
+  margin-top: var(--s-2);
+  line-height: 1.45;
+}
+
+.adaptive-matrix {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  margin-bottom: var(--s-6);
+}
+.adaptive-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+}
+.adaptive-row:last-child { border-bottom: none; }
+@media (max-width: 900px) { .adaptive-row { grid-template-columns: 1fr; } }
+
+.adaptive-label {
+  padding: var(--s-6);
+  display: flex; flex-direction: column; justify-content: center; gap: 4px;
+  border-right: 1px solid var(--line);
+}
+@media (max-width: 900px) {
+  .adaptive-label { border-right: none; border-bottom: 1px solid var(--line); }
+}
+.adaptive-label.row-canvas { background: var(--canvas); }
+.adaptive-label.row-warm   { background: var(--surface-warm); }
+.adaptive-label.row-cool   { background: var(--surface-cool); }
+
+.adaptive-label .pg-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+.adaptive-label .pg-hex {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+.adaptive-label .pg-meta {
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-top: 4px;
+}
+
+.adaptive-body {
+  padding: var(--s-6);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+}
+@media (max-width: 700px) {
+  .adaptive-body { grid-template-columns: 1fr; }
+}
+.adaptive-body.row-canvas { background: var(--canvas); }
+.adaptive-body.row-warm   { background: var(--surface-warm); }
+.adaptive-body.row-cool   { background: var(--surface-cool); }
+
+.specimen-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-4) var(--s-5);
+  display: flex; flex-direction: column; gap: 4px;
+  min-height: 110px;
+}
+.specimen-card .lbl {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.specimen-card .nm {
+  font-size: 14px; font-weight: 600;
+  color: var(--ink);
+}
+.specimen-card .hx {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  margin-top: auto;
+}
+
+.type-scale { display: flex; flex-direction: column; }
+.type-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 220px;
+  gap: var(--s-6);
+  padding: var(--s-6) 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.type-row:last-child { border-bottom: none; }
+.type-meta { display: flex; flex-direction: column; gap: 2px; }
+.type-token {
+  font-family: ui-monospace, monospace;
+  font-size: 12px; font-weight: 600;
+  color: var(--ink);
+}
+.type-spec {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  line-height: 1.4;
+}
+.type-sample { color: var(--ink); overflow: hidden; }
+.type-use { font-size: 12px; color: var(--ink-body); line-height: 1.5; }
+@media (max-width: 900px) {
+  .type-row { grid-template-columns: 1fr; gap: var(--s-3); }
+}
+
+.weight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--s-4);
+}
+.weight-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
+  background: var(--canvas);
+}
+.weight-sample {
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--s-3);
+  color: var(--ink);
+}
+.weight-token {
+  font-family: ui-monospace, monospace;
+  font-size: 11px; font-weight: 600;
+  color: var(--ink);
+}
+.weight-role {
+  font-size: 12px;
+  color: var(--ink-body);
+  margin-top: 2px;
+}
+.weight-card.is-avoid { background: var(--disabled-bg); border-style: dashed; }
+.weight-card.is-avoid .weight-sample { color: var(--ink-mute); }
+.weight-card.is-avoid .weight-token::after {
+  content: " · avoid";
+  color: var(--accent-pink);
+  font-weight: 500;
+}
+
+.spacing-grid { display: flex; flex-direction: column; gap: var(--s-3); }
+.spacing-row {
+  display: grid;
+  grid-template-columns: 100px 100px 1fr;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.spacing-row:last-child { border-bottom: none; }
+.spacing-token {
+  font-family: ui-monospace, monospace;
+  font-size: 12px; font-weight: 600;
+  color: var(--ink);
+}
+.spacing-value {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+.spacing-bar { height: 8px; background: var(--ink); border-radius: 2px; }
+
+.radius-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--s-4);
+}
+.radius-card {
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  padding: var(--s-5);
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-3);
+}
+.radius-sample { width: 64px; height: 64px; background: var(--ink); }
+.radius-meta { text-align: center; }
+.radius-token {
+  font-family: ui-monospace, monospace;
+  font-size: 12px; font-weight: 600;
+}
+.radius-value {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 20px;
+  font: 600 14px/1 var(--font);
+  border-radius: var(--r-md);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: var(--ink-2); }
+.btn-primary:active { background: var(--ink-pressed); }
+.btn-primary:disabled { background: var(--disabled-bg-strong); color: var(--ink-disabled); cursor: not-allowed; }
+.btn-secondary {
+  background: var(--canvas); color: var(--ink);
+  border: 1px solid var(--line-strong);
+}
+.btn-secondary:hover { background: var(--disabled-bg); }
+.btn-secondary:disabled {
+  background: var(--disabled-bg);
+  color: var(--ink-disabled-2);
+  border-color: var(--disabled-bg);
+  cursor: not-allowed;
+}
+.btn-text { background: transparent; color: var(--ink); height: auto; padding: 0; }
+.btn-text:hover { text-decoration: underline; }
+
+.button-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--s-6);
+  align-items: center;
+  margin-bottom: var(--s-5);
+}
+.button-grid:last-child { margin-bottom: 0; }
+.button-grid .label {
+  font-family: ui-monospace, monospace;
+  font-size: 12px; font-weight: 600;
+  color: var(--ink);
+}
+.button-grid .label small {
+  display: block;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-top: 2px;
+}
+.button-row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 24px; padding: 0 10px;
+  border-radius: var(--r-pill);
+  font: 600 12px/1 var(--font);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.pill-orange  { background: var(--pill-orange-bg);  color: var(--pill-orange-ink); }
+.pill-pink    { background: var(--pill-pink-bg);    color: var(--pill-pink-ink); }
+.pill-violet  { background: var(--pill-violet-bg);  color: var(--pill-violet-ink); }
+.pill-emerald { background: var(--pill-emerald-bg); color: var(--pill-emerald-ink); }
+.pill-blue    { background: var(--pill-blue-bg);    color: var(--pill-blue-ink); }
+.pill-neutral { background: var(--surface-warm); color: var(--ink); }
+.pill-row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+
+.spec-table {
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  max-width: 600px;
+}
+.spec-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--line-soft);
+}
+.spec-row:last-child { border-bottom: none; }
+
+.footer-specimen {
+  background: var(--surface-warm);
+  border-radius: var(--r-xl);
+  padding: var(--s-12);
+  margin-top: var(--s-6);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: var(--s-8);
+}
+.footer-brand-name {
+  font-size: 18px; font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: var(--s-3);
+}
+.footer-brand-text {
+  color: var(--ink-body);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 280px;
+}
+.footer-col-title {
+  display: flex; align-items: center; gap: var(--s-2);
+  margin-bottom: var(--s-4);
+  font-size: 13px; font-weight: 600;
+  color: var(--ink);
+}
+.footer-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.footer-dot-orange  { background: var(--accent-orange); }
+.footer-dot-pink    { background: var(--accent-pink); }
+.footer-dot-violet  { background: var(--accent-violet); }
+.footer-dot-emerald { background: var(--accent-emerald); }
+.footer-links {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: var(--s-2);
+}
+.footer-links a {
+  color: var(--ink-body);
+  text-decoration: none;
+  font-size: 13px; font-weight: 500;
+}
+.footer-links a:hover { color: var(--ink); text-decoration: underline; }
+@media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--s-6); } }
+@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+
+.eyebrow-orange  { color: var(--accent-orange); }
+.eyebrow-pink    { color: var(--accent-pink); }
+.eyebrow-violet  { color: var(--accent-violet); }
+.eyebrow-emerald { color: var(--accent-emerald); }
+.eyebrow-blue    { color: var(--accent-blue); }
+.eyebrow-row { display: flex; flex-direction: column; gap: var(--s-3); }
+.eyebrow-on-surface {
+  padding: var(--s-5);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+}
+
+.lock-table {
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.lock-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--line-soft);
+  align-items: center;
+}
+.lock-row:last-child { border-bottom: none; }
+.lock-row.is-header {
+  background: var(--surface-warm);
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-mute);
+}
+.lock-product {
+  display: flex; align-items: center; gap: var(--s-2);
+  font-size: 14px; font-weight: 600;
+  color: var(--ink);
+}
+.lock-dot { width: 10px; height: 10px; border-radius: 50%; }
+@media (max-width: 700px) {
+  .lock-row { grid-template-columns: 1fr; gap: var(--s-2); }
+  .lock-row.is-header { display: none; }
+}
+
+.demo-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-6);
+}
+.demo-row > div { display: flex; flex-direction: column; gap: var(--s-3); }
+.demo-tag {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: var(--s-2);
+}
+.demo-tag .tag-dot { width: 8px; height: 8px; border-radius: 50%; }
+.demo-tag.tag-do .tag-dot   { background: var(--accent-emerald); }
+.demo-tag.tag-dont .tag-dot { background: var(--accent-pink); }
+.demo-tag.tag-do { color: #047857; }
+.demo-tag.tag-dont { color: #9d174d; }
+.demo-caption { font-size: 13px; color: var(--ink-body); line-height: 1.5; }
+@media (max-width: 768px) { .demo-row { grid-template-columns: 1fr; gap: var(--s-8); } }
+
+.page-footer {
+  background: var(--surface-warm);
+  padding: var(--s-12) 0;
+  margin-top: var(--s-section);
+}
+.page-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--s-8);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px;
+  color: var(--ink-mute);
+}
+@media (max-width: 600px) {
+  .page-footer-inner {
+    flex-direction: column; gap: var(--s-3); align-items: flex-start;
+    padding: 0 var(--s-4);
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="guide-nav">
+  <div class="guide-nav-inner">
+    <a href="#" class="guide-brand">
+      <span class="guide-brand-mark">Impactrum</span>
+      <span class="guide-brand-tag">Design System</span>
+    </a>
+    <ul class="guide-nav-links">
+      <li><a href="#color">Color</a></li>
+      <li><a href="#surface">Surface</a></li>
+      <li><a href="#typography">Typography</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#patterns">Patterns</a></li>
+    </ul>
+    <span class="guide-version">v0.beta-5</span>
+  </div>
+</nav>
+
+<header class="container page-header">
+  <p class="t-eyebrow">Living document · 2026.05</p>
+  <h1 class="t-display t-ko">Impactrum<br>Design System</h1>
+  <p>
+    Korea-based premium LED display 매뉴팩처러를 위한 디자인 시스템.
+    캔버스 한 장 위에 두 개의 옅은 off-white tone과 Wanted Sans Variable 한 가지 서체로
+    모든 페이지를 짜며, 카드는 자신이 올라간 page bg에 맞춰 자동으로 톤이 조정됩니다.
+    Hierarchy는 size + letter-spacing이 만들고, 색면은 강조점에만 씁니다.
+  </p>
+</header>
+
+<section id="color" class="section bg-canvas">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow">Foundations · 01</p>
+      <h2 class="t-h1 t-ko">Color</h2>
+      <p>
+        네 개의 tier로 나뉩니다. Tier 1은 모든 action과 typography를 책임지는 monochrome chrome,
+        Tier 2는 page bg와 card tint, Tier 3는 hairline, Tier 4는 강조점에만 쓰는 5색 accent.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Tier 1 · Monochrome chrome</h3>
+        <span class="token-name">--ink-*</span>
+      </div>
+      <p class="subsection-desc">
+        Action layer. Primary CTA, h1/h2 headlines, wordmark, ribbon-badges는 모두 ink. 절대 배경으로 쓰지 않습니다.
+      </p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#111111"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink</span>
+            <span class="swatch-hex">#111111</span>
+            <span class="swatch-use">Primary CTA, headlines, wordmark</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#2a2a2a"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink-2</span>
+            <span class="swatch-hex">#2a2a2a</span>
+            <span class="swatch-use">Primary CTA hover</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#1a1a1a"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink-pressed</span>
+            <span class="swatch-hex">#1a1a1a</span>
+            <span class="swatch-use">Primary CTA pressed</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#374151"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink-body</span>
+            <span class="swatch-hex">#374151</span>
+            <span class="swatch-use">Body text on canvas</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#6b7280"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink-mute</span>
+            <span class="swatch-hex">#6b7280</span>
+            <span class="swatch-use">Captions, secondary labels</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#898989"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink-soft</span>
+            <span class="swatch-hex">#898989</span>
+            <span class="swatch-use">Meta info, deemphasized</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#a1a1a1"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink-disabled</span>
+            <span class="swatch-hex">#a1a1a1</span>
+            <span class="swatch-use">Disabled primary text</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#c4c4c4"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--ink-disabled-2</span>
+            <span class="swatch-hex">#c4c4c4</span>
+            <span class="swatch-use">Disabled secondary text</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Tier 3 · Hairlines</h3>
+        <span class="token-name">--line-*</span>
+      </div>
+      <p class="subsection-desc">모든 border는 1px. 강조는 두께가 아니라 색 변화로.</p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#e5e7eb"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--line</span>
+            <span class="swatch-hex">#e5e7eb</span>
+            <span class="swatch-use">Default hairline</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#d4d4d4"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--line-strong</span>
+            <span class="swatch-hex">#d4d4d4</span>
+            <span class="swatch-use">White-button border, input border</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#f0f0ec"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--line-soft</span>
+            <span class="swatch-hex">#f0f0ec</span>
+            <span class="swatch-use">Subtle dividers within cards</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Tier 4 · Five-color accents</h3>
+        <span class="token-name">--accent-*</span>
+      </div>
+      <p class="subsection-desc">
+        강조점에만. Line icon stroke, eyebrow text, footer column dot, pastel pill chip, inline link 강조.
+        절대 page bg나 card bg로 쓰지 않습니다.
+      </p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#fb923c"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--accent-orange</span>
+            <span class="swatch-hex">#fb923c</span>
+            <span class="swatch-use">Indoor LED · locked</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#ec4899"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--accent-pink</span>
+            <span class="swatch-hex">#ec4899</span>
+            <span class="swatch-use">Outdoor LED · locked</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#8b5cf6"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--accent-violet</span>
+            <span class="swatch-hex">#8b5cf6</span>
+            <span class="swatch-use">Transparent LED · locked</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#34d399"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--accent-emerald</span>
+            <span class="swatch-hex">#34d399</span>
+            <span class="swatch-use">Custom LED · locked</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#3b82f6"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--accent-blue</span>
+            <span class="swatch-hex">#3b82f6</span>
+            <span class="swatch-use">Free use, status, time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Pastel pill chips</h3>
+        <span class="token-name">--pill-*-bg, --pill-*-ink</span>
+      </div>
+      <p class="subsection-desc">
+        Category tag와 status pill용. 모든 page bg 위에서 읽힙니다.
+        Product type 4종은 locked, blue와 neutral은 자유 사용.
+      </p>
+      <div class="pill-row" style="margin-bottom: var(--s-6);">
+        <span class="pill pill-orange">Indoor</span>
+        <span class="pill pill-pink">Outdoor</span>
+        <span class="pill pill-violet">Transparent</span>
+        <span class="pill pill-emerald">Custom</span>
+        <span class="pill pill-blue">P2.5 spec</span>
+        <span class="pill pill-neutral">In stock</span>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#fff3e5"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">pill-orange</span>
+            <span class="swatch-hex">bg #fff3e5 · ink #c2410c</span>
+            <span class="swatch-use">Indoor (locked)</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#fde8f1"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">pill-pink</span>
+            <span class="swatch-hex">bg #fde8f1 · ink #9d174d</span>
+            <span class="swatch-use">Outdoor (locked)</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#efe7fe"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">pill-violet</span>
+            <span class="swatch-hex">bg #efe7fe · ink #5b21b6</span>
+            <span class="swatch-use">Transparent (locked)</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#e2f7ee"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">pill-emerald</span>
+            <span class="swatch-hex">bg #e2f7ee · ink #047857</span>
+            <span class="swatch-use">Custom (locked)</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#e4ecff"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">pill-blue</span>
+            <span class="swatch-hex">bg #e4ecff · ink #1d4ed8</span>
+            <span class="swatch-use">Free use, status</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="surface" class="section bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-orange">Foundations · 02</p>
+      <h2 class="t-h1 t-ko">Surface</h2>
+      <p>
+        Tier 2의 핵심 — 시스템의 중심 룰. Page background 3종 + card tint 6종(브라운·그레이 각 3개)으로 구성됩니다.
+        카드는 자신이 올라간 page bg에 맞춰 자동으로 톤이 조정됩니다.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Page backgrounds · Layer 1</h3>
+        <span class="token-name">--canvas, --surface-warm, --surface-cool</span>
+      </div>
+      <p class="subsection-desc">
+        섹션 리듬을 만드는 3종. 모두 매우 옅은 톤 — 페이지가 attention을 가져가지 않습니다.
+        Canvas가 default, warm은 따뜻한 섹션, cool은 technical/spec 섹션.
+      </p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#ffffff"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--canvas</span>
+            <span class="swatch-hex">#ffffff</span>
+            <span class="swatch-use">Default · hero, prose-heavy</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#fbfaf6"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--surface-warm</span>
+            <span class="swatch-hex">#fbfaf6</span>
+            <span class="swatch-use">Featured, brand pages</span>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#f5f6f9"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--surface-cool</span>
+            <span class="swatch-hex">#f5f6f9</span>
+            <span class="swatch-use">Spec, technical</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Adaptive card tints · Layer 2</h3>
+        <span class="token-name">.bg-* .card-*</span>
+      </div>
+      <p class="subsection-desc">
+        시스템의 가장 새로운 룰. 카드는 같은 이름이지만 자신이 올라간 page bg에 따라 다른 hex를 갖습니다.
+        Canvas 위 light 톤, warm/cool 위 한두 단계 짙은 톤. 디자이너/개발자는 hex를 외울 필요 없이
+        <code>.bg-warm</code> 안에 <code>.card-brown</code>을 쓰면 시스템이 알아서 <code>#f7eee2</code>를 골라줍니다.
+      </p>
+
+      <div class="adaptive-matrix">
+        <div class="adaptive-row">
+          <div class="adaptive-label row-canvas">
+            <span class="pg-name">Canvas page</span>
+            <span class="pg-hex">#ffffff</span>
+            <span class="pg-meta">light tints</span>
+          </div>
+          <div class="adaptive-body row-canvas">
+            <div class="specimen-card card-white">
+              <span class="lbl">White</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#ffffff</span>
+            </div>
+            <div class="specimen-card card-brown">
+              <span class="lbl">Brown</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#faf5ef</span>
+            </div>
+            <div class="specimen-card card-gray">
+              <span class="lbl">Gray</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#f2f4f7</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="adaptive-row">
+          <div class="adaptive-label row-warm">
+            <span class="pg-name">Warm page</span>
+            <span class="pg-hex">#fbfaf6</span>
+            <span class="pg-meta">deeper tints</span>
+          </div>
+          <div class="adaptive-body row-warm">
+            <div class="specimen-card card-white">
+              <span class="lbl">White</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#ffffff</span>
+            </div>
+            <div class="specimen-card card-brown">
+              <span class="lbl">Brown</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#f7eee2</span>
+            </div>
+            <div class="specimen-card card-gray">
+              <span class="lbl">Gray</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#e7ebf1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="adaptive-row">
+          <div class="adaptive-label row-cool">
+            <span class="pg-name">Cool page</span>
+            <span class="pg-hex">#f5f6f9</span>
+            <span class="pg-meta">deeper tints</span>
+          </div>
+          <div class="adaptive-body row-cool">
+            <div class="specimen-card card-white">
+              <span class="lbl">White</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#ffffff</span>
+            </div>
+            <div class="specimen-card card-brown">
+              <span class="lbl">Brown</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#f4eee6</span>
+            </div>
+            <div class="specimen-card card-gray">
+              <span class="lbl">Gray</span>
+              <span class="nm">실내 공간의 화면</span>
+              <span class="hx">#e8ecf3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="t-caption" style="margin-top: var(--s-4); max-width: 720px;">
+        Page가 짙어질수록 card도 짙어집니다. 같은 "Brown card"가 canvas 위에서는 거의 보이지 않을 정도로 옅고, cool page 위에서는 hue 대비로 명확히 도드라집니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="typography" class="section bg-canvas">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-violet">Foundations · 03</p>
+      <h2 class="t-h1 t-ko">Typography</h2>
+      <p>
+        Wanted Sans Variable 한 서체로 모든 type role을 처리합니다.
+        Hierarchy는 size + letter-spacing이 만들고, weight는 500 → 600 → 700 단 세 단계.
+        Display는 hero 한 페이지에 단 한 번만 — "큰 헤드라인"이 필요하면 기본은 h1(48px).
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Weight axis</h3>
+        <span class="token-name">100-unit stepped</span>
+      </div>
+      <p class="subsection-desc">
+        Wanted Sans는 "Variable" 이름과 달리 100 단위로만 변합니다. 540을 넣어도 500과 동일하게 렌더링됩니다.
+        한국어 본문은 400이 anemic하게 보여서 500이 기본입니다.
+      </p>
+      <div class="weight-grid">
+        <div class="weight-card is-avoid">
+          <div class="weight-sample" style="font-weight:300">한글 Aa</div>
+          <div class="weight-token">300 Light</div>
+          <div class="weight-role">Decorative only</div>
+        </div>
+        <div class="weight-card is-avoid">
+          <div class="weight-sample" style="font-weight:400">한글 Aa</div>
+          <div class="weight-token">400 Regular</div>
+          <div class="weight-role">Too thin for Korean body</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:500">한글 Aa</div>
+          <div class="weight-token">500 Medium</div>
+          <div class="weight-role">Body default</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:600">한글 Aa</div>
+          <div class="weight-token">600 SemiBold</div>
+          <div class="weight-role">Buttons, eyebrows, sub-heads</div>
+        </div>
+        <div class="weight-card">
+          <div class="weight-sample" style="font-weight:700">한글 Aa</div>
+          <div class="weight-token">700 Bold</div>
+          <div class="weight-role">Display, h1, h2</div>
+        </div>
+        <div class="weight-card is-avoid">
+          <div class="weight-sample" style="font-weight:800">한글 Aa</div>
+          <div class="weight-token">800 ExtraBold</div>
+          <div class="weight-role">Reserved (PPTX only)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Type scale</h3>
+        <span class="token-name">.t-display, .t-h1, .t-h2, .t-h3, .t-body, .t-small, .t-caption, .t-eyebrow</span>
+      </div>
+      <p class="subsection-desc">
+        Display 72px는 hero 단 한 번. 나머지는 h1(48px) → h2(28px) → h3(20px)로 step down.
+        한국어 우세 헤드라인에서는 negative letter-spacing을 쓰지 않습니다.
+      </p>
+      <div class="type-scale">
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-display</span>
+            <span class="type-spec">72px / 700 / -0.04em / 1.04</span>
+          </div>
+          <div class="type-sample t-display t-ko">화면이 공간을 깨운다</div>
+          <div class="type-use">Hero only · once per page max</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-h1</span>
+            <span class="type-spec">48px / 700 / -0.035em / 1.08</span>
+          </div>
+          <div class="type-sample t-h1 t-ko">실내 공간의 화면</div>
+          <div class="type-use">Section headlines · default for "big headlines"</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-h2</span>
+            <span class="type-spec">28px / 600 / -0.02em / 1.18</span>
+          </div>
+          <div class="type-sample t-h2 t-ko">픽셀 피치 P0.9부터 P2.5까지</div>
+          <div class="type-use">Sub-section / card group titles</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-h3</span>
+            <span class="type-spec">20px / 600 / -0.01em / 1.3</span>
+          </div>
+          <div class="type-sample t-h3 t-ko">IR-Series Showroom</div>
+          <div class="type-use">Card titles</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-body-em</span>
+            <span class="type-spec">16px / 600 / 0 / 1.5</span>
+          </div>
+          <div class="type-sample t-body-em">강조된 본문 텍스트 — 핵심 문장에만</div>
+          <div class="type-use">Emphasized body</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-body</span>
+            <span class="type-spec">16px / 500 / 0 / 1.5</span>
+          </div>
+          <div class="type-sample t-body">기본 본문 텍스트. 한국어에서는 weight 500이 편안한 Regular로 읽힙니다.</div>
+          <div class="type-use">Default body text</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-small</span>
+            <span class="type-spec">14px / 500 / 0 / 1.5</span>
+          </div>
+          <div class="type-sample t-small">보조 텍스트, 카드 본문, secondary copy</div>
+          <div class="type-use">Captions, secondary copy</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-caption</span>
+            <span class="type-spec">13px / 500 / 0 / 1.5</span>
+          </div>
+          <div class="type-sample t-caption">서울 · 2025 — 코엑스 미디어월</div>
+          <div class="type-use">Image captions, meta info</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">
+            <span class="type-token">.t-eyebrow</span>
+            <span class="type-spec">12px / 600 / 0.14em / 1.3 / UPPER</span>
+          </div>
+          <div class="type-sample t-eyebrow eyebrow-orange">Indoor LED · Made in Korea</div>
+          <div class="type-use">Section eyebrow above headlines</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Eyebrow on surfaces</h3>
+        <span class="token-name">--accent-* on .t-eyebrow</span>
+      </div>
+      <p class="subsection-desc">
+        Eyebrow는 5색 accent 중 섹션 컨텍스트에 맞는 색을 고릅니다.
+        세 page bg 모두 충분히 밝아서 full saturation accent가 그대로 읽힙니다.
+      </p>
+      <div class="eyebrow-row">
+        <div class="eyebrow-on-surface bg-canvas">
+          <p class="t-eyebrow eyebrow-orange" style="margin-bottom:var(--s-3)">Indoor LED — on canvas</p>
+          <p class="t-h3 t-ko">실내 공간의 화면</p>
+        </div>
+        <div class="eyebrow-on-surface bg-warm">
+          <p class="t-eyebrow eyebrow-pink" style="margin-bottom:var(--s-3)">Outdoor LED — on warm</p>
+          <p class="t-h3 t-ko">날씨를 견디는 화면</p>
+        </div>
+        <div class="eyebrow-on-surface bg-cool">
+          <p class="t-eyebrow eyebrow-violet" style="margin-bottom:var(--s-3)">Transparent LED — on cool</p>
+          <p class="t-h3 t-ko">유리 너머의 화면</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section bg-cool">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-blue">Foundations · 04</p>
+      <h2 class="t-h1 t-ko">Spacing & Radius</h2>
+      <p>
+        8px base. 섹션 간 호흡은 120px(데스크탑) / 80px(모바일).
+        카드 radius는 16px이 cap이고, 버튼은 8px rectangle (pill 아님).
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Spacing</h3>
+        <span class="token-name">--s-1 ... --s-section</span>
+      </div>
+      <div class="spacing-grid">
+        <div class="spacing-row"><span class="spacing-token">--s-1</span><span class="spacing-value">4px</span><div class="spacing-bar" style="width:4px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-2</span><span class="spacing-value">8px</span><div class="spacing-bar" style="width:8px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-3</span><span class="spacing-value">12px</span><div class="spacing-bar" style="width:12px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-4</span><span class="spacing-value">16px</span><div class="spacing-bar" style="width:16px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-5</span><span class="spacing-value">20px</span><div class="spacing-bar" style="width:20px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-6</span><span class="spacing-value">24px</span><div class="spacing-bar" style="width:24px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-8</span><span class="spacing-value">32px</span><div class="spacing-bar" style="width:32px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-10</span><span class="spacing-value">40px</span><div class="spacing-bar" style="width:40px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-12</span><span class="spacing-value">48px</span><div class="spacing-bar" style="width:48px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-16</span><span class="spacing-value">64px</span><div class="spacing-bar" style="width:64px"></div></div>
+        <div class="spacing-row"><span class="spacing-token">--s-section</span><span class="spacing-value">120px</span><div class="spacing-bar" style="width:120px"></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Radius</h3>
+        <span class="token-name">--r-xs ... --r-pill</span>
+      </div>
+      <p class="subsection-desc">버튼은 8px (--r-md) — pill이 아닙니다. Pill은 badge와 chip 전용.</p>
+      <div class="radius-grid">
+        <div class="radius-card"><div class="radius-sample" style="border-radius:4px"></div><div class="radius-meta"><div class="radius-token">--r-xs</div><div class="radius-value">4px</div></div></div>
+        <div class="radius-card"><div class="radius-sample" style="border-radius:6px"></div><div class="radius-meta"><div class="radius-token">--r-sm</div><div class="radius-value">6px</div></div></div>
+        <div class="radius-card"><div class="radius-sample" style="border-radius:8px"></div><div class="radius-meta"><div class="radius-token">--r-md</div><div class="radius-value">8px · buttons</div></div></div>
+        <div class="radius-card"><div class="radius-sample" style="border-radius:12px"></div><div class="radius-meta"><div class="radius-token">--r-lg</div><div class="radius-value">12px</div></div></div>
+        <div class="radius-card"><div class="radius-sample" style="border-radius:16px"></div><div class="radius-meta"><div class="radius-token">--r-xl</div><div class="radius-value">16px · cards (cap)</div></div></div>
+        <div class="radius-card"><div class="radius-sample" style="border-radius:9999px"></div><div class="radius-meta"><div class="radius-token">--r-pill</div><div class="radius-value">pill · badges</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="components" class="section bg-canvas">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-emerald">Components · 05</p>
+      <h2 class="t-h1 t-ko">Components</h2>
+      <p>
+        모든 component는 정의된 token만으로 만들어집니다. Card는 page bg context에서 자동 톤 적응.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Buttons</h3>
+        <span class="token-name">.btn-primary, .btn-secondary, .btn-text</span>
+      </div>
+      <p class="subsection-desc">
+        40px height, 8px radius, weight 600. State 변화는 색상 shift로만 — shadow나 transform은 쓰지 않습니다.
+        Action layer는 monochrome — accent 색깔 버튼은 만들지 않습니다.
+      </p>
+
+      <div class="button-grid">
+        <div class="label">.btn-primary
+          <small>Default · Hover · Pressed · Disabled</small>
+        </div>
+        <div class="button-row">
+          <button class="btn btn-primary">Get a quote</button>
+          <button class="btn btn-primary" style="background:var(--ink-2)">Get a quote</button>
+          <button class="btn btn-primary" style="background:var(--ink-pressed)">Get a quote</button>
+          <button class="btn btn-primary" disabled>Get a quote</button>
+        </div>
+      </div>
+
+      <div class="button-grid">
+        <div class="label">.btn-secondary
+          <small>Default · Hover · Disabled</small>
+        </div>
+        <div class="button-row">
+          <button class="btn btn-secondary">Spec sheet</button>
+          <button class="btn btn-secondary" style="background:var(--disabled-bg)">Spec sheet</button>
+          <button class="btn btn-secondary" disabled>Spec sheet</button>
+        </div>
+      </div>
+
+      <div class="button-grid">
+        <div class="label">.btn-text
+          <small>Hover shows underline</small>
+        </div>
+        <div class="button-row">
+          <button class="btn btn-text">자세히 보기 →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Spec table</h3>
+        <span class="token-name">.spec-table, .spec-row</span>
+      </div>
+      <p class="subsection-desc">
+        Label은 600, value는 500. Tabular numerals로 자동 정렬.
+      </p>
+      <div class="spec-table">
+        <div class="spec-row">
+          <span class="t-spec-label">Pixel pitch</span>
+          <span class="t-spec-value">P1.8 mm</span>
+        </div>
+        <div class="spec-row">
+          <span class="t-spec-label">Brightness</span>
+          <span class="t-spec-value">1,200 nit (max)</span>
+        </div>
+        <div class="spec-row">
+          <span class="t-spec-label">Refresh rate</span>
+          <span class="t-spec-value">3,840 Hz</span>
+        </div>
+        <div class="spec-row">
+          <span class="t-spec-label">Module size</span>
+          <span class="t-spec-value">320 × 160 mm</span>
+        </div>
+        <div class="spec-row">
+          <span class="t-spec-label">Power consumption</span>
+          <span class="t-spec-value">avg. 280 W/㎡</span>
+        </div>
+        <div class="spec-row">
+          <span class="t-spec-label">Operating temperature</span>
+          <span class="t-spec-value">−10°C ~ +40°C</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Footer</h3>
+        <span class="token-name">--surface-warm + locked dot mapping</span>
+      </div>
+      <p class="subsection-desc">
+        Footer는 surface-warm. 페이지 다른 부분과 같은 밝기 — 절대 어둡게 하지 않습니다.
+        컬럼 dot은 locked mapping을 따릅니다.
+      </p>
+      <div class="footer-specimen">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand-name">Impactrum</div>
+            <p class="footer-brand-text">한국에서 설계·제작·시공하는 프리미엄 LED 디스플레이.</p>
+          </div>
+          <div>
+            <p class="footer-col-title"><span class="footer-dot footer-dot-orange"></span> Products</p>
+            <ul class="footer-links">
+              <li><a href="#">Indoor LED</a></li>
+              <li><a href="#">Outdoor LED</a></li>
+              <li><a href="#">Transparent LED</a></li>
+              <li><a href="#">Custom LED</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-col-title"><span class="footer-dot footer-dot-pink"></span> Solutions</p>
+            <ul class="footer-links">
+              <li><a href="#">Showroom</a></li>
+              <li><a href="#">Retail</a></li>
+              <li><a href="#">Museum</a></li>
+              <li><a href="#">Control room</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-col-title"><span class="footer-dot footer-dot-violet"></span> Company</p>
+            <ul class="footer-links">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">Press</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer-col-title"><span class="footer-dot footer-dot-emerald"></span> Resources</p>
+            <ul class="footer-links">
+              <li><a href="#">Spec sheets</a></li>
+              <li><a href="#">Installation guide</a></li>
+              <li><a href="#">Warranty</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="patterns" class="section bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-orange">Patterns · 06</p>
+      <h2 class="t-h1 t-ko">Usage Patterns</h2>
+      <p>
+        자주 틀리는 지점들을 do/don't로. 룰 자체는 짧지만, 잘못된 적용 사례를 보여주는 게 시스템 정착에 가장 도움이 됩니다.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Card hex 직접 쓰지 않기</h3>
+        <span class="token-name">.bg-* .card-* 패턴 사용</span>
+      </div>
+      <p class="subsection-desc">
+        Card 배경은 hex로 hardcode 하지 말고, 항상 부모 page bg 클래스 + card 종류 클래스로.
+        그래야 카드가 어디에 옮겨가도 자동으로 적응합니다.
+      </p>
+
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;">
+            <pre style="margin: 0; padding: var(--s-5); background: #1a1a1a; color: #e5e7eb; font-family: ui-monospace, monospace; font-size: 12px; line-height: 1.6; overflow-x: auto;"><code>&lt;section class="bg-warm"&gt;
+  &lt;article class="card card-brown"&gt;
+    &lt;!-- system applies #f7eee2 --&gt;
+  &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+          <p class="demo-caption">Class만 쓰고 hex는 시스템이 골라줌. Page를 바꾸면 카드도 자동 적응.</p>
+        </div>
+
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden;">
+            <pre style="margin: 0; padding: var(--s-5); background: #1a1a1a; color: #e5e7eb; font-family: ui-monospace, monospace; font-size: 12px; line-height: 1.6; overflow-x: auto;"><code>&lt;section style="background: #fbfaf6"&gt;
+  &lt;article style="background: #faf5ef"&gt;
+    &lt;!-- hardcoded, won't adapt --&gt;
+  &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+          <p class="demo-caption">Hex 박아놓으면 page bg 바꿔도 카드는 그대로 — adaptive 룰이 깨짐.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Display headline scale</h3>
+        <span class="token-name">.t-display once per page</span>
+      </div>
+      <p class="subsection-desc">
+        72px display는 hero 단 한 번. "큰 헤드라인이 하나 더 필요하다" 싶으면 그건 h1(48px) — display가 아닙니다.
+      </p>
+
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-8);background:var(--canvas)">
+            <p class="t-display t-ko" style="font-size:48px">화면이 공간을<br>깨운다</p>
+            <p class="t-caption" style="margin-top:var(--s-3);font-family:ui-monospace,monospace">Hero — .t-display 72px</p>
+            <hr style="border:none;border-top:1px solid var(--line);margin:var(--s-6) 0">
+            <p class="t-h1 t-ko" style="font-size:32px">실내 공간의 화면</p>
+            <p class="t-caption" style="margin-top:var(--s-3);font-family:ui-monospace,monospace">Section — .t-h1 48px</p>
+          </div>
+          <p class="demo-caption">Display는 hero 한 번, 그 다음부터는 h1로 step down.</p>
+        </div>
+
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-8);background:var(--canvas)">
+            <p class="t-display t-ko" style="font-size:48px">화면이 공간을<br>깨운다</p>
+            <p class="t-caption" style="margin-top:var(--s-3);font-family:ui-monospace,monospace">Hero — .t-display 72px</p>
+            <hr style="border:none;border-top:1px solid var(--line);margin:var(--s-6) 0">
+            <p class="t-display t-ko" style="font-size:48px">실내 공간의 화면</p>
+            <p class="t-caption" style="margin-top:var(--s-3);font-family:ui-monospace,monospace">Section — .t-display 72px ✗</p>
+          </div>
+          <p class="demo-caption">Display를 두 번 쓰면 둘 다 평범해집니다 — 처음의 권위가 사라져요.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Locked mappings</h3>
+        <span class="token-name">Product type ↔ accent</span>
+      </div>
+      <p class="subsection-desc">
+        제품 타입과 accent 색깔의 매핑은 영구 고정입니다. Footer 컬럼 dot도 동일한 매핑을 따릅니다.
+      </p>
+      <div class="lock-table">
+        <div class="lock-row is-header">
+          <span>Product type</span>
+          <span>Accent token</span>
+          <span>Pill chip</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-orange)"></span>
+            Indoor LED
+          </div>
+          <span class="t-mono">--accent-orange · #fb923c</span>
+          <span class="pill pill-orange" style="justify-self:flex-start">Indoor</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-pink)"></span>
+            Outdoor LED
+          </div>
+          <span class="t-mono">--accent-pink · #ec4899</span>
+          <span class="pill pill-pink" style="justify-self:flex-start">Outdoor</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-violet)"></span>
+            Transparent LED
+          </div>
+          <span class="t-mono">--accent-violet · #8b5cf6</span>
+          <span class="pill pill-violet" style="justify-self:flex-start">Transparent</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-emerald)"></span>
+            Custom LED
+          </div>
+          <span class="t-mono">--accent-emerald · #34d399</span>
+          <span class="pill pill-emerald" style="justify-self:flex-start">Custom</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <span>Impactrum Design System · v0.beta-5 · 2026.05</span>
+    <span class="t-mono">DESIGN_Impactrum.md → HTML guide</span>
+  </div>
+</footer>
+
+</body>
+</html>
