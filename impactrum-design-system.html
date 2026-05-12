@@ -581,7 +581,7 @@ body {
   font-size: 14px; font-weight: 600;
   color: var(--ink);
 }
-.lock-dot { width: 10px; height: 10px; border-radius: 50%; }
+.lock-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 @media (max-width: 700px) {
   .lock-row { grid-template-columns: 1fr; gap: var(--s-2); }
   .lock-row.is-header { display: none; }
@@ -1400,9 +1400,9 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
 
 /* Page footer */
 .page-footer {
-  background: var(--surface-warm);
+  background: var(--surface-cool);
   padding: var(--s-12) 0;
-  margin-top: var(--s-section);
+  margin-top: 0;
 }
 .page-footer-inner {
   max-width: 1200px;
@@ -2398,8 +2398,8 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
             <option>Indoor LED — P0.9 ~ P2.5</option>
             <option>Outdoor LED — P3.9 ~ P10</option>
             <option>Transparent LED</option>
-            <option>Creative LED · flexible / floor</option>
-            <option>Irregular LED · 비정형 · 협의</option>
+            <option>Creative LED</option>
+            <option>Irregular LED</option>
           </select>
           <span class="field-hint">복수 관심 제품은 메시지에 적어주세요.</span>
         </div>
@@ -3797,7 +3797,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <div class="lock-row">
           <div class="lock-product">
             <span class="lock-dot" style="background:var(--accent-orange)"></span>
-            Creative LED <span class="t-caption" style="margin-left:8px">flexible · floor 등</span>
+            Creative LED
           </div>
           <span class="t-mono">--accent-orange · #fb923c</span>
           <span class="pill pill-orange" style="justify-self:flex-start">Creative</span>
@@ -3805,7 +3805,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <div class="lock-row">
           <div class="lock-product">
             <span class="lock-dot" style="background:var(--accent-emerald)"></span>
-            Irregular LED <span class="t-caption" style="margin-left:8px">비정형</span>
+            Irregular LED
           </div>
           <span class="t-mono">--accent-emerald · #34d399</span>
           <span class="pill pill-emerald" style="justify-self:flex-start">Irregular</span>
