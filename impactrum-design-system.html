@@ -67,6 +67,8 @@ body {
   text-rendering: optimizeLegibility;
   line-height: 1.5;
   font-variant-numeric: tabular-nums;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .t-display { font-size: 72px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; margin: 0; }
@@ -3127,7 +3129,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <h3 class="t-h2">Spec comparison</h3>
         <span class="token-name">.kit-compare</span>
       </div>
-      <p class="subsection-desc">3-up 비교 카드. 가운데를 featured로 — border만 ink-1px로 강조. Ribbon-badge는 ink (5색 accent 사용 ✗).</p>
+      <p class="subsection-desc">3-up 비교 카드. 가운데를 featured로 — border만 ink-1px로 강조. Ribbon-badge는 ink 전용 — accent 컬러는 사용하지 않습니다.</p>
       <div class="kit-frame frame-cool">
         <div class="kit-header"><span class="kit-label">Compare · 3-up</span><span class="kit-meta">featured = ink border</span></div>
         <div class="kit-body">
