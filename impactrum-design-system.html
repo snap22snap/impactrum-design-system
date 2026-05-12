@@ -525,7 +525,7 @@ body {
   font-size: 13px; font-weight: 600;
   color: var(--ink);
 }
-.footer-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.footer-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex: 0 0 8px; aspect-ratio: 1; }
 .footer-dot-orange  { background: var(--accent-orange); }
 .footer-dot-pink    { background: var(--accent-pink); }
 .footer-dot-violet  { background: var(--accent-violet); }
@@ -582,7 +582,7 @@ body {
   font-size: 14px; font-weight: 600;
   color: var(--ink);
 }
-.lock-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.lock-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: 0 0 10px; aspect-ratio: 1; }
 @media (max-width: 700px) {
   .lock-row { grid-template-columns: 1fr; gap: var(--s-2); }
   .lock-row.is-header { display: none; }
