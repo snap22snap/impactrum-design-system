@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Impactrum Design System · v0.beta-5 · guide r2</title>
+<title>Impactrum Design System · v0.beta-6</title>
 
 <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/complete/WantedSansVariable.min.css">
@@ -993,13 +993,15 @@ body {
   border: 1px solid rgba(255,255,255,0.08);
   background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
 }
-.product-thumb.thumb-orange { background: linear-gradient(135deg, #fff3e5 0%, #ffd9b3 100%); }
+.product-thumb.thumb-blue   { background: linear-gradient(135deg, #e4ecff 0%, #bdd0fb 100%); }
 .product-thumb.thumb-pink   { background: linear-gradient(135deg, #fde8f1 0%, #fbcfe0 100%); }
 .product-thumb.thumb-violet { background: linear-gradient(135deg, #efe7fe 0%, #d8c9fb 100%); }
+.product-thumb.thumb-orange { background: linear-gradient(135deg, #fff3e5 0%, #ffd9b3 100%); }
 .product-thumb.thumb-emerald{ background: linear-gradient(135deg, #e2f7ee 0%, #b8ecd5 100%); }
-.product-thumb.thumb-orange::after,
+.product-thumb.thumb-blue::after,
 .product-thumb.thumb-pink::after,
 .product-thumb.thumb-violet::after,
+.product-thumb.thumb-orange::after,
 .product-thumb.thumb-emerald::after { border-color: rgba(0,0,0,0.06); background: none; }
 .product-thumb .thumb-tag {
   position: absolute; top: var(--s-3); left: var(--s-3);
@@ -1089,7 +1091,7 @@ body {
   align-items: center;
 }
 @media (max-width: 800px) { .kit-hero { grid-template-columns: 1fr; padding: var(--s-10) var(--s-5); gap: var(--s-6); } }
-.kit-hero-eyebrow { color: var(--accent-orange); margin-bottom: var(--s-4); }
+.kit-hero-eyebrow { color: var(--accent-blue); margin-bottom: var(--s-4); }
 .kit-hero-h { font: 700 56px/1.06 var(--font); letter-spacing: -0.035em; margin: 0 0 var(--s-5); }
 @media (max-width: 800px) { .kit-hero-h { font-size: 36px; } }
 .kit-hero-sub { font-size: 16px; color: var(--ink-body); line-height: 1.6; margin: 0 0 var(--s-6); max-width: 460px; }
@@ -1134,7 +1136,7 @@ body {
 .kit-hero-split .split-body { padding: var(--s-12) var(--s-8); }
 .kit-hero-split .split-visual {
   aspect-ratio: 4/3;
-  background: linear-gradient(135deg, var(--accent-emerald) 0%, #047857 100%);
+  background: linear-gradient(135deg, var(--accent-orange) 0%, #c2410c 100%);
 }
 @media (max-width: 800px) { .kit-hero-split .split-visual { aspect-ratio: 16/9; } }
 
@@ -1443,7 +1445,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       <li><a href="#examples">Examples</a></li>
       <li><a href="#patterns">Patterns</a></li>
     </ul>
-    <span class="guide-version">v0.beta-5 · r2</span>
+    <span class="guide-version">v0.beta-6</span>
   </div>
 </nav>
 
@@ -1586,14 +1588,14 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       </div>
       <p class="subsection-desc">
         강조점에만. Line icon stroke, eyebrow text, footer column dot, pastel pill chip, inline link 강조.
-        절대 page bg나 card bg로 쓰지 않습니다.
+        절대 page bg나 card bg로 쓰지 않습니다. 5색 모두 제품 카테고리에 lock되어 있으며, free-use 슬롯은 없습니다.
       </p>
       <div class="swatch-grid">
         <div class="swatch">
-          <div class="swatch-color" style="background:#fb923c"></div>
+          <div class="swatch-color" style="background:#3b82f6"></div>
           <div class="swatch-meta">
-            <span class="swatch-name">--accent-orange</span>
-            <span class="swatch-hex">#fb923c</span>
+            <span class="swatch-name">--accent-blue</span>
+            <span class="swatch-hex">#3b82f6</span>
             <span class="swatch-use">Indoor LED · locked</span>
           </div>
         </div>
@@ -1614,19 +1616,19 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
           </div>
         </div>
         <div class="swatch">
+          <div class="swatch-color" style="background:#fb923c"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">--accent-orange</span>
+            <span class="swatch-hex">#fb923c</span>
+            <span class="swatch-use">Creative LED · locked</span>
+          </div>
+        </div>
+        <div class="swatch">
           <div class="swatch-color" style="background:#34d399"></div>
           <div class="swatch-meta">
             <span class="swatch-name">--accent-emerald</span>
             <span class="swatch-hex">#34d399</span>
-            <span class="swatch-use">Custom LED · locked</span>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#3b82f6"></div>
-          <div class="swatch-meta">
-            <span class="swatch-name">--accent-blue</span>
-            <span class="swatch-hex">#3b82f6</span>
-            <span class="swatch-use">Free use, status, time</span>
+            <span class="swatch-use">Irregular LED · locked</span>
           </div>
         </div>
       </div>
@@ -1639,22 +1641,22 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       </div>
       <p class="subsection-desc">
         Category tag와 status pill용. 모든 page bg 위에서 읽힙니다.
-        Product type 4종은 locked, blue와 neutral은 자유 사용.
+        Product type 5종 모두 locked — Indoor·Outdoor·Transparent·Creative·Irregular.
       </p>
       <div class="pill-row" style="margin-bottom: var(--s-6);">
-        <span class="pill pill-orange">Indoor</span>
+        <span class="pill pill-blue">Indoor</span>
         <span class="pill pill-pink">Outdoor</span>
         <span class="pill pill-violet">Transparent</span>
-        <span class="pill pill-emerald">Custom</span>
-        <span class="pill pill-blue">P2.5 spec</span>
+        <span class="pill pill-orange">Creative</span>
+        <span class="pill pill-emerald">Irregular</span>
         <span class="pill pill-neutral">In stock</span>
       </div>
       <div class="swatch-grid">
         <div class="swatch">
-          <div class="swatch-color" style="background:#fff3e5"></div>
+          <div class="swatch-color" style="background:#e4ecff"></div>
           <div class="swatch-meta">
-            <span class="swatch-name">pill-orange</span>
-            <span class="swatch-hex">bg #fff3e5 · ink #c2410c</span>
+            <span class="swatch-name">pill-blue</span>
+            <span class="swatch-hex">bg #e4ecff · ink #1d4ed8</span>
             <span class="swatch-use">Indoor (locked)</span>
           </div>
         </div>
@@ -1675,19 +1677,19 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
           </div>
         </div>
         <div class="swatch">
+          <div class="swatch-color" style="background:#fff3e5"></div>
+          <div class="swatch-meta">
+            <span class="swatch-name">pill-orange</span>
+            <span class="swatch-hex">bg #fff3e5 · ink #c2410c</span>
+            <span class="swatch-use">Creative (locked)</span>
+          </div>
+        </div>
+        <div class="swatch">
           <div class="swatch-color" style="background:#e2f7ee"></div>
           <div class="swatch-meta">
             <span class="swatch-name">pill-emerald</span>
             <span class="swatch-hex">bg #e2f7ee · ink #047857</span>
-            <span class="swatch-use">Custom (locked)</span>
-          </div>
-        </div>
-        <div class="swatch">
-          <div class="swatch-color" style="background:#e4ecff"></div>
-          <div class="swatch-meta">
-            <span class="swatch-name">pill-blue</span>
-            <span class="swatch-hex">bg #e4ecff · ink #1d4ed8</span>
-            <span class="swatch-use">Free use, status</span>
+            <span class="swatch-use">Irregular (locked)</span>
           </div>
         </div>
       </div>
@@ -1972,7 +1974,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
             <span class="type-token">.t-eyebrow</span>
             <span class="type-spec">12px / 600 / 0.14em / 1.3 / UPPER</span>
           </div>
-          <div class="type-sample t-eyebrow eyebrow-orange">Indoor LED · Made in Korea</div>
+          <div class="type-sample t-eyebrow eyebrow-blue">Indoor LED · Made in Korea</div>
           <div class="type-use">Section eyebrow above headlines</div>
         </div>
       </div>
@@ -1989,7 +1991,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       </p>
       <div class="eyebrow-row">
         <div class="eyebrow-on-surface bg-canvas">
-          <p class="t-eyebrow eyebrow-orange" style="margin-bottom:var(--s-3)">Indoor LED — on canvas</p>
+          <p class="t-eyebrow eyebrow-blue" style="margin-bottom:var(--s-3)">Indoor LED — on canvas</p>
           <p class="t-h3 t-ko">실내 공간의 화면</p>
         </div>
         <div class="eyebrow-on-surface bg-warm">
@@ -2184,7 +2186,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       </p>
       <div class="icon-accent-row">
         <div class="icon-accent-cell">
-          <svg class="icon ic-orange" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg class="icon ic-blue" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           <span class="ic-tk">Indoor</span>
         </div>
         <div class="icon-accent-cell">
@@ -2196,12 +2198,12 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
           <span class="ic-tk">Transparent</span>
         </div>
         <div class="icon-accent-cell">
-          <svg class="icon ic-emerald" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 7v10l8 5 8-5V7l-8-5z"/><path d="M12 22V12M20 7l-8 5L4 7"/></svg>
-          <span class="ic-tk">Custom</span>
+          <svg class="icon ic-orange" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18c2-6 6-9 8-9s4 2 4 5-2 5-4 5-4-2-4-5 2-7 4-9"/><path d="M14 5c2 0 4 1 4 3"/></svg>
+          <span class="ic-tk">Creative</span>
         </div>
         <div class="icon-accent-cell">
-          <svg class="icon ic-blue" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          <span class="ic-tk">Status</span>
+          <svg class="icon ic-emerald" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l4 6-4 6 6-2 4 5 2-7 4-2-7-3 1-6-6 4z"/></svg>
+          <span class="ic-tk">Irregular</span>
         </div>
       </div>
     </div>
@@ -2324,19 +2326,19 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
     <div class="subsection">
       <div class="subsection-title">
         <h3 class="t-h2">Pills & badges</h3>
-        <span class="token-name">.pill-orange, .pill-pink, .pill-violet, .pill-emerald, .pill-blue</span>
+        <span class="token-name">.pill-blue, .pill-pink, .pill-violet, .pill-orange, .pill-emerald</span>
       </div>
       <p class="subsection-desc">
-        24px height, 600 weight, 12px size, pill radius. Product type pill은 locked mapping — Indoor=orange, Outdoor=pink, Transparent=violet, Custom=emerald.
-        Blue는 status·meta용 자유 사용.
+        24px height, 600 weight, 12px size, pill radius. 5종 모두 locked product mapping — Indoor=blue, Outdoor=pink, Transparent=violet, Creative=orange, Irregular=emerald.
+        Neutral pill은 카테고리 외 라벨용.
       </p>
       <div class="kit-stack">
         <div class="pill-row">
-          <span class="pill pill-orange">Indoor</span>
+          <span class="pill pill-blue">Indoor</span>
           <span class="pill pill-pink">Outdoor</span>
           <span class="pill pill-violet">Transparent</span>
-          <span class="pill pill-emerald">Custom</span>
-          <span class="pill pill-blue">2025 신제품</span>
+          <span class="pill pill-orange">Creative</span>
+          <span class="pill pill-emerald">Irregular</span>
           <span class="pill pill-neutral">Coming soon</span>
         </div>
         <div class="pill-row">
@@ -2396,7 +2398,8 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
             <option>Indoor LED — P0.9 ~ P2.5</option>
             <option>Outdoor LED — P3.9 ~ P10</option>
             <option>Transparent LED</option>
-            <option>Custom LED · 협의</option>
+            <option>Creative LED · flexible / floor</option>
+            <option>Irregular LED · 비정형 · 협의</option>
           </select>
           <span class="field-hint">복수 관심 제품은 메시지에 적어주세요.</span>
         </div>
@@ -2462,7 +2465,12 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <label class="choice">
           <input type="radio" name="dmpg" />
           <span class="choice-box is-radio"></span>
-          Custom
+          Creative
+        </label>
+        <label class="choice">
+          <input type="radio" name="dmpg" />
+          <span class="choice-box is-radio"></span>
+          Irregular
         </label>
       </div>
       <div class="kit-row">
@@ -2500,7 +2508,8 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <button class="subtab">Indoor</button>
         <button class="subtab">Outdoor</button>
         <button class="subtab">Transparent</button>
-        <button class="subtab">Custom</button>
+        <button class="subtab">Creative</button>
+        <button class="subtab">Irregular</button>
       </div>
     </div>
 
@@ -2665,12 +2674,12 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <span class="token-name">.product-card</span>
       </div>
       <p class="subsection-desc">
-        Thumb은 4:3, 카드 자체는 16px radius. 제품 타입은 locked accent로 pill 표시. Spec은 footer 위 작은 meta로.
+        Thumb은 4:3, 카드 자체는 16px radius. 제품 타입은 locked accent로 pill 표시 — 5종 모두 자기 색이 정해져 있습니다. Spec은 footer 위 작은 meta로.
       </p>
       <div class="card-grid-3">
         <article class="product-card">
-          <div class="product-thumb thumb-orange">
-            <span class="thumb-tag"><span class="pill pill-orange">Indoor</span></span>
+          <div class="product-thumb thumb-blue">
+            <span class="thumb-tag"><span class="pill pill-blue">Indoor</span></span>
           </div>
           <div class="product-card-body">
             <div class="product-card-head">
@@ -2732,6 +2741,50 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
             </div>
             <div class="product-card-foot">
               <span>리드타임 8주</span>
+              <a href="#">자세히 →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-thumb thumb-orange">
+            <span class="thumb-tag"><span class="pill pill-orange">Creative</span></span>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-head">
+              <h4 class="product-card-title">CR-Flex R600</h4>
+            </div>
+            <p class="product-card-desc">곡면·플로어 · 모듈 곡률 R600부터 평면 조합까지</p>
+            <div class="product-card-specs">
+              <span>P2.5</span>
+              <span>•</span>
+              <span>1,500 nit</span>
+              <span>•</span>
+              <span>R600+</span>
+            </div>
+            <div class="product-card-foot">
+              <span>리드타임 10주</span>
+              <a href="#">자세히 →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-thumb thumb-emerald">
+            <span class="thumb-tag"><span class="pill pill-emerald">Irregular</span></span>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-head">
+              <h4 class="product-card-title">IG-Bespoke Stage</h4>
+            </div>
+            <p class="product-card-desc">비정형 형상 맞춤 · 무대·전시·특수 구조 설계</p>
+            <div class="product-card-specs">
+              <span>P1.8~P3.9</span>
+              <span>•</span>
+              <span>협의</span>
+            </div>
+            <div class="product-card-foot">
+              <span>리드타임 12주~</span>
               <a href="#">자세히 →</a>
             </div>
           </div>
@@ -2828,7 +2881,8 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
               <li><a href="#">Indoor LED</a></li>
               <li><a href="#">Outdoor LED</a></li>
               <li><a href="#">Transparent LED</a></li>
-              <li><a href="#">Custom LED</a></li>
+              <li><a href="#">Creative LED</a></li>
+              <li><a href="#">Irregular LED</a></li>
             </ul>
           </div>
           <div>
@@ -2938,7 +2992,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <div class="kit-body">
           <div class="kit-hero kit-hero-split">
             <div class="split-body">
-              <p class="t-eyebrow eyebrow-emerald">Custom LED · 2026 신제품</p>
+              <p class="t-eyebrow eyebrow-orange">Creative LED · 2026 신제품</p>
               <h2 class="kit-hero-h t-ko" style="font-size:44px">곡면이 필요한가요?<br>커스텀 해드립니다.</h2>
               <p class="kit-hero-sub">곡률 R600부터 평면 모듈 조합까지 — 디자인 의도에 맞춰 모듈을 설계합니다.</p>
               <div class="kit-hero-ctas">
@@ -3252,7 +3306,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
       <div class="page-sequence">
         <div class="seq-band b-canvas">
           <span class="seq-band-label">01 · canvas</span>
-          <p class="t-eyebrow seq-eye eyebrow-orange">Indoor LED · IR-Series</p>
+          <p class="t-eyebrow seq-eye eyebrow-blue">Indoor LED · IR-Series</p>
           <h3 class="seq-head t-ko">실내 공간을 깨우는 화면의 기본</h3>
           <p class="seq-sub">P1.5 표준, 1,200nit, 3,840Hz refresh. 카메라 노출 거리 4m 이상에서 무모아레.</p>
           <div class="kit-row">
@@ -3328,9 +3382,12 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
               <span aria-current="page">IR-150 Showroom</span>
             </nav>
             <div class="kit-row" style="margin-bottom: var(--s-4); gap: var(--s-2)">
-              <span class="pill pill-orange">Indoor</span>
-              <span class="pill pill-blue">2025 신제품</span>
-              <span class="pill pill-emerald">재고 보유</span>
+              <span class="pill pill-blue">Indoor</span>
+              <span class="pill pill-neutral">2025 신제품</span>
+              <span class="pill pill-emerald">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+                재고 보유
+              </span>
             </div>
             <h3 class="t-h1 t-ko" style="font-size:42px; margin-bottom: var(--s-4)">IR-150 Showroom</h3>
             <p class="t-body" style="color:var(--ink-body); margin-bottom: var(--s-6); max-width: 460px">실내 미디어월 표준 픽셀 피치. 방송 카메라 4m 이상에서 무모아레가 시작되는 균형점.</p>
@@ -3491,7 +3548,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <div>
           <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
           <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--surface-warm); display: flex; flex-direction: column; gap: var(--s-3);">
-            <p class="t-eyebrow eyebrow-orange">Indoor LED</p>
+            <p class="t-eyebrow eyebrow-blue">Indoor LED</p>
             <h4 class="t-h2 t-ko" style="margin:0">실내 공간의 화면</h4>
             <p class="t-small" style="color:var(--ink-body); max-width: 360px">P1.5 표준, 1,200nit, 3,840Hz refresh.</p>
             <button class="btn btn-primary" style="align-self:flex-start; margin-top:var(--s-3)">견적 요청</button>
@@ -3501,7 +3558,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <div>
           <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
           <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: #111; display: flex; flex-direction: column; gap: var(--s-3);">
-            <p class="t-eyebrow" style="color:#fb923c">Indoor LED</p>
+            <p class="t-eyebrow" style="color:#3b82f6">Indoor LED</p>
             <h4 class="t-h2 t-ko" style="margin:0; color:#fff">실내 공간의 화면</h4>
             <p class="t-small" style="color:#cfcfcf; max-width: 360px">P1.5 표준, 1,200nit, 3,840Hz refresh.</p>
             <button class="btn btn-secondary" style="align-self:flex-start; margin-top:var(--s-3); background:#fff">견적 요청</button>
@@ -3523,22 +3580,22 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         <div>
           <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
           <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
-            <p class="t-eyebrow eyebrow-emerald" style="margin-bottom: var(--s-3)">Custom LED</p>
+            <p class="t-eyebrow eyebrow-orange" style="margin-bottom: var(--s-3)">Creative LED</p>
             <h4 class="t-h3 t-ko" style="margin: 0 0 var(--s-5)">곡면 모듈 견적 상담</h4>
             <div class="kit-row">
               <button class="btn btn-primary">상담 신청</button>
               <button class="btn btn-secondary">사례 보기</button>
             </div>
           </div>
-          <p class="demo-caption">Eyebrow에만 emerald 점 — action은 ink로 단정하게.</p>
+          <p class="demo-caption">Eyebrow에만 orange 점 — action은 ink로 단정하게.</p>
         </div>
         <div>
           <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
           <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
-            <p class="t-eyebrow eyebrow-emerald" style="margin-bottom: var(--s-3)">Custom LED</p>
+            <p class="t-eyebrow eyebrow-orange" style="margin-bottom: var(--s-3)">Creative LED</p>
             <h4 class="t-h3 t-ko" style="margin: 0 0 var(--s-5)">곡면 모듈 견적 상담</h4>
             <div class="kit-row">
-              <button class="btn" style="background:#34d399; color:#fff; height:40px; padding: 0 20px; border-radius: var(--r-md); font: 600 14px/1 var(--font); border:none;">상담 신청</button>
+              <button class="btn" style="background:#fb923c; color:#fff; height:40px; padding: 0 20px; border-radius: var(--r-md); font: 600 14px/1 var(--font); border:none;">상담 신청</button>
               <button class="btn" style="background:#fde8f1; color:#9d174d; height:40px; padding: 0 20px; border-radius: var(--r-md); font: 600 14px/1 var(--font); border:none;">사례 보기</button>
             </div>
           </div>
@@ -3702,10 +3759,10 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
     <div class="subsection">
       <div class="subsection-title">
         <h3 class="t-h2">Locked mappings</h3>
-        <span class="token-name">Product type ↔ accent</span>
+        <span class="token-name">Product type ↔ accent (5종)</span>
       </div>
       <p class="subsection-desc">
-        제품 타입과 accent 색깔의 매핑은 영구 고정입니다. Footer 컬럼 dot도 동일한 매핑을 따릅니다.
+        제품 5종과 accent 5색의 매핑은 영구 고정입니다. Footer 컬럼 dot은 <strong>별도의</strong> locked mapping을 따릅니다 (아래 참조).
       </p>
       <div class="lock-table">
         <div class="lock-row is-header">
@@ -3715,11 +3772,11 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         </div>
         <div class="lock-row">
           <div class="lock-product">
-            <span class="lock-dot" style="background:var(--accent-orange)"></span>
+            <span class="lock-dot" style="background:var(--accent-blue)"></span>
             Indoor LED
           </div>
-          <span class="t-mono">--accent-orange · #fb923c</span>
-          <span class="pill pill-orange" style="justify-self:flex-start">Indoor</span>
+          <span class="t-mono">--accent-blue · #3b82f6</span>
+          <span class="pill pill-blue" style="justify-self:flex-start">Indoor</span>
         </div>
         <div class="lock-row">
           <div class="lock-product">
@@ -3739,11 +3796,62 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
         </div>
         <div class="lock-row">
           <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-orange)"></span>
+            Creative LED <span class="t-caption" style="margin-left:8px">flexible · floor 등</span>
+          </div>
+          <span class="t-mono">--accent-orange · #fb923c</span>
+          <span class="pill pill-orange" style="justify-self:flex-start">Creative</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
             <span class="lock-dot" style="background:var(--accent-emerald)"></span>
-            Custom LED
+            Irregular LED <span class="t-caption" style="margin-left:8px">비정형</span>
           </div>
           <span class="t-mono">--accent-emerald · #34d399</span>
-          <span class="pill pill-emerald" style="justify-self:flex-start">Custom</span>
+          <span class="pill pill-emerald" style="justify-self:flex-start">Irregular</span>
+        </div>
+      </div>
+
+      <p class="subsection-desc" style="margin-top: var(--s-8)">
+        <strong>Footer column ↔ accent</strong> (제품 매핑과 독립). Blue는 footer에 사용하지 않습니다 — Indoor 제품 매핑 전용.
+      </p>
+      <div class="lock-table">
+        <div class="lock-row is-header">
+          <span>Footer column</span>
+          <span>Accent token</span>
+          <span>Class</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-orange)"></span>
+            Products
+          </div>
+          <span class="t-mono">--accent-orange · #fb923c</span>
+          <span class="t-mono" style="justify-self:flex-start">.footer-dot-orange</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-pink)"></span>
+            Solutions
+          </div>
+          <span class="t-mono">--accent-pink · #ec4899</span>
+          <span class="t-mono" style="justify-self:flex-start">.footer-dot-pink</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-violet)"></span>
+            Company
+          </div>
+          <span class="t-mono">--accent-violet · #8b5cf6</span>
+          <span class="t-mono" style="justify-self:flex-start">.footer-dot-violet</span>
+        </div>
+        <div class="lock-row">
+          <div class="lock-product">
+            <span class="lock-dot" style="background:var(--accent-emerald)"></span>
+            Resources
+          </div>
+          <span class="t-mono">--accent-emerald · #34d399</span>
+          <span class="t-mono" style="justify-self:flex-start">.footer-dot-emerald</span>
         </div>
       </div>
     </div>
@@ -3753,7 +3861,7 @@ code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--
 
 <footer class="page-footer">
   <div class="page-footer-inner">
-    <span>Impactrum Design System · v0.beta-5 · guide r2 · 2026.05</span>
+    <span>Impactrum Design System · v0.beta-6 · 2026.05</span>
     <span class="t-mono">DESIGN_Impactrum.md → HTML showcase</span>
   </div>
 </footer>
