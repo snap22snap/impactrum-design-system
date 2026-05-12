@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Impactrum Design System · v0.beta-5</title>
+<title>Impactrum Design System · v0.beta-5 · guide r2</title>
 
 <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/complete/WantedSansVariable.min.css">
@@ -607,6 +607,764 @@ body {
 .demo-caption { font-size: 13px; color: var(--ink-body); line-height: 1.5; }
 @media (max-width: 768px) { .demo-row { grid-template-columns: 1fr; gap: var(--s-8); } }
 
+/* ============================================================
+   Extended kit · v0.beta-5 guide r2
+   (Iconography · Form & control · Tabs · Breadcrumb · Pagination
+    Alert · Empty · Skeleton · Nav variants · Cards · Layout kits
+    Page sequence · Extended patterns)
+   ============================================================ */
+
+/* Icons */
+.icon { stroke-width: 1.5; }
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: var(--s-3);
+}
+.icon-cell {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+  padding: var(--s-4) var(--s-3);
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-3);
+  text-align: center;
+}
+.icon-cell .ic-name {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  word-break: break-all;
+}
+.icon-accent-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--s-3);
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--canvas);
+}
+@media (max-width: 600px) { .icon-accent-row { grid-template-columns: repeat(5, 1fr); padding: var(--s-3); } }
+.icon-accent-cell { display: flex; flex-direction: column; align-items: center; gap: var(--s-2); }
+.icon-accent-cell .ic-tk { font-family: ui-monospace, monospace; font-size: 10px; color: var(--ink-mute); }
+.icon-line-only { color: var(--ink-body); }
+.ic-orange  { color: var(--accent-orange); }
+.ic-pink    { color: var(--accent-pink); }
+.ic-violet  { color: var(--accent-violet); }
+.ic-emerald { color: var(--accent-emerald); }
+.ic-blue    { color: var(--accent-blue); }
+
+/* Form controls */
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-6);
+}
+@media (max-width: 720px) { .field-grid { grid-template-columns: 1fr; } }
+.field { display: flex; flex-direction: column; }
+.field-label {
+  display: block;
+  font-size: 13px; font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--s-2);
+}
+.field-hint { font-size: 12px; color: var(--ink-mute); margin-top: var(--s-2); line-height: 1.45; }
+.field-error { color: var(--pill-pink-ink); }
+.input, .select, .textarea {
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  background: var(--canvas);
+  color: var(--ink);
+  font: 500 14px/1.5 var(--font);
+  padding: 0 var(--s-4);
+  border-radius: var(--r-md);
+  outline: none;
+  transition: border-color 180ms ease-out;
+  font-family: var(--font);
+}
+.textarea { height: auto; padding: var(--s-3) var(--s-4); resize: vertical; min-height: 96px; line-height: 1.5; }
+.input:focus, .select:focus, .textarea:focus { border-color: var(--ink); }
+.input:disabled, .select:disabled, .textarea:disabled {
+  background: var(--disabled-bg);
+  color: var(--ink-disabled);
+  cursor: not-allowed;
+  border-color: var(--disabled-bg-strong);
+}
+.input.is-error, .select.is-error, .textarea.is-error { border-color: var(--pill-pink-ink); }
+.input::placeholder, .textarea::placeholder { color: var(--ink-soft); }
+.select {
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5l5 5 5-5' stroke='%23111' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right var(--s-4) center;
+  padding-right: var(--s-10);
+}
+.search-input { position: relative; display: flex; align-items: center; }
+.search-input .input { padding-left: 40px; }
+.search-input > svg { position: absolute; left: var(--s-3); pointer-events: none; color: var(--ink-mute); }
+
+.choice {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  cursor: pointer; user-select: none;
+  font-size: 14px; color: var(--ink);
+  position: relative;
+}
+.choice input { position: absolute; opacity: 0; pointer-events: none; }
+.choice-box {
+  width: 18px; height: 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--canvas);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 180ms, border-color 180ms;
+  flex-shrink: 0;
+}
+.choice-box.is-radio { border-radius: 50%; }
+.choice input:checked + .choice-box { background: var(--ink); border-color: var(--ink); }
+.choice input:checked + .choice-box::after {
+  content: ""; display: block;
+  width: 9px; height: 5px;
+  border-left: 2px solid #fff; border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+.choice input:checked + .choice-box.is-radio::after {
+  content: ""; width: 8px; height: 8px; border: none; background: #fff; border-radius: 50%;
+  transform: none;
+}
+.choice input:disabled + .choice-box { background: var(--disabled-bg); border-color: var(--disabled-bg-strong); }
+.choice.is-disabled { color: var(--ink-disabled); cursor: not-allowed; }
+
+.switch {
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  cursor: pointer; user-select: none; position: relative;
+  font-size: 14px;
+}
+.switch input { position: absolute; opacity: 0; }
+.switch-track {
+  width: 36px; height: 20px;
+  background: var(--disabled-bg-strong);
+  border-radius: 9999px;
+  position: relative;
+  transition: background 180ms;
+  flex-shrink: 0;
+}
+.switch-track::after {
+  content: ""; position: absolute;
+  width: 16px; height: 16px;
+  border-radius: 50%; background: #fff;
+  top: 2px; left: 2px;
+  transition: left 180ms;
+}
+.switch input:checked + .switch-track { background: var(--ink); }
+.switch input:checked + .switch-track::after { left: 18px; }
+
+/* Tabs */
+.tabs {
+  display: flex; gap: var(--s-6);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--s-5);
+}
+.tab {
+  font: 500 14px/1.5 var(--font);
+  color: var(--ink-body);
+  background: transparent; border: none; cursor: pointer;
+  padding: var(--s-3) 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--font);
+}
+.tab.is-active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 600; }
+.tab:hover { color: var(--ink); }
+
+.subtabs {
+  display: inline-flex;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 3px;
+  gap: 2px;
+}
+.subtab {
+  font: 500 13px/1 var(--font);
+  color: var(--ink-body);
+  background: transparent; border: none; cursor: pointer;
+  padding: 7px 14px;
+  border-radius: var(--r-sm);
+  font-family: var(--font);
+}
+.subtab.is-active { background: var(--ink); color: #fff; font-weight: 600; }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex; align-items: center; gap: var(--s-2);
+  font-size: 13px; color: var(--ink-mute);
+  flex-wrap: wrap;
+}
+.breadcrumb a { color: var(--ink-mute); text-decoration: none; }
+.breadcrumb a:hover { color: var(--ink); }
+.breadcrumb .sep { color: var(--ink-disabled-2); }
+.breadcrumb [aria-current] { color: var(--ink); font-weight: 600; }
+
+/* Pagination */
+.pagination { display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.page-btn {
+  min-width: 36px; height: 36px; padding: 0 12px;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+  color: var(--ink);
+  font: 500 13px/1 var(--font);
+  font-family: var(--font);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+}
+.page-btn.is-active { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 600; }
+.page-btn:disabled { color: var(--ink-disabled); cursor: not-allowed; }
+.page-btn:hover:not(:disabled):not(.is-active) { background: var(--disabled-bg); }
+.page-ellipsis { padding: 0 6px; color: var(--ink-mute); font-size: 13px; }
+
+/* Status indicators */
+.status-row { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6); align-items: center; }
+.status-dot-line {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--ink-body);
+}
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  display: inline-block;
+}
+.status-dot.ok    { background: var(--accent-emerald); box-shadow: 0 0 0 4px var(--pill-emerald-bg); }
+.status-dot.warn  { background: var(--accent-orange);  box-shadow: 0 0 0 4px var(--pill-orange-bg); }
+.status-dot.error { background: var(--accent-pink);    box-shadow: 0 0 0 4px var(--pill-pink-bg); }
+.status-dot.info  { background: var(--accent-blue);    box-shadow: 0 0 0 4px var(--pill-blue-bg); }
+
+/* Alert / Banner */
+.alert {
+  display: flex; gap: var(--s-3);
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--r-lg);
+  border: 1px solid transparent;
+  align-items: flex-start;
+}
+.alert .alert-icon { flex-shrink: 0; margin-top: 1px; }
+.alert .alert-body { flex: 1; }
+.alert-title { font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 2px; }
+.alert-text { font-size: 13px; color: var(--ink-body); margin: 0; line-height: 1.5; }
+.alert-info    { background: var(--pill-blue-bg); }
+.alert-info    .alert-icon { color: var(--pill-blue-ink); }
+.alert-success { background: var(--pill-emerald-bg); }
+.alert-success .alert-icon { color: var(--pill-emerald-ink); }
+.alert-warn    { background: var(--pill-orange-bg); }
+.alert-warn    .alert-icon { color: var(--pill-orange-ink); }
+.alert-error   { background: var(--pill-pink-bg); }
+.alert-error   .alert-icon { color: var(--pill-pink-ink); }
+.alert-stack { display: flex; flex-direction: column; gap: var(--s-3); }
+
+/* Inline banner (full-width inside section) */
+.inline-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-5);
+  padding: var(--s-4) var(--s-5);
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  flex-wrap: wrap;
+}
+.inline-banner .ib-text { font-size: 14px; color: var(--ink); }
+.inline-banner .ib-text b { font-weight: 600; }
+.inline-banner-emerald { background: var(--pill-emerald-bg); border-color: var(--pill-emerald-bg); }
+.inline-banner-orange  { background: var(--pill-orange-bg);  border-color: var(--pill-orange-bg); }
+
+/* Empty state */
+.empty-state {
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-xl);
+  padding: var(--s-12) var(--s-8);
+  text-align: center;
+  background: var(--canvas);
+  max-width: 520px; margin: 0 auto;
+}
+.empty-state .empty-icon { color: var(--ink-mute); margin-bottom: var(--s-4); display: inline-flex; }
+.empty-state h4 { font: 600 18px/1.3 var(--font); color: var(--ink); margin: 0 0 var(--s-2); letter-spacing: -0.01em; }
+.empty-state p { font-size: 14px; color: var(--ink-body); margin: 0 0 var(--s-5); line-height: 1.55; }
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--disabled-bg) 25%, #ececec 50%, var(--disabled-bg) 75%);
+  background-size: 200% 100%;
+  border-radius: var(--r-sm);
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.skeleton-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  background: var(--canvas);
+  padding: var(--s-5);
+  display: flex; flex-direction: column; gap: var(--s-3);
+}
+
+/* Top nav specimen */
+.nav-specimen {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--canvas);
+}
+.nav-specimen .topnav {
+  height: 64px;
+  padding: 0 var(--s-6);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--canvas);
+  border-bottom: 1px solid var(--line);
+  gap: var(--s-4);
+}
+.nav-specimen .nav-brand { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+.nav-specimen .nav-links { display: flex; gap: var(--s-5); list-style: none; padding: 0; margin: 0; }
+.nav-specimen .nav-links a {
+  font-size: 13px; color: var(--ink-body);
+  text-decoration: none; font-weight: 500;
+}
+.nav-specimen .nav-links a:hover { color: var(--ink); }
+.nav-specimen .nav-links a.is-current { color: var(--ink); font-weight: 600; }
+.nav-specimen .nav-cta { display: flex; gap: var(--s-2); align-items: center; }
+.nav-specimen .nav-cta .btn { height: 36px; padding: 0 14px; font-size: 13px; }
+.nav-specimen-body {
+  padding: var(--s-10) var(--s-6);
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-2);
+  color: var(--ink-mute); font-size: 12px;
+  background: var(--surface-warm);
+}
+
+/* Cards: product, story, blog */
+.card-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+@media (max-width: 900px) { .card-grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .card-grid-3 { grid-template-columns: 1fr; } }
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+}
+@media (max-width: 720px) { .card-grid-2 { grid-template-columns: 1fr; } }
+
+.product-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--canvas);
+  display: flex; flex-direction: column;
+}
+.product-thumb {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #111 0%, #2a2a2a 100%);
+  position: relative;
+  overflow: hidden;
+}
+.product-thumb::after {
+  content: ""; position: absolute; inset: 18%;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+}
+.product-thumb.thumb-orange { background: linear-gradient(135deg, #fff3e5 0%, #ffd9b3 100%); }
+.product-thumb.thumb-pink   { background: linear-gradient(135deg, #fde8f1 0%, #fbcfe0 100%); }
+.product-thumb.thumb-violet { background: linear-gradient(135deg, #efe7fe 0%, #d8c9fb 100%); }
+.product-thumb.thumb-emerald{ background: linear-gradient(135deg, #e2f7ee 0%, #b8ecd5 100%); }
+.product-thumb.thumb-orange::after,
+.product-thumb.thumb-pink::after,
+.product-thumb.thumb-violet::after,
+.product-thumb.thumb-emerald::after { border-color: rgba(0,0,0,0.06); background: none; }
+.product-thumb .thumb-tag {
+  position: absolute; top: var(--s-3); left: var(--s-3);
+  z-index: 1;
+}
+.product-card-body { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); flex: 1; }
+.product-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-3); }
+.product-card-title { font: 600 17px/1.3 var(--font); color: var(--ink); margin: 0; letter-spacing: -0.01em; }
+.product-card-desc { font-size: 13px; color: var(--ink-body); margin: 0; line-height: 1.5; }
+.product-card-specs {
+  display: flex; flex-wrap: wrap; gap: var(--s-3);
+  margin-top: var(--s-2);
+  font-size: 12px; color: var(--ink-mute);
+}
+.product-card-foot {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: auto; padding-top: var(--s-4);
+  border-top: 1px solid var(--line-soft);
+  font-size: 12px; color: var(--ink-mute);
+}
+.product-card-foot a { color: var(--ink); text-decoration: none; font-weight: 600; }
+.product-card-foot a:hover { text-decoration: underline; }
+
+.story-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--canvas);
+  display: flex; flex-direction: column;
+}
+.story-thumb {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #2a2a2a, #111);
+  position: relative;
+  display: flex; align-items: flex-end;
+  padding: var(--s-5);
+}
+.story-thumb-tag {
+  background: rgba(255,255,255,0.95); color: var(--ink);
+  padding: 4px 10px; border-radius: var(--r-pill);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+}
+.story-body { padding: var(--s-5); display: flex; flex-direction: column; flex: 1; }
+.story-meta { font-size: 12px; color: var(--ink-mute); margin-bottom: var(--s-2); }
+.story-title { font: 600 18px/1.35 var(--font); color: var(--ink); margin: 0 0 var(--s-2); letter-spacing: -0.01em; }
+.story-excerpt { font-size: 14px; color: var(--ink-body); margin: 0 0 var(--s-4); line-height: 1.55; flex: 1; }
+.story-readmore {
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.story-readmore:hover { text-decoration: underline; }
+
+/* Layout kits frame */
+.kit-frame {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--canvas);
+  margin-bottom: var(--s-5);
+}
+.kit-frame.frame-warm  > .kit-body { background: var(--surface-warm); }
+.kit-frame.frame-cool  > .kit-body { background: var(--surface-cool); }
+.kit-frame.frame-canvas > .kit-body { background: var(--canvas); }
+.kit-header {
+  padding: var(--s-3) var(--s-5);
+  border-bottom: 1px solid var(--line);
+  background: var(--canvas);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-3);
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  flex-wrap: wrap;
+}
+.kit-header .kit-label { font-weight: 600; color: var(--ink); }
+.kit-header .kit-meta { font-size: 11px; color: var(--ink-mute); }
+
+/* Hero kit */
+.kit-hero {
+  padding: var(--s-16) var(--s-8);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--s-10);
+  align-items: center;
+}
+@media (max-width: 800px) { .kit-hero { grid-template-columns: 1fr; padding: var(--s-10) var(--s-5); gap: var(--s-6); } }
+.kit-hero-eyebrow { color: var(--accent-orange); margin-bottom: var(--s-4); }
+.kit-hero-h { font: 700 56px/1.06 var(--font); letter-spacing: -0.035em; margin: 0 0 var(--s-5); }
+@media (max-width: 800px) { .kit-hero-h { font-size: 36px; } }
+.kit-hero-sub { font-size: 16px; color: var(--ink-body); line-height: 1.6; margin: 0 0 var(--s-6); max-width: 460px; }
+.kit-hero-ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+.kit-hero-visual {
+  aspect-ratio: 4/3;
+  border-radius: var(--r-xl);
+  background: linear-gradient(135deg, #111 0%, #2a2a2a 100%);
+  position: relative; overflow: hidden;
+}
+.kit-hero-visual::after {
+  content: ""; position: absolute; inset: 14%;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--r-md);
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), transparent 60%);
+}
+.kit-hero-meta {
+  display: flex; gap: var(--s-6);
+  margin-top: var(--s-8);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--ink-mute);
+  flex-wrap: wrap;
+}
+
+.kit-hero-centered {
+  padding: var(--s-16) var(--s-8);
+  text-align: center;
+}
+.kit-hero-centered .kit-hero-eyebrow { color: var(--accent-violet); }
+.kit-hero-centered .kit-hero-h { max-width: 760px; margin-left: auto; margin-right: auto; }
+.kit-hero-centered .kit-hero-sub { margin-left: auto; margin-right: auto; }
+.kit-hero-centered .kit-hero-ctas { justify-content: center; }
+
+.kit-hero-split {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+@media (max-width: 800px) { .kit-hero-split { grid-template-columns: 1fr; } }
+.kit-hero-split .split-body { padding: var(--s-12) var(--s-8); }
+.kit-hero-split .split-visual {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--accent-emerald) 0%, #047857 100%);
+}
+@media (max-width: 800px) { .kit-hero-split .split-visual { aspect-ratio: 16/9; } }
+
+/* Feature grid kit */
+.kit-feature-grid {
+  padding: var(--s-12) var(--s-8);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-8);
+}
+@media (max-width: 800px) { .kit-feature-grid { grid-template-columns: 1fr; gap: var(--s-6); } }
+.kit-feature {
+  display: flex; flex-direction: column; gap: var(--s-3);
+}
+.kit-feature-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--r-md);
+  background: var(--surface-cool);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.kit-feature.feat-orange  .kit-feature-icon { background: var(--pill-orange-bg);  color: var(--pill-orange-ink); }
+.kit-feature.feat-pink    .kit-feature-icon { background: var(--pill-pink-bg);    color: var(--pill-pink-ink); }
+.kit-feature.feat-violet  .kit-feature-icon { background: var(--pill-violet-bg);  color: var(--pill-violet-ink); }
+.kit-feature.feat-emerald .kit-feature-icon { background: var(--pill-emerald-bg); color: var(--pill-emerald-ink); }
+.kit-feature h4 { font: 600 18px/1.3 var(--font); margin: 0; letter-spacing: -0.01em; }
+.kit-feature p { font-size: 14px; color: var(--ink-body); margin: 0; line-height: 1.55; }
+
+.kit-feature-grid-4 {
+  padding: var(--s-12) var(--s-8);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-6);
+}
+@media (max-width: 900px) { .kit-feature-grid-4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .kit-feature-grid-4 { grid-template-columns: 1fr; } }
+
+/* Stats kit */
+.kit-stats {
+  padding: var(--s-12) var(--s-8);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-6);
+}
+@media (max-width: 720px) { .kit-stats { grid-template-columns: repeat(2, 1fr); } }
+.kit-stat { display: flex; flex-direction: column; gap: 4px; }
+.kit-stat-eyebrow {
+  font-size: 11px; color: var(--ink-mute);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin: 0 0 var(--s-2);
+  font-weight: 600;
+}
+.kit-stat-num {
+  font: 700 56px/1 var(--font);
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin: 0 0 var(--s-2);
+}
+@media (max-width: 720px) { .kit-stat-num { font-size: 40px; } }
+.kit-stat-label {
+  font-size: 13px; color: var(--ink-body);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Compare kit */
+.kit-compare {
+  padding: var(--s-8);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--s-4);
+}
+@media (max-width: 900px) { .kit-compare { grid-template-columns: 1fr; } }
+.compare-col {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: var(--s-6);
+  background: var(--canvas);
+  display: flex; flex-direction: column;
+}
+.compare-col.is-featured { border-color: var(--ink); }
+.compare-ribbon {
+  display: inline-block;
+  background: var(--ink); color: #fff;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--r-sm);
+  margin-bottom: var(--s-3);
+  align-self: flex-start;
+}
+.compare-eye { font-size: 12px; font-weight: 600; color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 var(--s-2); }
+.compare-h { font: 700 28px/1.15 var(--font); letter-spacing: -0.02em; margin: 0 0 var(--s-2); }
+.compare-pitch { font-size: 13px; color: var(--ink-body); margin: 0 0 var(--s-6); line-height: 1.55; }
+.compare-list { list-style: none; padding: 0; margin: 0 0 var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); }
+.compare-list li {
+  font-size: 13px; color: var(--ink-body);
+  padding-left: 22px; position: relative;
+  line-height: 1.5;
+}
+.compare-list li::before {
+  content: ""; position: absolute; left: 0; top: 6px;
+  width: 12px; height: 6px;
+  border-left: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink);
+  transform: rotate(-45deg);
+}
+
+/* Quote / testimonial */
+.kit-quote {
+  padding: var(--s-12) var(--s-8);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--s-10);
+  align-items: center;
+}
+@media (max-width: 800px) { .kit-quote { grid-template-columns: 1fr; gap: var(--s-6); } }
+.quote-mark { font: 700 56px/1 var(--font); color: var(--accent-violet); margin: 0 0 var(--s-3); }
+.quote-text { font: 500 24px/1.5 var(--font); letter-spacing: -0.01em; color: var(--ink); margin: 0 0 var(--s-6); }
+@media (max-width: 800px) { .quote-text { font-size: 20px; } }
+.quote-attrib { font-size: 13px; color: var(--ink-body); margin: 0; }
+.quote-attrib b { color: var(--ink); font-weight: 600; }
+.quote-visual {
+  aspect-ratio: 1;
+  border-radius: var(--r-xl);
+  background: linear-gradient(135deg, var(--pill-violet-bg) 0%, #d8c9fb 60%, #b9a4f3 100%);
+  position: relative; overflow: hidden;
+}
+.quote-visual::after {
+  content: ""; position: absolute; inset: 20%;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: var(--r-md);
+}
+
+/* CTA banner */
+.kit-cta {
+  padding: var(--s-12) var(--s-8);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--s-8);
+  align-items: center;
+}
+@media (max-width: 720px) { .kit-cta { grid-template-columns: 1fr; gap: var(--s-5); } }
+.cta-eye { color: var(--accent-emerald); margin: 0 0 var(--s-3); }
+.cta-h { font: 700 36px/1.15 var(--font); letter-spacing: -0.025em; margin: 0 0 var(--s-3); }
+@media (max-width: 720px) { .cta-h { font-size: 28px; } }
+.cta-sub { font-size: 15px; color: var(--ink-body); margin: 0; max-width: 480px; line-height: 1.6; }
+.cta-action { display: flex; gap: var(--s-3); flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 720px) { .cta-action { justify-content: flex-start; } }
+
+/* FAQ */
+.kit-faq { padding: var(--s-8); display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: var(--s-5) 0;
+}
+.faq-item:first-child { padding-top: 0; }
+.faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-4);
+  font: 600 16px/1.5 var(--font);
+  color: var(--ink); cursor: pointer;
+  letter-spacing: -0.005em;
+}
+.faq-q .faq-toggle {
+  font-size: 20px; color: var(--ink-mute);
+  flex-shrink: 0; line-height: 1;
+}
+.faq-a {
+  margin-top: var(--s-3);
+  font-size: 14px; color: var(--ink-body);
+  line-height: 1.7;
+  max-width: 720px;
+}
+.faq-item.is-open .faq-q .faq-toggle { transform: rotate(45deg); }
+.faq-item:not(.is-open) .faq-a { display: none; }
+
+/* Logo wall */
+.kit-logos {
+  padding: var(--s-10) var(--s-8);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--s-6);
+  align-items: center;
+}
+@media (max-width: 800px) { .kit-logos { grid-template-columns: repeat(3, 1fr); } }
+.logo-cell {
+  height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font: 600 14px/1 var(--font); letter-spacing: -0.01em;
+  color: var(--ink-mute);
+  font-family: var(--font);
+  white-space: nowrap;
+}
+
+/* Page sequence preview */
+.page-sequence {
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.seq-band {
+  padding: var(--s-10) var(--s-8);
+  position: relative;
+}
+.seq-band.b-canvas { background: var(--canvas); }
+.seq-band.b-warm   { background: var(--surface-warm); }
+.seq-band.b-cool   { background: var(--surface-cool); }
+.seq-band-label {
+  position: absolute; top: var(--s-3); right: var(--s-4);
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.seq-band .seq-eye  { margin-bottom: var(--s-3); }
+.seq-band .seq-head { font: 700 36px/1.1 var(--font); letter-spacing: -0.025em; margin: 0 0 var(--s-3); }
+@media (max-width: 700px) { .seq-band .seq-head { font-size: 26px; } }
+.seq-band .seq-sub  { font-size: 14px; color: var(--ink-body); margin: 0 0 var(--s-5); max-width: 540px; line-height: 1.6; }
+.seq-band-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); margin-top: var(--s-5); }
+@media (max-width: 700px) { .seq-band-row { grid-template-columns: 1fr; } }
+.seq-mini-card {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-4) var(--s-5);
+  background: var(--canvas);
+}
+.b-warm .seq-mini-card { background: #f7eee2; border-color: #f7eee2; }
+.b-cool .seq-mini-card { background: #e8ecf3; border-color: #e8ecf3; }
+.seq-mini-card h5 { font: 600 14px/1.3 var(--font); margin: 0 0 var(--s-2); }
+.seq-mini-card p { font-size: 12px; color: var(--ink-body); margin: 0; line-height: 1.5; }
+
+/* Inline link emphasis */
+.prose-sample {
+  font-size: 15px; line-height: 1.7;
+  color: var(--ink-body);
+  max-width: 640px;
+}
+.prose-sample a {
+  color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+.prose-sample b, .prose-sample strong { color: var(--ink); font-weight: 600; }
+
+/* Misc kit utilities */
+.kit-stack { display: flex; flex-direction: column; gap: var(--s-5); }
+.kit-row { display: flex; gap: var(--s-5); flex-wrap: wrap; align-items: center; }
+code { font-family: ui-monospace, monospace; font-size: 12px; background: var(--disabled-bg); padding: 2px 6px; border-radius: 4px; color: var(--ink); }
+.divider-h { border: none; border-top: 1px solid var(--line); margin: var(--s-6) 0; }
+
+/* Page footer */
 .page-footer {
   background: var(--surface-warm);
   padding: var(--s-12) 0;
@@ -641,10 +1399,13 @@ body {
       <li><a href="#color">Color</a></li>
       <li><a href="#surface">Surface</a></li>
       <li><a href="#typography">Typography</a></li>
+      <li><a href="#icons">Icons</a></li>
       <li><a href="#components">Components</a></li>
+      <li><a href="#kits">Layout Kits</a></li>
+      <li><a href="#examples">Examples</a></li>
       <li><a href="#patterns">Patterns</a></li>
     </ul>
-    <span class="guide-version">v0.beta-5</span>
+    <span class="guide-version">v0.beta-5 · r2</span>
   </div>
 </nav>
 
@@ -1256,10 +2017,197 @@ body {
   </div>
 </section>
 
+<section id="icons" class="section bg-warm">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-pink">Foundations · 05</p>
+      <h2 class="t-h1 t-ko">Iconography</h2>
+      <p>
+        시스템 아이콘은 line style, stroke 1.5px, 24×24 viewBox. Fill은 쓰지 않고 stroke만 사용 — 옅은 페이지 톤 위에서도 hairline border와 같은 리듬으로 호흡합니다.
+        기본 컬러는 <code>--ink-body</code>, accent zoning이 필요한 경우(섹션 eyebrow 옆, feature card icon 등)에만 5색 accent로 컬러링.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">System icon set</h3>
+        <span class="token-name">24px · stroke 1.5 · round joins</span>
+      </div>
+      <p class="subsection-desc">
+        Stroke linecap/linejoin은 모두 round. 본문에서 인라인으로 쓸 때는 <code>vertical-align: -2px</code>로 baseline 보정.
+      </p>
+      <div class="icon-grid">
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="ic-name">search</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <span class="ic-name">menu</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          <span class="ic-name">close</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="ic-name">arrow-right</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          <span class="ic-name">chevron-right</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          <span class="ic-name">chevron-down</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+          <span class="ic-name">check</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          <span class="ic-name">plus</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+          <span class="ic-name">minus</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 8 9 6 9-6"/></svg>
+          <span class="ic-name">mail</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+          <span class="ic-name">phone</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <span class="ic-name">location</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+          <span class="ic-name">calendar</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>
+          <span class="ic-name">download</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4 10 14M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg>
+          <span class="ic-name">external-link</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+          <span class="ic-name">info</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>
+          <span class="ic-name">warning</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <span class="ic-name">error</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4H8a2 2 0 0 0-2 2v14l4-3 4 3 4-3V6a2 2 0 0 0-2-2h-2z"/></svg>
+          <span class="ic-name">bookmark</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 14h8M8 18h5"/></svg>
+          <span class="ic-name">document</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          <span class="ic-name">user</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09c0 .69.4 1.3 1 1.51.6.27 1.32.14 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.27.6.88 1 1.51 1H21a2 2 0 0 1 0 4h-.09c-.63 0-1.24.4-1.51 1z"/></svg>
+          <span class="ic-name">settings</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16 16 11l-7 8"/></svg>
+          <span class="ic-name">image</span>
+        </div>
+        <div class="icon-cell">
+          <svg class="icon icon-line-only" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span class="ic-name">clock</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Accent coloring</h3>
+        <span class="token-name">5색 accent stroke</span>
+      </div>
+      <p class="subsection-desc">
+        Feature grid, eyebrow row, status indicator처럼 컨텍스트가 분명할 때만 accent 컬러 적용. 같은 아이콘이라도 컨텍스트가 같으면 같은 accent로 — 자동차 신호등처럼 의미가 색에 묶입니다.
+      </p>
+      <div class="icon-accent-row">
+        <div class="icon-accent-cell">
+          <svg class="icon ic-orange" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span class="ic-tk">Indoor</span>
+        </div>
+        <div class="icon-accent-cell">
+          <svg class="icon ic-pink" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+          <span class="ic-tk">Outdoor</span>
+        </div>
+        <div class="icon-accent-cell">
+          <svg class="icon ic-violet" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+          <span class="ic-tk">Transparent</span>
+        </div>
+        <div class="icon-accent-cell">
+          <svg class="icon ic-emerald" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 7v10l8 5 8-5V7l-8-5z"/><path d="M12 22V12M20 7l-8 5L4 7"/></svg>
+          <span class="ic-tk">Custom</span>
+        </div>
+        <div class="icon-accent-cell">
+          <svg class="icon ic-blue" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span class="ic-tk">Status</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Inline usage</h3>
+        <span class="token-name">in headings & body</span>
+      </div>
+      <p class="subsection-desc">
+        본문에 인라인으로 쓸 때는 텍스트와 같은 색·같은 stroke로 — accent로 튀게 하지 않습니다.
+      </p>
+      <div class="kit-stack">
+        <div class="prose-sample">
+          <p style="margin:0">
+            서울 코엑스 미디어월 프로젝트는
+            <a href="#" style="display:inline-flex;align-items:center;gap:4px">P1.5 indoor LED <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M14 4h6v6M20 4 10 14"/><path d="M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg></a>
+            72㎡로 구성되었으며, <b>3,840Hz refresh</b>로 카메라 무왜곡 영역을 확보했습니다.
+            <a href="#">자세히 보기 →</a>
+          </p>
+        </div>
+        <div class="kit-row">
+          <button class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>
+            Spec PDF
+          </button>
+          <button class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 8 9 6 9-6"/></svg>
+            문의하기
+          </button>
+          <button class="btn btn-primary">
+            견적 요청
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="components" class="section bg-canvas">
   <div class="container">
     <div class="section-header">
-      <p class="t-eyebrow eyebrow-emerald">Components · 05</p>
+      <p class="t-eyebrow eyebrow-emerald">Components · 06</p>
       <h2 class="t-h1 t-ko">Components</h2>
       <p>
         모든 component는 정의된 token만으로 만들어집니다. Card는 page bg context에서 자동 톤 적응.
@@ -1306,6 +2254,482 @@ body {
         <div class="button-row">
           <button class="btn btn-text">자세히 보기 →</button>
         </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Icon buttons</h3>
+        <span class="token-name">.btn + svg</span>
+      </div>
+      <p class="subsection-desc">아이콘은 16px, 1.5 stroke, gap 6px. Leading icon이 디폴트.</p>
+      <div class="kit-row">
+        <button class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Get a quote
+        </button>
+        <button class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>
+          Spec sheet
+        </button>
+        <button class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4 10 14"/><path d="M19 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h6"/></svg>
+          GitHub
+        </button>
+        <button class="btn btn-text">
+          자세히 보기
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Pills & badges</h3>
+        <span class="token-name">.pill-orange, .pill-pink, .pill-violet, .pill-emerald, .pill-blue</span>
+      </div>
+      <p class="subsection-desc">
+        24px height, 600 weight, 12px size, pill radius. Product type pill은 locked mapping — Indoor=orange, Outdoor=pink, Transparent=violet, Custom=emerald.
+        Blue는 status·meta용 자유 사용.
+      </p>
+      <div class="kit-stack">
+        <div class="pill-row">
+          <span class="pill pill-orange">Indoor</span>
+          <span class="pill pill-pink">Outdoor</span>
+          <span class="pill pill-violet">Transparent</span>
+          <span class="pill pill-emerald">Custom</span>
+          <span class="pill pill-blue">2025 신제품</span>
+          <span class="pill pill-neutral">Coming soon</span>
+        </div>
+        <div class="pill-row">
+          <span class="pill pill-emerald">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+            재고 보유
+          </span>
+          <span class="pill pill-orange">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            리드타임 8주
+          </span>
+          <span class="pill pill-pink">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            품절
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Status indicators</h3>
+        <span class="token-name">.status-dot</span>
+      </div>
+      <p class="subsection-desc">Dot + halo ring 패턴. 표나 list 안에서 단일 상태 표시용. 강한 표시가 필요할 땐 위 pill을 사용.</p>
+      <div class="status-row">
+        <span class="status-dot-line"><span class="status-dot ok"></span>운영중</span>
+        <span class="status-dot-line"><span class="status-dot warn"></span>점검 대기</span>
+        <span class="status-dot-line"><span class="status-dot error"></span>장애</span>
+        <span class="status-dot-line"><span class="status-dot info"></span>실시간 모니터링</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Form & input</h3>
+        <span class="token-name">.input, .select, .textarea, .choice, .switch</span>
+      </div>
+      <p class="subsection-desc">
+        40px height, 8px radius, 1px line-strong border. Focus는 border-color shift만 — outline ring 사용 안 함.
+      </p>
+
+      <div class="field-grid">
+        <div class="field">
+          <label class="field-label" for="dm-name">담당자 이름</label>
+          <input id="dm-name" class="input" type="text" placeholder="홍길동" />
+          <span class="field-hint">실명으로 입력해 주세요.</span>
+        </div>
+        <div class="field">
+          <label class="field-label" for="dm-email">회사 이메일</label>
+          <input id="dm-email" class="input" type="email" value="design@impactrum.kr" />
+          <span class="field-hint">견적·자료는 이 메일로 발송됩니다.</span>
+        </div>
+        <div class="field">
+          <label class="field-label" for="dm-prod">관심 제품군</label>
+          <select id="dm-prod" class="select">
+            <option>Indoor LED — P0.9 ~ P2.5</option>
+            <option>Outdoor LED — P3.9 ~ P10</option>
+            <option>Transparent LED</option>
+            <option>Custom LED · 협의</option>
+          </select>
+          <span class="field-hint">복수 관심 제품은 메시지에 적어주세요.</span>
+        </div>
+        <div class="field">
+          <label class="field-label" for="dm-search">검색</label>
+          <div class="search-input">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="dm-search" class="input" type="search" placeholder="픽셀 피치, 프로젝트, 키워드…" />
+          </div>
+          <span class="field-hint">3자 이상 입력 시 자동완성.</span>
+        </div>
+        <div class="field" style="grid-column: 1 / -1;">
+          <label class="field-label" for="dm-msg">프로젝트 메시지</label>
+          <textarea id="dm-msg" class="textarea" placeholder="설치 공간, 운영 시간, 영상 소스 등 알려주시면 적정 사양을 제안드립니다."></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label" for="dm-bad">에러 상태</label>
+          <input id="dm-bad" class="input is-error" type="text" value="invalid-email" />
+          <span class="field-hint field-error">이메일 형식이 올바르지 않습니다.</span>
+        </div>
+        <div class="field">
+          <label class="field-label" for="dm-dis">비활성 상태</label>
+          <input id="dm-dis" class="input" type="text" value="자동으로 입력됨" disabled />
+          <span class="field-hint">관리자만 수정 가능합니다.</span>
+        </div>
+      </div>
+
+      <div class="divider-h"></div>
+
+      <div class="kit-row" style="margin-bottom:var(--s-4)">
+        <label class="choice">
+          <input type="checkbox" checked />
+          <span class="choice-box"></span>
+          개인정보 수집·이용에 동의합니다
+        </label>
+        <label class="choice">
+          <input type="checkbox" />
+          <span class="choice-box"></span>
+          마케팅 정보 수신
+        </label>
+        <label class="choice is-disabled">
+          <input type="checkbox" disabled />
+          <span class="choice-box"></span>
+          서드파티 공유 (비활성)
+        </label>
+      </div>
+      <div class="kit-row" style="margin-bottom:var(--s-4)">
+        <label class="choice">
+          <input type="radio" name="dmpg" checked />
+          <span class="choice-box is-radio"></span>
+          Indoor
+        </label>
+        <label class="choice">
+          <input type="radio" name="dmpg" />
+          <span class="choice-box is-radio"></span>
+          Outdoor
+        </label>
+        <label class="choice">
+          <input type="radio" name="dmpg" />
+          <span class="choice-box is-radio"></span>
+          Transparent
+        </label>
+        <label class="choice">
+          <input type="radio" name="dmpg" />
+          <span class="choice-box is-radio"></span>
+          Custom
+        </label>
+      </div>
+      <div class="kit-row">
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="switch-track"></span>
+          실시간 알림 받기
+        </label>
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="switch-track"></span>
+          베타 기능 활성화
+        </label>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Tabs & sub-tabs</h3>
+        <span class="token-name">.tabs, .subtabs</span>
+      </div>
+      <p class="subsection-desc">
+        탭은 하단 2px 라인 ink — 두께가 아니라 색으로만 strong을 만듭니다. 카드 내부 등 좁은 컨텍스트에서는 8px radius 박스형 sub-tab.
+      </p>
+      <div class="tabs">
+        <button class="tab is-active">Overview</button>
+        <button class="tab">Specifications</button>
+        <button class="tab">Installation</button>
+        <button class="tab">Resources</button>
+        <button class="tab">FAQ</button>
+      </div>
+      <p class="t-body" style="color:var(--ink-body); margin-bottom:var(--s-5)">P1.5 indoor LED는 실내 미디어월의 표준 픽셀 피치입니다. 카메라 노출 거리 4m 이상에서 무모아레.</p>
+      <div class="subtabs">
+        <button class="subtab is-active">All</button>
+        <button class="subtab">Indoor</button>
+        <button class="subtab">Outdoor</button>
+        <button class="subtab">Transparent</button>
+        <button class="subtab">Custom</button>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Breadcrumb & pagination</h3>
+        <span class="token-name">.breadcrumb, .pagination</span>
+      </div>
+      <p class="subsection-desc">Wayfinding은 13px / 500. Current는 ink 600. 페이지네이션은 36×36 정사각 + 8px gap.</p>
+      <nav class="breadcrumb" style="margin-bottom:var(--s-6)">
+        <a href="#">Products</a>
+        <span class="sep">/</span>
+        <a href="#">Indoor LED</a>
+        <span class="sep">/</span>
+        <a href="#">IR-Series</a>
+        <span class="sep">/</span>
+        <span aria-current="page">P1.5 Showroom</span>
+      </nav>
+      <nav class="pagination">
+        <button class="page-btn" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+          Prev
+        </button>
+        <button class="page-btn">1</button>
+        <button class="page-btn is-active">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">4</button>
+        <span class="page-ellipsis">…</span>
+        <button class="page-btn">12</button>
+        <button class="page-btn">
+          Next
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Alerts</h3>
+        <span class="token-name">.alert-info, .alert-success, .alert-warn, .alert-error</span>
+      </div>
+      <p class="subsection-desc">
+        Alert 배경은 pastel pill bg를 사용 — full-saturation accent는 절대 배경으로 쓰지 않습니다. 텍스트는 같은 ink 패밀리 페어링.
+      </p>
+      <div class="alert-stack">
+        <div class="alert alert-info">
+          <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+          <div class="alert-body">
+            <p class="alert-title">새 카탈로그가 준비되었습니다</p>
+            <p class="alert-text">2026 H1 카탈로그가 업데이트되었습니다 — 신규 P0.9 라인업과 투명 LED 시리즈가 포함됩니다.</p>
+          </div>
+        </div>
+        <div class="alert alert-success">
+          <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+          <div class="alert-body">
+            <p class="alert-title">견적 요청이 접수되었습니다</p>
+            <p class="alert-text">담당 PM이 영업일 기준 1일 이내에 회신드립니다. 접수번호 #IQ-2025-1042</p>
+          </div>
+        </div>
+        <div class="alert alert-warn">
+          <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>
+          <div class="alert-body">
+            <p class="alert-title">리드타임 안내</p>
+            <p class="alert-text">선택하신 P1.2 캐비닛은 현재 제작 8주 — 일정에 여유를 두고 발주 부탁드립니다.</p>
+          </div>
+        </div>
+        <div class="alert alert-error">
+          <svg class="alert-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+          <div class="alert-body">
+            <p class="alert-title">파일 업로드 실패</p>
+            <p class="alert-text">10MB를 초과한 파일이 포함되어 있습니다. 파일을 분할하거나 압축한 뒤 다시 시도해 주세요.</p>
+          </div>
+        </div>
+
+        <div class="inline-banner inline-banner-emerald">
+          <span class="ib-text"><b>새 베타 기능</b> · 가상 시뮬레이션 뷰어로 설치 공간에 화면을 미리 배치해 볼 수 있습니다.</span>
+          <button class="btn btn-secondary">베타 신청</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Empty state & skeleton</h3>
+        <span class="token-name">.empty-state, .skeleton</span>
+      </div>
+      <p class="subsection-desc">
+        Empty state는 hairline dashed border + 가운데 정렬, 16px radius. Skeleton은 회색 grad shimmer — color 톤이 튀지 않도록 disabled-bg 기반.
+      </p>
+      <div class="card-grid-2">
+        <div class="empty-state">
+          <span class="empty-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 16 16 11l-7 8"/></svg>
+          </span>
+          <h4>아직 등록된 프로젝트가 없습니다</h4>
+          <p>완료한 설치 건을 등록하면 포트폴리오 페이지에 자동으로 노출됩니다.</p>
+          <button class="btn btn-primary">프로젝트 추가</button>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton" style="aspect-ratio:16/9; border-radius: var(--r-md);"></div>
+          <div class="skeleton" style="height:14px; width:40%"></div>
+          <div class="skeleton" style="height:20px; width:80%"></div>
+          <div class="skeleton" style="height:14px; width:100%"></div>
+          <div class="skeleton" style="height:14px; width:90%"></div>
+          <div style="display:flex; gap:8px; margin-top: var(--s-2)">
+            <div class="skeleton" style="height:24px; width:64px; border-radius: var(--r-pill);"></div>
+            <div class="skeleton" style="height:24px; width:80px; border-radius: var(--r-pill);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Top nav variants</h3>
+        <span class="token-name">.topnav</span>
+      </div>
+      <p class="subsection-desc">
+        64px 고정 높이, canvas 배경, scroll 시 1px 하단 라인. CTA가 있는 형(B2B 견적 페이지 등) / 없는 형(brand 페이지) 두 가지.
+      </p>
+      <div class="kit-stack">
+        <div class="nav-specimen">
+          <div class="topnav">
+            <span class="nav-brand">Impactrum</span>
+            <ul class="nav-links">
+              <li><a href="#" class="is-current">Products</a></li>
+              <li><a href="#">Solutions</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+              <button class="btn btn-text">EN</button>
+              <button class="btn btn-primary">견적 요청</button>
+            </div>
+          </div>
+          <div class="nav-specimen-body">canvas 위 default nav · with CTA</div>
+        </div>
+        <div class="nav-specimen">
+          <div class="topnav">
+            <span class="nav-brand">Impactrum</span>
+            <ul class="nav-links">
+              <li><a href="#">Stories</a></li>
+              <li><a href="#" class="is-current">Showroom</a></li>
+              <li><a href="#">Heritage</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+            <div class="nav-cta">
+              <button class="btn btn-text">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="nav-specimen-body">brand 페이지 변형 · search-only · no CTA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Product cards</h3>
+        <span class="token-name">.product-card</span>
+      </div>
+      <p class="subsection-desc">
+        Thumb은 4:3, 카드 자체는 16px radius. 제품 타입은 locked accent로 pill 표시. Spec은 footer 위 작은 meta로.
+      </p>
+      <div class="card-grid-3">
+        <article class="product-card">
+          <div class="product-thumb thumb-orange">
+            <span class="thumb-tag"><span class="pill pill-orange">Indoor</span></span>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-head">
+              <h4 class="product-card-title">IR-150 Showroom</h4>
+            </div>
+            <p class="product-card-desc">실내 미디어월 표준 · 무모아레 4K 최적화</p>
+            <div class="product-card-specs">
+              <span>P1.5</span>
+              <span>•</span>
+              <span>1,200 nit</span>
+              <span>•</span>
+              <span>3,840 Hz</span>
+            </div>
+            <div class="product-card-foot">
+              <span>리드타임 4주</span>
+              <a href="#">자세히 →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-thumb thumb-pink">
+            <span class="thumb-tag"><span class="pill pill-pink">Outdoor</span></span>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-head">
+              <h4 class="product-card-title">OR-390 Plaza</h4>
+            </div>
+            <p class="product-card-desc">광장·옥외광고 · IP65 등급 방진방수</p>
+            <div class="product-card-specs">
+              <span>P3.9</span>
+              <span>•</span>
+              <span>6,500 nit</span>
+              <span>•</span>
+              <span>IP65/54</span>
+            </div>
+            <div class="product-card-foot">
+              <span>리드타임 6주</span>
+              <a href="#">자세히 →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-thumb thumb-violet">
+            <span class="thumb-tag"><span class="pill pill-violet">Transparent</span></span>
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-head">
+              <h4 class="product-card-title">TR-Glass 78</h4>
+            </div>
+            <p class="product-card-desc">유리창 부착형 · 78% 투과율 · 매장 윈도우</p>
+            <div class="product-card-specs">
+              <span>P7.8</span>
+              <span>•</span>
+              <span>4,500 nit</span>
+              <span>•</span>
+              <span>투과 78%</span>
+            </div>
+            <div class="product-card-foot">
+              <span>리드타임 8주</span>
+              <a href="#">자세히 →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Customer story cards</h3>
+        <span class="token-name">.story-card</span>
+      </div>
+      <p class="subsection-desc">16:9 thumb + 라벨 chip overlay. 본문은 5줄 이내, "왜 이 화면이었나"를 요약.</p>
+      <div class="card-grid-2">
+        <article class="story-card">
+          <div class="story-thumb" style="background:linear-gradient(135deg,#1a1a1a 0%,#3a3a3a 100%)">
+            <span class="story-thumb-tag">Coex · 2025</span>
+          </div>
+          <div class="story-body">
+            <p class="story-meta">서울 · 코엑스 미디어월 · P1.5 · 72㎡</p>
+            <h4 class="story-title">사람의 시야 안에 카메라까지 들어오는 미디어월</h4>
+            <p class="story-excerpt">방송 카메라 4m 노출에서도 무모아레가 되는 픽셀 피치 + refresh 조합을 찾기까지 3개월. 결과는 무대와 카메라 사이의 압축을 풀어줍니다.</p>
+            <a href="#" class="story-readmore">사례 자세히 보기 →</a>
+          </div>
+        </article>
+        <article class="story-card">
+          <div class="story-thumb" style="background:linear-gradient(135deg,#2a1a35 0%,#5b21b6 100%)">
+            <span class="story-thumb-tag">National Museum · 2025</span>
+          </div>
+          <div class="story-body">
+            <p class="story-meta">서울 · 국립중앙박물관 · TR-Glass · 12㎡</p>
+            <h4 class="story-title">유물을 가리지 않는 화면이 가능한가</h4>
+            <p class="story-excerpt">투과율 78%의 transparent LED로 유리 진열장 위에 캡션 영상을 띄웠습니다. 조도가 떨어지는 전시실에서도 글자가 또렷합니다.</p>
+            <a href="#" class="story-readmore">사례 자세히 보기 →</a>
+          </div>
+        </article>
       </div>
     </div>
 
@@ -1403,10 +2827,541 @@ body {
   </div>
 </section>
 
+<section id="kits" class="section bg-cool">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-blue">Layout Kits · 07</p>
+      <h2 class="t-h1 t-ko">Layout Kits</h2>
+      <p>
+        디자이너가 페이지를 짤 때 가장 자주 마주치는 레이아웃 단위들. 모두 token만 써서 만들어졌습니다 — 그대로 가져다 쓰거나 페이지 컨텍스트에 맞게 page bg만 바꿔도 톤이 조정됩니다.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Hero · split visual</h3>
+        <span class="token-name">.kit-hero</span>
+      </div>
+      <p class="subsection-desc">기본형. 좌측은 카피·CTA, 우측은 단일 비주얼. Display 72px 대신 56px h1로 절제 — landing이라도 hero 한 번이라는 원칙은 유지.</p>
+      <div class="kit-frame frame-canvas">
+        <div class="kit-header"><span class="kit-label">Hero · split</span><span class="kit-meta">on .bg-canvas</span></div>
+        <div class="kit-body">
+          <div class="kit-hero">
+            <div>
+              <p class="t-eyebrow kit-hero-eyebrow">Indoor LED · IR-Series</p>
+              <h2 class="kit-hero-h t-ko">실내 공간을 깨우는<br>화면의 기본</h2>
+              <p class="kit-hero-sub">P1.5 표준 픽셀 피치, 1,200nit 밝기, 3,840Hz refresh — 방송 카메라 노출 거리 4m 이상에서 무모아레.</p>
+              <div class="kit-hero-ctas">
+                <button class="btn btn-primary">견적 요청</button>
+                <button class="btn btn-secondary">Spec sheet</button>
+              </div>
+              <div class="kit-hero-meta">
+                <span>출하 4주</span>
+                <span>설치 보증 5년</span>
+                <span>Made in Korea</span>
+              </div>
+            </div>
+            <div class="kit-hero-visual"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Hero · centered</h3>
+        <span class="token-name">.kit-hero-centered</span>
+      </div>
+      <p class="subsection-desc">Brand·about 페이지용. 비주얼 없이 텍스트만으로 무게 — 양쪽으로 호흡 공간을 충분히.</p>
+      <div class="kit-frame frame-warm">
+        <div class="kit-header"><span class="kit-label">Hero · centered</span><span class="kit-meta">on .bg-warm</span></div>
+        <div class="kit-body">
+          <div class="kit-hero kit-hero-centered">
+            <p class="t-eyebrow kit-hero-eyebrow">About</p>
+            <h2 class="kit-hero-h t-ko">한국에서 설계·제작·시공하는<br>프리미엄 LED 디스플레이</h2>
+            <p class="kit-hero-sub">2012년부터 1,200건 이상의 현장에서 검증된 패널과 시공력. 화면을 끄는 단계가 끝나는 그 순간, 공간이 시작됩니다.</p>
+            <div class="kit-hero-ctas">
+              <button class="btn btn-primary">회사 소개</button>
+              <button class="btn btn-secondary">자료실</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Hero · split bg</h3>
+        <span class="token-name">.kit-hero-split</span>
+      </div>
+      <p class="subsection-desc">반쪽은 카피, 반쪽은 accent gradient bg. 캠페인·신제품 발표 페이지용. Accent를 영역으로 쓰는 유일한 예외 — 전면 색면이 아닌, hero 비주얼 자리에서만.</p>
+      <div class="kit-frame frame-canvas">
+        <div class="kit-header"><span class="kit-label">Hero · split bg</span><span class="kit-meta">accent visual zone</span></div>
+        <div class="kit-body">
+          <div class="kit-hero kit-hero-split">
+            <div class="split-body">
+              <p class="t-eyebrow eyebrow-emerald">Custom LED · 2026 신제품</p>
+              <h2 class="kit-hero-h t-ko" style="font-size:44px">곡면이 필요한가요?<br>맞춰 만듭니다.</h2>
+              <p class="kit-hero-sub">곡률 R600부터 평면 모듈 조합까지 — 디자인 의도에 맞춰 모듈을 설계합니다.</p>
+              <div class="kit-hero-ctas">
+                <button class="btn btn-primary">상담 요청</button>
+                <button class="btn btn-text">사례 보기 →</button>
+              </div>
+            </div>
+            <div class="split-visual"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Feature grid · 3-up</h3>
+        <span class="token-name">.kit-feature-grid</span>
+      </div>
+      <p class="subsection-desc">아이콘 + h4 + 한 줄 본문. 아이콘 박스 background는 locked accent의 pill bg를 사용 — 한 섹션 안에서 세 아이콘 박스 컬러가 균등하게 보이도록 spread.</p>
+      <div class="kit-frame frame-canvas">
+        <div class="kit-header"><span class="kit-label">Feature grid · 3-up</span><span class="kit-meta">accent-bg icons</span></div>
+        <div class="kit-body">
+          <div class="kit-feature-grid">
+            <div class="kit-feature feat-orange">
+              <span class="kit-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              </span>
+              <h4>방송 노출 무왜곡</h4>
+              <p>P0.9부터 P1.8까지, 카메라 4m 이상에서 모아레 없는 픽셀 피치.</p>
+            </div>
+            <div class="kit-feature feat-violet">
+              <span class="kit-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/></svg>
+              </span>
+              <h4>모듈식 시공</h4>
+              <p>320×160mm 캐비닛이 표준 — 운반·설치·교체가 한 사람 단위로 떨어집니다.</p>
+            </div>
+            <div class="kit-feature feat-emerald">
+              <span class="kit-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              </span>
+              <h4>현장 운영 5년 보증</h4>
+              <p>패널 단위 수리 가능, 부품 호환 5년 보장. 설치 후가 더 중요합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Feature grid · 4-up icon row</h3>
+        <span class="token-name">.kit-feature-grid-4</span>
+      </div>
+      <p class="subsection-desc">짧은 가치 키워드 + 한 줄. 큰 헤더를 굳이 두지 않고 본문 본체로 자연스럽게 흐르게.</p>
+      <div class="kit-frame frame-warm">
+        <div class="kit-header"><span class="kit-label">Feature grid · 4-up</span><span class="kit-meta">on .bg-warm</span></div>
+        <div class="kit-body">
+          <div class="kit-feature-grid-4">
+            <div class="kit-feature">
+              <span class="kit-feature-icon" style="background:transparent; border:1px solid var(--line)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+              </span>
+              <h4>Made in Korea</h4>
+              <p>안성·평택 자체 공장 양산.</p>
+            </div>
+            <div class="kit-feature">
+              <span class="kit-feature-icon" style="background:transparent; border:1px solid var(--line)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </span>
+              <h4>리드타임 4주</h4>
+              <p>표준 라인업 기준.</p>
+            </div>
+            <div class="kit-feature">
+              <span class="kit-feature-icon" style="background:transparent; border:1px solid var(--line)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M21 7 12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
+              </span>
+              <h4>1,200+ 현장</h4>
+              <p>2012년부터 검증.</p>
+            </div>
+            <div class="kit-feature">
+              <span class="kit-feature-icon" style="background:transparent; border:1px solid var(--line)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+              <h4>5년 부품 보장</h4>
+              <p>패널·전원·컨트롤러.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Stats kit</h3>
+        <span class="token-name">.kit-stats</span>
+      </div>
+      <p class="subsection-desc">큰 숫자 + 짧은 라벨. 숫자에 negative letter-spacing -0.04em으로 시각적 무게. tabular-nums 자동 적용.</p>
+      <div class="kit-frame frame-canvas">
+        <div class="kit-header"><span class="kit-label">Stats · 4-up</span><span class="kit-meta">tabular-nums + -0.04em</span></div>
+        <div class="kit-body">
+          <div class="kit-stats">
+            <div class="kit-stat">
+              <p class="kit-stat-eyebrow">설치 누적</p>
+              <p class="kit-stat-num">1,247</p>
+              <p class="kit-stat-label">2012–2025 현장 사례</p>
+            </div>
+            <div class="kit-stat">
+              <p class="kit-stat-eyebrow">국내 점유</p>
+              <p class="kit-stat-num">38<span style="font-size:0.5em; color:var(--ink-mute)">%</span></p>
+              <p class="kit-stat-label">프리미엄 indoor 세그먼트</p>
+            </div>
+            <div class="kit-stat">
+              <p class="kit-stat-eyebrow">평균 리드타임</p>
+              <p class="kit-stat-num">4<span style="font-size:0.5em; color:var(--ink-mute)">주</span></p>
+              <p class="kit-stat-label">표준 라인업 기준</p>
+            </div>
+            <div class="kit-stat">
+              <p class="kit-stat-eyebrow">현장 보증</p>
+              <p class="kit-stat-num">5<span style="font-size:0.5em; color:var(--ink-mute)">년</span></p>
+              <p class="kit-stat-label">패널·전원·컨트롤러</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Spec comparison</h3>
+        <span class="token-name">.kit-compare</span>
+      </div>
+      <p class="subsection-desc">3-up 비교 카드. 가운데를 featured로 — border만 ink-1px로 강조. Ribbon-badge는 ink (5색 accent 사용 ✗).</p>
+      <div class="kit-frame frame-cool">
+        <div class="kit-header"><span class="kit-label">Compare · 3-up</span><span class="kit-meta">featured = ink border</span></div>
+        <div class="kit-body">
+          <div class="kit-compare">
+            <div class="compare-col">
+              <p class="compare-eye">Lite</p>
+              <h4 class="compare-h t-ko">IR-180 Office</h4>
+              <p class="compare-pitch">미팅룸·로비용 standard line. P1.8 표준 픽셀 피치.</p>
+              <ul class="compare-list">
+                <li>P1.8 픽셀 피치</li>
+                <li>800 nit 밝기</li>
+                <li>1,920 Hz refresh</li>
+                <li>리드타임 4주</li>
+              </ul>
+              <button class="btn btn-secondary">자료 받기</button>
+            </div>
+            <div class="compare-col is-featured">
+              <span class="compare-ribbon">Most picked</span>
+              <p class="compare-eye">Standard</p>
+              <h4 class="compare-h t-ko">IR-150 Showroom</h4>
+              <p class="compare-pitch">방송·미디어월 검증 라인. P1.5에서 P1.2까지 동일 프레임.</p>
+              <ul class="compare-list">
+                <li>P1.5 픽셀 피치 (P1.2 호환)</li>
+                <li>1,200 nit 밝기</li>
+                <li>3,840 Hz refresh</li>
+                <li>방송 무모아레 4m+</li>
+                <li>리드타임 4주</li>
+              </ul>
+              <button class="btn btn-primary">견적 요청</button>
+            </div>
+            <div class="compare-col">
+              <p class="compare-eye">Pro</p>
+              <h4 class="compare-h t-ko">IR-090 Broadcast</h4>
+              <p class="compare-pitch">버추얼 프로덕션·고세밀 카메라용. P0.9 풀 매칭.</p>
+              <ul class="compare-list">
+                <li>P0.9 픽셀 피치</li>
+                <li>1,500 nit 밝기</li>
+                <li>7,680 Hz refresh</li>
+                <li>색공간 DCI-P3 95%</li>
+                <li>리드타임 8주</li>
+              </ul>
+              <button class="btn btn-secondary">상담 신청</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Testimonial</h3>
+        <span class="token-name">.kit-quote</span>
+      </div>
+      <p class="subsection-desc">Quote mark은 violet accent 단 한 점. 인용 본문은 24px / 500 — 굵게 만들지 않고 사이즈로 무게.</p>
+      <div class="kit-frame frame-warm">
+        <div class="kit-header"><span class="kit-label">Quote</span><span class="kit-meta">violet accent point</span></div>
+        <div class="kit-body">
+          <div class="kit-quote">
+            <div>
+              <p class="quote-mark">"</p>
+              <p class="quote-text t-ko">설치 다음날 카메라 리허설에서 한 명도 모아레를 지적하지 않았습니다. 그게 가장 큰 칭찬이었어요.</p>
+              <p class="quote-attrib"><b>김주호</b> · 미디어월 기술감독 · 코엑스 방송영상부</p>
+            </div>
+            <div class="quote-visual"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">CTA banner</h3>
+        <span class="token-name">.kit-cta</span>
+      </div>
+      <p class="subsection-desc">페이지 하단 conversion zone. h2(32–36px) + 1줄 부카피 + 2 CTA. Footer 직전에 한 번만.</p>
+      <div class="kit-frame frame-cool">
+        <div class="kit-header"><span class="kit-label">CTA banner</span><span class="kit-meta">end-of-page · single use</span></div>
+        <div class="kit-body">
+          <div class="kit-cta">
+            <div>
+              <p class="t-eyebrow cta-eye">Project Inquiry</p>
+              <h3 class="cta-h t-ko">설치 공간을 알려주세요.<br>적정 사양은 저희가 계산해 드립니다.</h3>
+              <p class="cta-sub">평면도와 운영 시나리오를 보내주시면 영업일 1일 이내에 PM이 회신드립니다.</p>
+            </div>
+            <div class="cta-action">
+              <button class="btn btn-primary">견적 요청</button>
+              <button class="btn btn-secondary">PDF 자료</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">FAQ</h3>
+        <span class="token-name">.kit-faq</span>
+      </div>
+      <p class="subsection-desc">질문 16px / 600, 답변 14px / 500. Divider hairline만, 박스는 만들지 않습니다.</p>
+      <div class="kit-frame frame-canvas">
+        <div class="kit-header"><span class="kit-label">FAQ accordion</span><span class="kit-meta">hairline-only</span></div>
+        <div class="kit-body">
+          <div class="kit-faq">
+            <div class="faq-item is-open">
+              <p class="faq-q">P1.5와 P1.2의 시각적 차이는 어디서 체감되나요? <span class="faq-toggle">+</span></p>
+              <p class="faq-a">방송 카메라로 화면을 잡을 때 차이가 커집니다. P1.2는 카메라 노출 거리 2.5m부터 무모아레 영역이 시작되고, P1.5는 4m부터 시작됩니다. 일반 시청 거리에서는 두 픽셀 피치 모두 픽셀 인지 한계 바깥입니다.</p>
+            </div>
+            <div class="faq-item">
+              <p class="faq-q">설치 후 패널 교체는 얼마나 빠른가요? <span class="faq-toggle">+</span></p>
+              <p class="faq-a">표준 캐비닛(320×160mm) 단위로 한 사람이 5분 이내에 교체 가능합니다.</p>
+            </div>
+            <div class="faq-item">
+              <p class="faq-q">투명 LED의 실제 투과율은? <span class="faq-toggle">+</span></p>
+              <p class="faq-a">모델에 따라 65–85%. 매장 윈도우에서 가장 자주 쓰이는 TR-Glass 78은 78% — 유리 너머 매장 내부가 그대로 보입니다.</p>
+            </div>
+            <div class="faq-item">
+              <p class="faq-q">옥외 설치의 방진방수 등급은? <span class="faq-toggle">+</span></p>
+              <p class="faq-a">OR 시리즈 전 모델 IP65/54 인증. 전면 IP65, 후면 IP54.</p>
+            </div>
+            <div class="faq-item">
+              <p class="faq-q">화면 컨트롤러는 별도 구매인가요? <span class="faq-toggle">+</span></p>
+              <p class="faq-a">기본 구성에 NovaStar MCTRL-660 컨트롤러가 포함됩니다. 다른 컨트롤러 사용 시 옵션 변경 가능.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Logo wall</h3>
+        <span class="token-name">.kit-logos</span>
+      </div>
+      <p class="subsection-desc">설치 사례 클라이언트 wall. Wordmark는 mute한 ink-mute로 — 클라이언트가 주인공이 되는 게 아니라 "검증"의 신호.</p>
+      <div class="kit-frame frame-warm">
+        <div class="kit-header"><span class="kit-label">Client logo wall</span><span class="kit-meta">muted wordmarks</span></div>
+        <div class="kit-body">
+          <div class="kit-logos">
+            <span class="logo-cell">COEX</span>
+            <span class="logo-cell">국립중앙박물관</span>
+            <span class="logo-cell">현대백화점</span>
+            <span class="logo-cell">SK텔레콤</span>
+            <span class="logo-cell">롯데시그니엘</span>
+            <span class="logo-cell">CJ ENM</span>
+            <span class="logo-cell">서울특별시</span>
+            <span class="logo-cell">DDP</span>
+            <span class="logo-cell">신세계</span>
+            <span class="logo-cell">현대모터스튜디오</span>
+            <span class="logo-cell">한화시스템</span>
+            <span class="logo-cell">KBS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="examples" class="section bg-canvas">
+  <div class="container">
+    <div class="section-header">
+      <p class="t-eyebrow eyebrow-violet">Examples · 08</p>
+      <h2 class="t-h1 t-ko">Page Examples</h2>
+      <p>
+        토큰과 키트를 조합한 실제 페이지 패턴 — section 간 톤 리듬을 어떻게 만드는지, 어디서 accent를 점으로 쓰는지를 한눈에.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Product landing · band rhythm</h3>
+        <span class="token-name">canvas → warm → cool → canvas → warm</span>
+      </div>
+      <p class="subsection-desc">
+        실제 페이지의 section 톤 시퀀스. 인접 same-tone은 허용되지만, 의도적 톤 전환이 페이지에 "장을 넘기는" 호흡을 줍니다.
+        Hero(canvas) → 특징(warm) → 비교(cool) → 사례(canvas) → CTA(warm) → footer(warm).
+      </p>
+      <div class="page-sequence">
+        <div class="seq-band b-canvas">
+          <span class="seq-band-label">01 · canvas</span>
+          <p class="t-eyebrow seq-eye eyebrow-orange">Indoor LED · IR-Series</p>
+          <h3 class="seq-head t-ko">실내 공간을 깨우는 화면의 기본</h3>
+          <p class="seq-sub">P1.5 표준, 1,200nit, 3,840Hz refresh. 카메라 노출 거리 4m 이상에서 무모아레.</p>
+          <div class="kit-row">
+            <button class="btn btn-primary">견적 요청</button>
+            <button class="btn btn-secondary">Spec sheet</button>
+          </div>
+        </div>
+        <div class="seq-band b-warm">
+          <span class="seq-band-label">02 · warm</span>
+          <p class="t-eyebrow seq-eye eyebrow-pink">왜 이 픽셀 피치인가</p>
+          <h3 class="seq-head t-ko">방송과 사람의 시야를 같이 만족시키는 한 점</h3>
+          <p class="seq-sub">P1.5는 일반 시청 거리에서 픽셀이 안 보이고, 카메라 4m 이상에서 모아레가 사라지는 균형점입니다.</p>
+          <div class="seq-band-row">
+            <div class="seq-mini-card"><h5>4m 무모아레</h5><p>카메라 노출 영역 최소화.</p></div>
+            <div class="seq-mini-card"><h5>3,840Hz refresh</h5><p>슬로우 모션에서도 안정.</p></div>
+            <div class="seq-mini-card"><h5>DCI-P3 95%</h5><p>방송 색공간 충족.</p></div>
+          </div>
+        </div>
+        <div class="seq-band b-cool">
+          <span class="seq-band-label">03 · cool</span>
+          <p class="t-eyebrow seq-eye eyebrow-blue">Specifications</p>
+          <h3 class="seq-head t-ko">기술 사양</h3>
+          <p class="seq-sub">표준 라인업 기준. Cool 페이지는 spec·comparison 등 구조적인 내용에 어울립니다.</p>
+          <div class="seq-band-row">
+            <div class="seq-mini-card"><h5>P1.5 mm</h5><p>Pixel pitch</p></div>
+            <div class="seq-mini-card"><h5>1,200 nit</h5><p>Max brightness</p></div>
+            <div class="seq-mini-card"><h5>320×160</h5><p>Module size (mm)</p></div>
+          </div>
+        </div>
+        <div class="seq-band b-canvas">
+          <span class="seq-band-label">04 · canvas</span>
+          <p class="t-eyebrow seq-eye eyebrow-violet">Customer Stories</p>
+          <h3 class="seq-head t-ko">설치 사례</h3>
+          <p class="seq-sub">코엑스 미디어월, 국립중앙박물관, 현대백화점 신촌 — 1,200건 이상의 현장.</p>
+          <div class="seq-band-row">
+            <div class="seq-mini-card"><h5>Coex 미디어월</h5><p>P1.5 · 72㎡ · 2025</p></div>
+            <div class="seq-mini-card"><h5>국립중앙박물관</h5><p>TR-Glass · 12㎡ · 2025</p></div>
+            <div class="seq-mini-card"><h5>현대백화점 신촌</h5><p>P0.9 · 28㎡ · 2024</p></div>
+          </div>
+        </div>
+        <div class="seq-band b-warm">
+          <span class="seq-band-label">05 · warm (CTA)</span>
+          <p class="t-eyebrow seq-eye eyebrow-emerald">Project Inquiry</p>
+          <h3 class="seq-head t-ko">설치 공간을 알려주세요.<br>적정 사양은 저희가 계산해 드립니다.</h3>
+          <div class="kit-row" style="margin-top:var(--s-5)">
+            <button class="btn btn-primary">견적 요청</button>
+            <button class="btn btn-secondary">PDF 받기</button>
+          </div>
+        </div>
+      </div>
+      <p class="t-caption" style="margin-top:var(--s-4); max-width:680px">
+        Tip — 한 페이지에 canvas 2번, warm 2번, cool 1번이 흔한 균형. 옅은 톤끼리는 인접해도 되며, 모든 section에 background를 다르게 강제할 필요 없습니다.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Product detail layout</h3>
+        <span class="token-name">spec + visual + story</span>
+      </div>
+      <p class="subsection-desc">
+        제품 상세 페이지의 핵심 영역. 좌측 spec / 우측 visual 의 2-up이 가장 정보 밀도와 호흡의 균형이 좋습니다.
+      </p>
+      <div class="kit-frame frame-canvas">
+        <div class="kit-header"><span class="kit-label">Product detail · header</span><span class="kit-meta">spec + visual</span></div>
+        <div class="kit-body" style="padding: var(--s-10) var(--s-8); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-10); align-items: start;">
+          <div>
+            <nav class="breadcrumb" style="margin-bottom: var(--s-4)">
+              <a href="#">Products</a>
+              <span class="sep">/</span>
+              <a href="#">Indoor LED</a>
+              <span class="sep">/</span>
+              <span aria-current="page">IR-150 Showroom</span>
+            </nav>
+            <div class="kit-row" style="margin-bottom: var(--s-4); gap: var(--s-2)">
+              <span class="pill pill-orange">Indoor</span>
+              <span class="pill pill-blue">2025 신제품</span>
+              <span class="pill pill-emerald">재고 보유</span>
+            </div>
+            <h3 class="t-h1 t-ko" style="font-size:42px; margin-bottom: var(--s-4)">IR-150 Showroom</h3>
+            <p class="t-body" style="color:var(--ink-body); margin-bottom: var(--s-6); max-width: 460px">실내 미디어월 표준 픽셀 피치. 방송 카메라 4m 이상에서 무모아레가 시작되는 균형점.</p>
+            <div class="spec-table" style="margin-bottom: var(--s-6); max-width: 480px;">
+              <div class="spec-row"><span class="t-spec-label">Pixel pitch</span><span class="t-spec-value">P1.5 mm</span></div>
+              <div class="spec-row"><span class="t-spec-label">Brightness</span><span class="t-spec-value">1,200 nit (max)</span></div>
+              <div class="spec-row"><span class="t-spec-label">Refresh rate</span><span class="t-spec-value">3,840 Hz</span></div>
+              <div class="spec-row"><span class="t-spec-label">Module size</span><span class="t-spec-value">320 × 160 mm</span></div>
+              <div class="spec-row"><span class="t-spec-label">Color space</span><span class="t-spec-value">DCI-P3 95%</span></div>
+              <div class="spec-row"><span class="t-spec-label">Lead time</span><span class="t-spec-value">4 weeks</span></div>
+            </div>
+            <div class="kit-row">
+              <button class="btn btn-primary">견적 요청</button>
+              <button class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5M5 20h14"/></svg>
+                Spec PDF
+              </button>
+            </div>
+          </div>
+          <div>
+            <div class="kit-hero-visual" style="aspect-ratio: 1; border-radius: var(--r-xl); margin-bottom: var(--s-4)"></div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-3)">
+              <div style="aspect-ratio: 1; border-radius: var(--r-md); background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border: 1px solid var(--ink); cursor: pointer"></div>
+              <div style="aspect-ratio: 1; border-radius: var(--r-md); background: linear-gradient(135deg, #444 0%, #2a2a2a 100%); cursor: pointer"></div>
+              <div style="aspect-ratio: 1; border-radius: var(--r-md); background: linear-gradient(135deg, #555 0%, #333 100%); cursor: pointer"></div>
+              <div style="aspect-ratio: 1; border-radius: var(--r-md); background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); cursor: pointer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Inline link emphasis</h3>
+        <span class="token-name">ink + underline · prose</span>
+      </div>
+      <p class="subsection-desc">
+        본문 inline link는 ink + 1px underline + 3px offset. 5색 accent로 색을 칠하지 않습니다 — accent는 eyebrow와 icon stroke 등 "점"의 영역.
+      </p>
+      <div style="border: 1px solid var(--line); border-radius: var(--r-xl); padding: var(--s-10) var(--s-8); background: var(--canvas);">
+        <p class="t-eyebrow eyebrow-blue" style="margin-bottom: var(--s-4)">Editorial</p>
+        <h4 class="t-h2 t-ko" style="margin-bottom: var(--s-5); max-width: 720px;">화면이 끝나는 자리에서<br>공간이 시작된다</h4>
+        <div class="prose-sample">
+          <p style="margin: 0 0 var(--s-5)">
+            <a href="#">코엑스 미디어월</a>은 2025년 6월에 P1.5 기반의 72㎡ 화면으로 리뉴얼되었습니다.
+            방송 카메라와의 거리에서 <b>무모아레 임계점</b>이 형성되도록 픽셀 피치와 <a href="#">refresh rate</a>를 조합한 것이
+            이 프로젝트의 핵심 결정이었습니다.
+          </p>
+          <p style="margin: 0 0 var(--s-5)">
+            P1.2를 선택하지 않은 이유는 비용이 아니라 시청 거리였습니다. 4m 이상에서 모아레가 사라지는 P1.5는,
+            카메라 워크를 인색하게 만들지 않으면서도 일반 관객의 픽셀 인지 한계 바깥에 있습니다.
+            <a href="#">기술 백서 ↗</a>에서 측정 방식을 확인할 수 있습니다.
+          </p>
+          <p style="margin: 0">
+            우리는 화면이 가장 잘 꺼지는 순간을 함께 설계합니다 —
+            <a href="#">상담 요청</a>하시면 PM이 회신드립니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section id="patterns" class="section bg-warm">
   <div class="container">
     <div class="section-header">
-      <p class="t-eyebrow eyebrow-orange">Patterns · 06</p>
+      <p class="t-eyebrow eyebrow-orange">Patterns · 09</p>
       <h2 class="t-h1 t-ko">Usage Patterns</h2>
       <p>
         자주 틀리는 지점들을 do/don't로. 룰 자체는 짧지만, 잘못된 적용 사례를 보여주는 게 시스템 정착에 가장 도움이 됩니다.
@@ -1488,6 +3443,226 @@ body {
 
     <div class="subsection">
       <div class="subsection-title">
+        <h3 class="t-h2">Dark surface as backdrop</h3>
+        <span class="token-name">ink ≠ background</span>
+      </div>
+      <p class="subsection-desc">
+        Ink는 typography와 primary CTA, ribbon-badge, wordmark에만. 섹션·카드 backdrop으로 쓰면 페이지 전체의 호흡이 깨집니다 — Impactrum은 "조명이 꺼진 미디어월" 같은 어두운 페이지를 만들지 않습니다.
+      </p>
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--surface-warm); display: flex; flex-direction: column; gap: var(--s-3);">
+            <p class="t-eyebrow eyebrow-orange">Indoor LED</p>
+            <h4 class="t-h2 t-ko" style="margin:0">실내 공간의 화면</h4>
+            <p class="t-small" style="color:var(--ink-body); max-width: 360px">P1.5 표준, 1,200nit, 3,840Hz refresh.</p>
+            <button class="btn btn-primary" style="align-self:flex-start; margin-top:var(--s-3)">견적 요청</button>
+          </div>
+          <p class="demo-caption">옅은 warm 페이지 위, ink는 typography와 CTA로만.</p>
+        </div>
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: #111; display: flex; flex-direction: column; gap: var(--s-3);">
+            <p class="t-eyebrow" style="color:#fb923c">Indoor LED</p>
+            <h4 class="t-h2 t-ko" style="margin:0; color:#fff">실내 공간의 화면</h4>
+            <p class="t-small" style="color:#cfcfcf; max-width: 360px">P1.5 표준, 1,200nit, 3,840Hz refresh.</p>
+            <button class="btn btn-secondary" style="align-self:flex-start; margin-top:var(--s-3); background:#fff">견적 요청</button>
+          </div>
+          <p class="demo-caption">Dark backdrop은 시스템 외 — 가전·게이밍 브랜드의 톤이지 LED 매뉴팩처러의 톤이 아닙니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Accent on action layer</h3>
+        <span class="token-name">buttons & CTAs are ink-only</span>
+      </div>
+      <p class="subsection-desc">
+        Button·CTA·ribbon은 monochrome 전용. 5색 accent를 버튼에 쓰면 페이지의 시각적 무게중심이 분산되고, locked mapping도 흐려집니다.
+      </p>
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
+            <p class="t-eyebrow eyebrow-emerald" style="margin-bottom: var(--s-3)">Custom LED</p>
+            <h4 class="t-h3 t-ko" style="margin: 0 0 var(--s-5)">곡면 모듈 견적 상담</h4>
+            <div class="kit-row">
+              <button class="btn btn-primary">상담 신청</button>
+              <button class="btn btn-secondary">사례 보기</button>
+            </div>
+          </div>
+          <p class="demo-caption">Eyebrow에만 emerald 점 — action은 ink로 단정하게.</p>
+        </div>
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
+            <p class="t-eyebrow eyebrow-emerald" style="margin-bottom: var(--s-3)">Custom LED</p>
+            <h4 class="t-h3 t-ko" style="margin: 0 0 var(--s-5)">곡면 모듈 견적 상담</h4>
+            <div class="kit-row">
+              <button class="btn" style="background:#34d399; color:#fff; height:40px; padding: 0 20px; border-radius: var(--r-md); font: 600 14px/1 var(--font); border:none;">상담 신청</button>
+              <button class="btn" style="background:#fde8f1; color:#9d174d; height:40px; padding: 0 20px; border-radius: var(--r-md); font: 600 14px/1 var(--font); border:none;">사례 보기</button>
+            </div>
+          </div>
+          <p class="demo-caption">Accent로 칠해진 버튼은 강조의 위계를 잃습니다 — 모든 게 강조면 어떤 것도 강조가 아닙니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Hierarchy via size, not weight</h3>
+        <span class="token-name">cap at 700</span>
+      </div>
+      <p class="subsection-desc">
+        시각적 무게는 size + letter-spacing이 만듭니다. 작은 사이즈에서 weight를 800으로 올려도 한국어는 anemic하거나 답답해집니다.
+      </p>
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
+            <p style="font-size: 48px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; margin: 0 0 var(--s-3);">실내 공간의 화면</p>
+            <p class="t-mono">.t-h1 · 48px / 700 / -0.035em</p>
+          </div>
+          <p class="demo-caption">사이즈가 만든 무게. -0.035em이 글자를 단단하게 묶어줍니다.</p>
+        </div>
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
+            <p style="font-size: 28px; font-weight: 800; letter-spacing: 0; line-height: 1.18; margin: 0 0 var(--s-3);">실내 공간의 화면</p>
+            <p class="t-mono">28px / 800 / 0 ✗</p>
+          </div>
+          <p class="demo-caption">사이즈를 줄이고 weight를 800으로 올리면 한국어 자소가 막혀 보입니다 — 시각적 권위가 사라져요.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Korean letter-spacing</h3>
+        <span class="token-name">no negative on Korean text</span>
+      </div>
+      <p class="subsection-desc">
+        Negative letter-spacing은 Latin 우세 헤드라인(≥28px)에만 사용합니다. 한국어 자소는 이미 wide한 자형이라 -0.04em이면 글자가 겹쳐 보입니다. <code>.t-ko</code>가 자동으로 letter-spacing을 0으로 해제합니다.
+      </p>
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
+            <p style="font-size: 48px; font-weight: 700; letter-spacing: 0; line-height: 1.08; margin: 0 0 var(--s-2);">실내 공간의 화면</p>
+            <p style="font-size: 48px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; margin: 0;">Premium LED</p>
+            <p class="t-mono" style="margin-top: var(--s-3)">.t-h1.t-ko (KR: 0) · .t-h1 (EN: -0.035em)</p>
+          </div>
+          <p class="demo-caption">한국어 줄에는 letter-spacing 0, Latin 줄에는 -0.035em — 같은 .t-h1 안에서 분기.</p>
+        </div>
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas);">
+            <p style="font-size: 48px; font-weight: 700; letter-spacing: -0.04em; line-height: 1.08; margin: 0 0 var(--s-2);">실내 공간의 화면</p>
+            <p class="t-mono" style="margin-top: var(--s-3)">48px / -0.04em on Korean ✗</p>
+          </div>
+          <p class="demo-caption">자형이 겹치고 받침이 짓눌립니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Font smoothing</h3>
+        <span class="token-name">subpixel-antialiased only</span>
+      </div>
+      <p class="subsection-desc">
+        <code>-webkit-font-smoothing: subpixel-antialiased</code>이 default. <code>antialiased</code>는 한국어 자소의 stroke를 얇게 만들어 본문이 anemic하게 보입니다. body에 한 번 선언하면 전체 페이지 일괄 적용.
+      </p>
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas); -webkit-font-smoothing: subpixel-antialiased;">
+            <p style="font-size: 20px; font-weight: 500; margin: 0 0 var(--s-3);">한글의 두께가 그대로 살아납니다</p>
+            <p class="t-mono">-webkit-font-smoothing: subpixel-antialiased;</p>
+          </div>
+          <p class="demo-caption">자소가 본래 두께를 유지 — 본문이 단단하게 읽힙니다.</p>
+        </div>
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-8); background: var(--canvas); -webkit-font-smoothing: antialiased;">
+            <p style="font-size: 20px; font-weight: 500; margin: 0 0 var(--s-3); -webkit-font-smoothing: antialiased;">한글의 두께가 그대로 살아납니다</p>
+            <p class="t-mono">-webkit-font-smoothing: antialiased; ✗</p>
+          </div>
+          <p class="demo-caption">자소 stroke가 얇아져서 weight 500이 마치 400처럼 — 한국어는 특히 민감합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Section rhythm</h3>
+        <span class="token-name">canvas · warm · cool 흐름</span>
+      </div>
+      <p class="subsection-desc">
+        세 page bg는 충분히 옅어서 인접 same-tone도 괜찮습니다. 다만 의도적인 톤 전환이 페이지에 "장"을 만들어주므로 — 보통 한 페이지에 canvas 2회, warm 2회, cool 1회 정도의 분배가 자연스럽습니다.
+      </p>
+      <div class="demo-row">
+        <div>
+          <p class="demo-tag tag-do"><span class="tag-dot"></span> Do</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); overflow:hidden">
+            <div style="background: var(--canvas); padding: var(--s-5); border-bottom: 1px solid var(--line-soft);"><span class="t-mono">01 · canvas — hero</span></div>
+            <div style="background: var(--surface-warm); padding: var(--s-5); border-bottom: 1px solid var(--line-soft);"><span class="t-mono">02 · warm — features</span></div>
+            <div style="background: var(--surface-cool); padding: var(--s-5); border-bottom: 1px solid var(--line-soft);"><span class="t-mono">03 · cool — specs</span></div>
+            <div style="background: var(--canvas); padding: var(--s-5); border-bottom: 1px solid var(--line-soft);"><span class="t-mono">04 · canvas — stories</span></div>
+            <div style="background: var(--surface-warm); padding: var(--s-5);"><span class="t-mono">05 · warm — CTA / footer</span></div>
+          </div>
+          <p class="demo-caption">의도적 전환이 페이지 호흡을 만듭니다.</p>
+        </div>
+        <div>
+          <p class="demo-tag tag-dont"><span class="tag-dot"></span> Don't</p>
+          <div style="border:1px solid var(--line); border-radius: var(--r-lg); overflow:hidden">
+            <div style="background: var(--canvas); padding: var(--s-5); border-bottom: 1px solid var(--line-soft);"><span class="t-mono">01 · canvas</span></div>
+            <div style="background: #fde8f1; padding: var(--s-5); border-bottom: 1px solid var(--line-soft);"><span class="t-mono">02 · pink block ✗</span></div>
+            <div style="background: #e2f7ee; padding: var(--s-5); border-bottom: 1px solid var(--line-soft);"><span class="t-mono">03 · emerald block ✗</span></div>
+            <div style="background: #efe7fe; padding: var(--s-5);"><span class="t-mono">04 · violet block ✗</span></div>
+          </div>
+          <p class="demo-caption">Accent를 page bg로 칠하면 brochure 톤으로 미끄러집니다 — pill chip 안에서만 살아있어야 할 색입니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
+        <h3 class="t-h2">Accent zoning</h3>
+        <span class="token-name">where accent goes vs. not</span>
+      </div>
+      <p class="subsection-desc">
+        Accent는 점(point)으로만. 페이지 안에서 accent가 살아있는 자리는 정해져 있습니다.
+      </p>
+      <div style="border:1px solid var(--line); border-radius: var(--r-xl); padding: var(--s-8); background: var(--canvas)">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8)">
+          <div>
+            <p class="t-h3 t-ko" style="margin: 0 0 var(--s-4); color: var(--accent-emerald)">Yes · accent zones</p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s-3); font-size: 14px; color: var(--ink-body); line-height: 1.6">
+              <li>① Eyebrow text 컬러 (섹션 시작점)</li>
+              <li>② Pastel pill / chip 의 배경+텍스트 페어</li>
+              <li>③ Icon stroke (feature grid, status indicator)</li>
+              <li>④ Footer column dot (locked mapping)</li>
+              <li>⑤ Inline link 강조 — accent가 아니라 ink, 다만 underline의 hairline 강조</li>
+            </ul>
+          </div>
+          <div>
+            <p class="t-h3 t-ko" style="margin: 0 0 var(--s-4); color: var(--pill-pink-ink)">No · accent forbidden</p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s-3); font-size: 14px; color: var(--ink-body); line-height: 1.6">
+              <li>① Page bg / section bg</li>
+              <li>② Card background</li>
+              <li>③ Button background 또는 text</li>
+              <li>④ Ribbon-badge (ink만)</li>
+              <li>⑤ Headline 본문 컬러</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">
         <h3 class="t-h2">Locked mappings</h3>
         <span class="token-name">Product type ↔ accent</span>
       </div>
@@ -1540,8 +3715,8 @@ body {
 
 <footer class="page-footer">
   <div class="page-footer-inner">
-    <span>Impactrum Design System · v0.beta-5 · 2026.05</span>
-    <span class="t-mono">DESIGN_Impactrum.md → HTML guide</span>
+    <span>Impactrum Design System · v0.beta-5 · guide r2 · 2026.05</span>
+    <span class="t-mono">DESIGN_Impactrum.md → HTML showcase</span>
   </div>
 </footer>
 
